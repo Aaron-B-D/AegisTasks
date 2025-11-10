@@ -1,0 +1,274 @@
+[*.cs]
+
+######################
+######################
+######################
+# Reglas de nomenclatura
+######################
+######################
+######################
+
+# Desactiva la regla genérica IDE1006 y sustituimos por reglas personalizadas
+dotnet_diagnostic.IDE1006.severity = none
+
+######################
+# NAMESPACES
+######################
+dotnet_naming_rule.namespaces_must_be_pascal.severity = suggestion
+dotnet_naming_rule.namespaces_must_be_pascal.symbols = namespaces
+dotnet_naming_rule.namespaces_must_be_pascal.style = pascal_case
+
+dotnet_naming_symbols.namespaces.applicable_kinds = namespace
+dotnet_naming_symbols.namespaces.applicable_accessibilities = *
+dotnet_naming_style.pascal_case.capitalization = pascal_case
+
+######################
+# CLASSES, STRUCTS, ENUMS, DELEGATES, EVENTS
+######################
+dotnet_naming_rule.types_must_be_pascal.severity = suggestion
+dotnet_naming_rule.types_must_be_pascal.symbols = types
+dotnet_naming_rule.types_must_be_pascal.style = pascal_case
+
+dotnet_naming_symbols.types.applicable_kinds = class, struct, enum, delegate
+dotnet_naming_symbols.types.applicable_accessibilities = *
+dotnet_naming_style.pascal_case.capitalization = pascal_case
+
+######################
+# INTERFACES (prefijo I)
+######################
+dotnet_naming_rule.interfaces_must_be_iprefixed.severity = suggestion
+dotnet_naming_rule.interfaces_must_be_iprefixed.symbols = interfaces
+dotnet_naming_rule.interfaces_must_be_iprefixed.style = prefix_I_pascal
+
+dotnet_naming_symbols.interfaces.applicable_kinds = interface
+dotnet_naming_symbols.interfaces.applicable_accessibilities = *
+dotnet_naming_style.prefix_I_pascal.capitalization = pascal_case
+dotnet_naming_style.prefix_I_pascal.required_prefix = I
+
+######################
+# EXCEPTIONS (sufijo Exception)
+######################
+dotnet_naming_rule.exceptions_must_end_with_exception.severity = suggestion
+dotnet_naming_rule.exceptions_must_end_with_exception.symbols = exceptions
+dotnet_naming_rule.exceptions_must_end_with_exception.style = suffix_exception
+
+dotnet_naming_symbols.exceptions.applicable_kinds = class
+dotnet_naming_symbols.exceptions.applicable_accessibilities = *
+dotnet_naming_style.suffix_exception.capitalization = pascal_case
+dotnet_naming_style.suffix_exception.required_suffix = Exception
+
+######################
+# MÉTODOS
+######################
+dotnet_naming_rule.methods_must_be_pascal_public_protected.severity = suggestion
+dotnet_naming_rule.methods_must_be_pascal_public_protected.symbols = methods_public_protected
+dotnet_naming_rule.methods_must_be_pascal_public_protected.style = pascal_case
+
+dotnet_naming_symbols.methods_public_protected.applicable_kinds = method
+dotnet_naming_symbols.methods_public_protected.applicable_accessibilities = public, protected
+dotnet_naming_style.pascal_case.capitalization = pascal_case
+
+dotnet_naming_rule.methods_must_be_camel_private_internal.severity = suggestion
+dotnet_naming_rule.methods_must_be_camel_private_internal.symbols = methods_private_internal
+dotnet_naming_rule.methods_must_be_camel_private_internal.style = camel_case
+
+dotnet_naming_symbols.methods_private_internal.applicable_kinds = method
+dotnet_naming_symbols.methods_private_internal.applicable_accessibilities = private, internal
+dotnet_naming_style.camel_case.capitalization = camel_case
+
+######################
+# PROPIEDADES
+######################
+dotnet_naming_rule.properties_must_be_pascal.severity = suggestion
+dotnet_naming_rule.properties_must_be_pascal.symbols = properties
+dotnet_naming_rule.properties_must_be_pascal.style = pascal_case
+
+dotnet_naming_symbols.properties.applicable_kinds = property
+dotnet_naming_symbols.properties.applicable_accessibilities = *
+dotnet_naming_style.pascal_case.capitalization = pascal_case
+
+######################
+# CAMPOS PRIVADOS (con _)
+######################
+dotnet_naming_rule.private_fields_must_be_underscore_camel.severity = suggestion
+dotnet_naming_rule.private_fields_must_be_underscore_camel.symbols = private_fields
+dotnet_naming_rule.private_fields_must_be_underscore_camel.style = underscore_camel
+
+dotnet_naming_symbols.private_fields.applicable_kinds = field
+dotnet_naming_symbols.private_fields.applicable_accessibilities = private
+dotnet_naming_style.underscore_camel.capitalization = camel_case
+dotnet_naming_style.underscore_camel.required_prefix = _
+
+######################
+# CONSTANTES (MAYÚSCULAS)
+######################
+dotnet_naming_rule.constants_must_be_uppercase.severity = suggestion
+dotnet_naming_rule.constants_must_be_uppercase.symbols = constants
+dotnet_naming_rule.constants_must_be_uppercase.style = all_caps
+
+dotnet_naming_symbols.constants.applicable_kinds = field
+dotnet_naming_symbols.constants.required_modifiers = const
+dotnet_naming_symbols.constants.applicable_accessibilities = *
+dotnet_naming_style.all_caps.capitalization = all_upper
+
+
+######################
+######################
+######################
+# Otras reglas
+######################
+######################
+######################
+
+# IDE0016: Usar expresión "throw"
+dotnet_diagnostic.IDE0016.severity = none
+
+# Simplify object initialization (IDE0017)
+dotnet_diagnostic.IDE0017.severity = none  
+
+# IDE0018: La declaración de variable se puede insertar
+dotnet_diagnostic.IDE0018.severity = none
+
+# IDE0019: Se puede usar pattern matching
+dotnet_diagnostic.IDE0019.severity = none
+
+# IDE0020: Se puede usar expresión de cuerpo para propiedades, indexadores y métodos
+dotnet_diagnostic.IDE0020.severity = none
+
+# IDE0025: Usar cuerpo de expresiones para la propiedad //Demasiados falsos positivos
+dotnet_diagnostic.IDE0025.severity = none
+
+# IDE0028: Se puede simplificar la inicialización de colecciones
+dotnet_diagnostic.IDE0028.severity = none
+
+# IDE0029: Se puede usar la expresión de coalescencia
+dotnet_diagnostic.IDE0029.severity = none
+
+# IDE0030: Usar expresión coalesce
+dotnet_diagnostic.IDE0030.severity = none
+
+# IDE0031: Usar propagación de null
+dotnet_diagnostic.IDE0031.severity = none
+
+# IDE0034: Simplificar la expresión "predeterminada"
+dotnet_diagnostic.IDE0034.severity = none
+
+# IDE0037: Usar nombre de miembro inferido
+dotnet_diagnostic.IDE0037.severity = none
+
+# IDE0038: Usar coincidencia de patrones
+dotnet_diagnostic.IDE0038.severity = none
+
+# IDE0039: Usar función local
+dotnet_diagnostic.IDE0039.severity = none
+
+# IDE0044: Agregar modificador de solo lectura
+dotnet_diagnostic.IDE0044.severity = none
+
+# IDE0054: Usar la asignación compuesta
+dotnet_diagnostic.IDE0054.severity = none
+
+# IDE0071: Simplificar la interpolación
+dotnet_diagnostic.IDE0071.severity = none
+
+# IDE0079: Quitar supresión innecesaria
+dotnet_diagnostic.IDE0079.severity = none
+
+# IDE0270: Usar expresión coalesce
+dotnet_diagnostic.IDE0270.severity = none
+
+# IDE1005: La invocación del delegado se puede simplificar.
+dotnet_diagnostic.IDE1005.severity = none
+
+
+
+######################
+######################
+######################
+# Reglas SonarLint
+######################
+######################
+######################
+
+
+# Default severity for analyzer diagnostics with category 'Minor Code Smell'
+dotnet_analyzer_diagnostic.category-Minor Code Smell.severity = silent
+
+# IDE0011: Agregar llaves
+csharp_prefer_braces = true:none
+
+# S1135: Track uses of "TODO" tags
+dotnet_diagnostic.S1135.severity = none
+
+# S1643: Strings should not be concatenated using '+' in a loop
+dotnet_diagnostic.S1643.severity = none
+
+# S1066: Collapsible "if" statements should be merged
+dotnet_diagnostic.S1066.severity = none                
+
+# S101: Types should be named in PascalCase
+dotnet_diagnostic.S101.severity = none
+
+# S3241: Methods should not return values that are never used
+dotnet_diagnostic.S3241.severity = none
+
+# S2971: "IEnumerable" LINQs should be simplified
+dotnet_diagnostic.S2971.severity = none
+
+# S1104: Fields should not have public accessibility
+dotnet_diagnostic.S1104.severity = none
+
+# S3458: Empty "case" clauses that fall through to the "default" should be omitted
+dotnet_diagnostic.S3458.severity = none
+
+# S2292: Trivial properties should be auto-implemented
+dotnet_diagnostic.S2292.severity = none    
+
+# S3878: Arrays should not be created for params parameters
+dotnet_diagnostic.S3878.severity = none    
+
+# S112: General exceptions should never be thrown
+dotnet_diagnostic.S112.severity = none          
+     
+# Default severity for analyzer diagnostics with category 'Major Code Smell'
+dotnet_analyzer_diagnostic.category-Major Code Smell.severity = none
+
+# S108: Nested blocks of code should not be left empty
+dotnet_diagnostic.S108.severity = none
+
+# S1206: "Equals(Object)" and "GetHashCode()" should be overridden in pairs
+dotnet_diagnostic.S1206.severity = none
+
+# CS0659: El tipo reemplaza a Object.Equals(object o), pero no reemplaza a Object.GetHashCode()
+dotnet_diagnostic.CS0659.severity = none
+
+# S3247: Duplicate casts should not be made
+dotnet_diagnostic.S3247.severity = none
+
+# S2925: "Thread.Sleep" should not be used in tests
+dotnet_diagnostic.S2925.severity = none
+
+# S3267: Loops should be simplified with "LINQ" expressions
+dotnet_diagnostic.S3267.severity = none
+
+# S6608: Prefer indexing instead of "Enumerable" methods on types implementing "IList"
+dotnet_diagnostic.S6608.severity = none
+
+# S6602: "Find" method should be used instead of the "FirstOrDefault" extension
+dotnet_diagnostic.S6602.severity = none
+
+# S2933: Fields that are only assigned in the constructor should be "readonly"
+dotnet_diagnostic.S2933.severity = none     
+
+# S6670: "Trace.Write" and "Trace.WriteLine" should not be used
+dotnet_diagnostic.S6670.severity = none
+
+# DESHABILITADO POR DAR MUCHOS FALSOS POSITIVOS
+# S2857: SQL keywords should be delimited by whitespace
+dotnet_diagnostic.S2857.severity = none
+
+# S107: Methods should not have too many parameters
+dotnet_diagnostic.S107.severity = none
+
+# S3776: Cognitive Complexity of methods should not be too high
+dotnet_diagnostic.S3776.severity = none
