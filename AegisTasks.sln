@@ -9,6 +9,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AegisTasks.TasksLibrary", "
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AegisTasks.UnitTests", "AegisTasks.UnitTests\AegisTasks.UnitTests.csproj", "{24E3F071-04DB-458D-AFA0-2A99A8BC9504}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AegisTasks.DataAccess", "AegisTasks.DataAccess\AegisTasks.DataAccess.csproj", "{9904B48C-3C9A-4327-AD50-6CAF0DAF02D5}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{24E3F071-04DB-458D-AFA0-2A99A8BC9504}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{24E3F071-04DB-458D-AFA0-2A99A8BC9504}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{24E3F071-04DB-458D-AFA0-2A99A8BC9504}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9904B48C-3C9A-4327-AD50-6CAF0DAF02D5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9904B48C-3C9A-4327-AD50-6CAF0DAF02D5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9904B48C-3C9A-4327-AD50-6CAF0DAF02D5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9904B48C-3C9A-4327-AD50-6CAF0DAF02D5}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

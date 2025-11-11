@@ -1,0 +1,13 @@
+/.vs/AegisTasks/CopilotIndices
+/.vs
+/AegisTasks.BLL/obj
+/AegisTasks.Core/bin
+/AegisTasks.Core/obj
+/AegisTasks.DataAccess/bin
+/AegisTasks.DataAccess/obj
+/AegisTasks.TasksLibrary/bin
+/AegisTasks.TasksLibrary/obj
+/AegisTasks.UnitTests/bin
+/AegisTasks.UnitTests/obj
+/packages
+/AegisTasks.UnitTests/.vs
