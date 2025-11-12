@@ -11,6 +11,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AegisTasks.UnitTests", "Aeg
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AegisTasks.DataAccess", "AegisTasks.DataAccess\AegisTasks.DataAccess.csproj", "{9904B48C-3C9A-4327-AD50-6CAF0DAF02D5}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AegisTasks.BLL", "AegisTasks.BLL\AegisTasks.BLL.csproj", "{D725BD9C-E68D-4CE1-B53C-2AD923044CD6}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +35,10 @@ Global
 		{9904B48C-3C9A-4327-AD50-6CAF0DAF02D5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9904B48C-3C9A-4327-AD50-6CAF0DAF02D5}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9904B48C-3C9A-4327-AD50-6CAF0DAF02D5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D725BD9C-E68D-4CE1-B53C-2AD923044CD6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D725BD9C-E68D-4CE1-B53C-2AD923044CD6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D725BD9C-E68D-4CE1-B53C-2AD923044CD6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D725BD9C-E68D-4CE1-B53C-2AD923044CD6}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

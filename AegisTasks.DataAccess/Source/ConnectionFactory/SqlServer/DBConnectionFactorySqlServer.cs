@@ -15,7 +15,7 @@ namespace AegisTasks.DataAccess.ConnectionFactory
             _ConnectionString = connectionString;
         }
 
-        public IDbConnection CreateConnection()
+        public SqlConnection CreateConnection()
         {
             return new SqlConnection(_ConnectionString);
         }
