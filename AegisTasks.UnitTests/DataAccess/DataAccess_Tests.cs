@@ -1,9 +1,8 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using AegisTasks.DataAccess;
-using System;
 using AegisTasks.DataAccess.ConnectionFactory;
 using Microsoft.Data.SqlClient;
 using AegisTasks.DataAccess.DataAccesses;
+using System;
 
 namespace AegisTasks.UnitTests.DataAccess
 {
@@ -13,9 +12,20 @@ namespace AegisTasks.UnitTests.DataAccess
         private static string _ConnectionString = Properties.Settings.Default.SqlServerConnectionString;
         private static DBConnectionFactorySqlServer _FactorySqlServer = null;
 
+        private static UsersDataAccess _UserDA = null;
+        private static UserParametersAccess _UserParamsDA = null;
+        private static ExecutionHistoryDataAccess _ExeHistoryDA = null;
+        private static TemplatesAccess _TemplatesAccess = null;
+
         [ClassInitialize]
-        public static void ClassInitialize(TestContext context) {
+        public static void ClassInitialize(TestContext context)
+        {
             _FactorySqlServer = new DBConnectionFactorySqlServer(_ConnectionString);
+
+            _UserDA = new UsersDataAccess();
+            _UserParamsDA = new UserParametersAccess();
+            _ExeHistoryDA = new ExecutionHistoryDataAccess();
+            _TemplatesAccess = new TemplatesAccess();
         }
 
         [ClassCleanup]
@@ -26,10 +36,10 @@ namespace AegisTasks.UnitTests.DataAccess
                 using (SqlConnection conn = _FactorySqlServer.CreateConnection())
                 {
                     conn.Open();
-                    new UserParametersAccess().DropTable(conn);
-                    new ExecutionHistoryDataAccess().DropTable(conn);
-                    new TemplatesAccess().DropTable(conn);
-                    new UsersDataAccess().DropTable(conn);
+                    _UserParamsDA.DropTable(conn);
+                    _ExeHistoryDA.DropTable(conn);
+                    _TemplatesAccess.DropTable(conn);
+                    _UserDA.DropTable(conn);
                 }
             }
         }
@@ -43,7 +53,6 @@ namespace AegisTasks.UnitTests.DataAccess
                 {
                     conn.Open();
                 }
-
             }
             catch (Exception ex)
             {
@@ -60,32 +69,20 @@ namespace AegisTasks.UnitTests.DataAccess
                 {
                     conn.Open();
 
-                    Assert.IsTrue(new DatabaseInstaller().DatabaseExists(conn));
+                    _UserDA.CreateTable(conn);
+                    _UserParamsDA.CreateTable(conn);
+                    _ExeHistoryDA.CreateTable(conn);
+                    _TemplatesAccess.CreateTable(conn);
 
-                    new UsersDataAccess().CreateTable(conn);
-                    new UserParametersAccess().CreateTable(conn);
-                    new ExecutionHistoryDataAccess().CreateTable(conn);
-                    new TemplatesAccess().CreateTable(conn);
-
-                    Assert.IsTrue(tableExists(conn, $"{UsersDataAccess.DB_USERS_TABLE_NAME}"), "La tabla Users no fue creada.");
-                    Assert.IsTrue(tableExists(conn, $"{UserParametersAccess.DB_USER_PARAMETERS_TABLE_NAME}"), "La tabla UserParameters no fue creada.");
-                    Assert.IsTrue(tableExists(conn, ExecutionHistoryDataAccess.DB_EXECUTION_HISTORY_TABLE_NAME), "La tabla ExecutionHistory no fue creada.");
-                    Assert.IsTrue(tableExists(conn, TemplatesAccess.DB_TEMPLATES_TABLE_NAME), "La tabla Templates no fue creada.");
+                    Assert.IsTrue(_UserDA.Exists(conn), "La tabla Users no fue creada.");
+                    Assert.IsTrue(_UserParamsDA.Exists(conn), "La tabla UserParameters no fue creada.");
+                    Assert.IsTrue(_ExeHistoryDA.Exists(conn), "La tabla ExecutionHistory no fue creada.");
+                    Assert.IsTrue(_TemplatesAccess.Exists(conn), "La tabla Templates no fue creada.");
                 }
             }
             catch (Exception ex)
             {
                 Assert.Fail($"Fallo la creación de las tablas: {ex.Message}");
-            }
-        }
-
-        private bool tableExists(SqlConnection conn, string tableName)
-        {
-            using (var cmd = new SqlCommand("SELECT COUNT(*) FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_NAME = @TableName", conn))
-            {
-                cmd.Parameters.AddWithValue("@TableName", tableName);
-                int count = (int)cmd.ExecuteScalar();
-                return count > 0;
             }
         }
     }

@@ -1,5 +1,6 @@
 ﻿using AegisTasks.DataAccess.Common;
 using Microsoft.Data.SqlClient;
+using System;
 
 namespace AegisTasks.DataAccess.DataAccesses
 {
@@ -51,8 +52,15 @@ IF EXISTS (SELECT * FROM sysobjects WHERE name = '{0}' AND xtype = 'U')
 BEGIN
     DROP TABLE {0};
 END",
-    DB_TEMPLATES_TABLE_NAME
-);
+            DB_TEMPLATES_TABLE_NAME
+        );
+
+        private readonly string EXISTS_TEMPLATES_TABLE = string.Format(@"
+SELECT COUNT(*) 
+FROM INFORMATION_SCHEMA.TABLES 
+WHERE TABLE_NAME = '{0}'",
+            DB_TEMPLATES_TABLE_NAME
+        );
 
         public TemplatesAccess() : base() { }
 
@@ -71,6 +79,16 @@ END",
             {
                 command.CommandType = System.Data.CommandType.Text;
                 command.ExecuteNonQuery();
+            }
+        }
+
+        public override bool Exists(SqlConnection conn)
+        {
+            using (var command = new SqlCommand(EXISTS_TEMPLATES_TABLE, conn))
+            {
+                command.CommandType = System.Data.CommandType.Text;
+                int count = (int)command.ExecuteScalar();
+                return count > 0;
             }
         }
     }

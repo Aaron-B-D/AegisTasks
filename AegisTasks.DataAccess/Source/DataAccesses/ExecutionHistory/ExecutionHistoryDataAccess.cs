@@ -1,5 +1,6 @@
 ﻿using AegisTasks.DataAccess.Common;
 using Microsoft.Data.SqlClient;
+using System;
 
 namespace AegisTasks.DataAccess.DataAccesses
 {
@@ -42,6 +43,13 @@ END",
             DB_EXECUTION_HISTORY_TABLE_NAME
         );
 
+        private readonly string EXISTS_EXECUTION_HISTORY_TABLE = string.Format(@"
+SELECT COUNT(*) 
+FROM INFORMATION_SCHEMA.TABLES 
+WHERE TABLE_NAME = '{0}'",
+            DB_EXECUTION_HISTORY_TABLE_NAME
+        );
+
         public ExecutionHistoryDataAccess() : base() { }
 
         public override void CreateTable(SqlConnection conn)
@@ -59,6 +67,16 @@ END",
             {
                 command.CommandType = System.Data.CommandType.Text;
                 command.ExecuteNonQuery();
+            }
+        }
+
+        public override bool Exists(SqlConnection conn)
+        {
+            using (var command = new SqlCommand(EXISTS_EXECUTION_HISTORY_TABLE, conn))
+            {
+                command.CommandType = System.Data.CommandType.Text;
+                int count = (int)command.ExecuteScalar();
+                return count > 0;
             }
         }
     }

@@ -43,5 +43,10 @@ namespace AegisTasks.BLL.DataAccess
             }
         }
 
+        public static SqlConnection CreateConnection()
+        {
+            return _ConnectionFactorySqlServer.CreateConnection();
+        }
+
     }
 }

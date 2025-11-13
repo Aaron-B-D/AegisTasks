@@ -17,5 +17,7 @@ namespace AegisTasks.DataAccess.Common
         public abstract void CreateTable(SqlConnection conn);
 
         public abstract void DropTable(SqlConnection conn);
+
+        public abstract bool Exists(SqlConnection conn);
     }
 }
