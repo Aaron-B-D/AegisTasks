@@ -25,6 +25,16 @@ namespace AegisTasks.TasksLibrary.TaskAction
 
         #region PRIVATE CONSTANTS
 
+        // Nombres en distintos idiomas
+        private const string NAME_ES = "Archivo existe";
+        private const string NAME_GL = "Arquivo existe";
+        private const string NAME_EN = "File exists";
+
+        // Descripciones en distintos idiomas
+        private const string DESCRIPTION_ES = "Comprueba si un archivo existe en la ruta especificada";
+        private const string DESCRIPTION_GL = "Comprueba se un arquivo existe na ruta especificada";
+        private const string DESCRIPTION_EN = "Checks if a file exists at the specified path";
+
         #endregion PRIVATE CONSTANTS
         #region PUBLIC CONSTANTS
         #endregion PUBLIC CONSTANTS
@@ -36,8 +46,6 @@ namespace AegisTasks.TasksLibrary.TaskAction
         #endregion STATIC PRIVATE PROPERTIES
         #region STATIC PUBLIC PROPERTIES
         public readonly static string CALL_NAME = nameof(FileExistTaskAction);
-        public readonly static string NAME = "File exists action";
-        public readonly static string DESCRIPTION = "Una acción de tarea responsable de comprobar la existencia de un archivo en un ruta especificada";
 
         //#region INPUT PARAMS
 
@@ -69,7 +77,13 @@ namespace AegisTasks.TasksLibrary.TaskAction
         #region CONSTRUCTOR
 
         public FileExistTaskAction()
-            : base(CALL_NAME, Constants.TASK_CATEGORY_FILES, TaskActionExecution.Sync, NAME, DESCRIPTION)
+            : base(CALL_NAME, Constants.TASK_CATEGORY_FILES, 
+                NAME_ES,
+                DESCRIPTION_ES,
+                NAME_GL,
+                DESCRIPTION_GL,
+                NAME_EN,
+                DESCRIPTION_EN)
         { }
 
         #endregion CONSTRUCTOR

@@ -11,6 +11,8 @@ namespace AegisTasks.Core.Common
     /// </summary>
     public interface ITaskPlanRegistrable
     {
+        string GetName(Language language);
+        string GetDescription(Language language);
         /// <summary>
         /// Registra el TaskPlan (workflow) en el WorkflowHost de WorkflowCore.
         /// </summary>

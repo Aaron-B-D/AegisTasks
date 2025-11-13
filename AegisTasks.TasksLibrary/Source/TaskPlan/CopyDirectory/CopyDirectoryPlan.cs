@@ -21,11 +21,16 @@ namespace AegisTasks.TasksLibrary.TaskPlan
 
 		#region STATIC PRIVATE PROPERTIES
 
-		private readonly static string NAME = "Copy directory";
-		private readonly static string DESCRIPTION = "Un plan de acción que copia un directorio en un destino dado";
 		private readonly static int NUM_COPY_FILE_RETRIES = 3;
         private readonly static int COPY_FILE_RETRY_INTERVAL_MS = 1000;
 
+        private const string NAME_ES = "Plan de copiado de directorio";
+        private const string NAME_GL = "Plan de copiado de directorio";
+        private const string NAME_EN = "Copy directory plan";
+		
+        private const string DESCRIPTION_ES = "Plan de acción que copia un directorio completo a un destino";
+        private const string DESCRIPTION_GL = "Plan de acción que copia un directorio completo a un destino";
+        private const string DESCRIPTION_EN = "Action plan that copies a directory to a given destination";
 
         #endregion STATIC PRIVATE PROPERTIES
 
@@ -39,7 +44,7 @@ namespace AegisTasks.TasksLibrary.TaskPlan
 
 		#region CONSTRUCTOR
 
-		public CopyDirectoryPlan() : base(Constants.TASK_CATEGORY_FILES, VERSION, CALL_NAME, NAME, DESCRIPTION)
+		public CopyDirectoryPlan() : base(Constants.TASK_CATEGORY_FILES, VERSION, CALL_NAME, NAME_ES, DESCRIPTION_ES, NAME_GL, DESCRIPTION_GL, NAME_EN, DESCRIPTION_EN)
 		{ }
 
 		#endregion CONSTRUCTOR
@@ -189,6 +194,8 @@ namespace AegisTasks.TasksLibrary.TaskPlan
 		{
 			host.RegisterWorkflow<CopyDirectoryPlan, CopyDirectoryPlanParams>();
 		}
+
+
 
 		#endregion PUBLIC METHODS
 

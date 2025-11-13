@@ -1,0 +1,12 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\AegisTasks.DataAccess\AegisTasks.DataAccess.csproj" />
+    <ProjectReference Include="..\AegisTasks.TasksLibrary\AegisTasks.TasksLibrary.csproj" />
+  </ItemGroup>
+
+</Project>

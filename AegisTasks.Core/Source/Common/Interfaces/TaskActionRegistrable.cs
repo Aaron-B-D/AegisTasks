@@ -11,6 +11,8 @@ namespace AegisTasks.Core.Common
     /// </summary>
     public interface ITaskActionRegistrable
     {
+        string GetName(Language language);
+        string GetDescription(Language language);
         /// <summary>
         /// Registra la TaskAction en el contenedor de servicios de WorkflowCore.
         /// </summary>

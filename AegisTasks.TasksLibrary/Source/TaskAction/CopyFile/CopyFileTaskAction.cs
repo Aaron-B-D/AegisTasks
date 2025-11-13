@@ -23,13 +23,21 @@ namespace AegisTasks.TasksLibrary.TaskAction
         #region STATIC PUBLIC PROPERTIES
 
         public readonly static string CALL_NAME = nameof(CopyFileTaskAction);
-        public readonly static string NAME = "Copy file action";
-        public readonly static string DESCRIPTION = "Acción de tarea responsable de copiar un fichero en un directorio dado, sobrescribiéndolo si es necesario";
 
         #endregion STATIC PUBLIC PROPERTIES
 
 
         #region PRIVATE PROPERTIES
+
+        // Nombres en distintos idiomas
+        private const string NAME_ES = "Copiar archivo";
+        private const string NAME_GL = "Copiar arquivo";
+        private const string NAME_EN = "Copy file";
+
+        // Descripciones en distintos idiomas
+        private const string DESCRIPTION_ES = "Copia un archivo al destino especificado o falla si no es posible";
+        private const string DESCRIPTION_GL = "Copia un arquivo ao destino especificado ou falla se non é posible";
+        private const string DESCRIPTION_EN = "Copies a file to the specified destination or fails if not possible";
 
         #endregion PRIVATE PROPERTIES
 
@@ -41,7 +49,12 @@ namespace AegisTasks.TasksLibrary.TaskAction
         { }
 
         public CopyFileTaskAction(CopyFileTaskActionInputParams inputParams)
-            : base(CALL_NAME, Constants.TASK_CATEGORY_FILES, TaskActionExecution.Sync, NAME, DESCRIPTION)
+            : base(CALL_NAME, Constants.TASK_CATEGORY_FILES, NAME_ES,
+                DESCRIPTION_ES,
+                NAME_GL,
+                DESCRIPTION_GL,
+                NAME_EN,
+                DESCRIPTION_EN)
         {
             this.InputParams = inputParams;
         }

@@ -276,6 +276,11 @@ namespace AegisTasks.Core.WorkflowHost
             }
         }
 
+        public HashSet<ITaskPlanRegistrable> GetAvailableTaskPlans()
+        {
+            return this._TaskPlans;
+        }
+
         /// <summary>
         /// Arrancar el host para ser usado
         /// </summary>

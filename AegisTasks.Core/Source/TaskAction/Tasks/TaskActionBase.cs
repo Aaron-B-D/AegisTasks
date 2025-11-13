@@ -18,26 +18,14 @@ namespace AegisTasks.Core.TaskAction
     {
         #region PROPERTIES
 
-        #region CONSTANTS
-
-        #region PRIVATE CONSTANTS
-        #endregion PRIVATE CONSTANTS
-        #region PUBLIC CONSTANTS
-        #endregion PUBLIC CONSTANTS
-
-        #endregion CONSTANTS
-
-        #region STATIC PROPERTIES
-        #region STATIC PRIVATE PROPERTIES
-
-
-
-        #endregion STATIC PRIVATE PROPERTIES
-        #region STATIC PUBLIC PROPERTIES
-        #endregion STATIC PUBLIC PROPERTIES
-        #endregion STATIC PROPERTIES
-
         #region PRIVATE PROPERTIES
+
+        protected readonly string _ES_Name = String.Empty;
+        protected readonly string _ES_Description = String.Empty;
+        protected readonly string _GL_Name = String.Empty;
+        protected readonly string _GL_Description = String.Empty;
+        protected readonly string _EN_Name = String.Empty;
+        protected readonly string _EN_Description = String.Empty;
 
         protected int _NumRetries
         {
@@ -57,18 +45,6 @@ namespace AegisTasks.Core.TaskAction
         /// La id única de la tarea, con la que WorkflowCore puede identificarla frente a otros steps
         /// </summary>
         public string Id { get; private set; }
-
-
-        /// <summary>
-        /// Nombre de la tarea (para mostrar en la interfaz gráfica)
-        /// </summary>
-        public string Name { get; private set; }
-
-
-        /// <summary>
-        /// La descripción de la tarea (para mostrar en la interfaz gráfica)
-        /// </summary>
-        public string Description { get; private set; }
 
         private int _NumExecutions = 0;
         /// <summary>
@@ -96,12 +72,6 @@ namespace AegisTasks.Core.TaskAction
         }
 
         /// <summary>
-        /// El tipo de ejecución de la tarea
-        /// </summary>
-        public readonly TaskActionExecution ExecutionType;
-
-
-        /// <summary>
         /// La categoría en la que está la tarea atómica. Empleado para agrupar
         /// </summary>
         public readonly string Category;
@@ -126,17 +96,41 @@ namespace AegisTasks.Core.TaskAction
 
         #region CONSTRUCTOR
 
-        protected TaskActionBase(string callName, string category, TaskActionExecution executionType, string name, string description)
+        /// <summary>
+        /// Constructor base de la tarea atómica.
+        /// Todos los nombres y descripciones de los idiomas son obligatorios.
+        /// </summary>
+        /// <param name="callName">Nombre de la tarea.</param>
+        /// <param name="category">Categoría de la tarea.</param>
+        /// <param name="esName">Nombre en español.</param>
+        /// <param name="esDescription">Descripción en español.</param>
+        /// <param name="glName">Nombre en gallego.</param>
+        /// <param name="glDescription">Descripción en gallego.</param>
+        /// <param name="enName">Nombre en inglés.</param>
+        /// <param name="enDescription">Descripción en inglés.</param>
+        protected TaskActionBase(
+            string callName,
+            string category,
+            string esName,
+            string esDescription,
+            string glName,
+            string glDescription,
+            string enName,
+            string enDescription)
         {
             Id = callName;
             Category = category;
-            ExecutionType = executionType;
-            Name = name;
-            Description = description;
+
+            _ES_Name = esName;
+            _ES_Description = esDescription;
+            _GL_Name = glName;
+            _GL_Description = glDescription;
+            _EN_Name = enName;
+            _EN_Description = enDescription;
         }
 
-        protected TaskActionBase(string callName, TaskActionExecution executionType, string name, string description)
-            : this(callName, "", executionType, name, description)
+        protected TaskActionBase(string callName)
+            : this(callName, "", "", "", "", "", "", "")
         { }
 
         #endregion CONSTRUCTOR
@@ -163,6 +157,35 @@ namespace AegisTasks.Core.TaskAction
         /// <returns></returns>
         public abstract ExecutionResult Compensate(IStepExecutionContext context);
 
+        public string GetName(Language language)
+        {
+            switch (language)
+            {
+                case Language.SPANISH:
+                    return _ES_Name;
+                case Language.GALICIAN:
+                    return _GL_Name;
+                case Language.ENGLISH:
+                    return _EN_Name;
+                default:
+                    throw new ArgumentOutOfRangeException(nameof(language), $"Idioma no soportado: {language}");
+            }
+        }
+
+        public string GetDescription(Language language)
+        {
+            switch (language)
+            {
+                case Language.SPANISH:
+                    return _ES_Description;
+                case Language.GALICIAN:
+                    return _GL_Description;
+                case Language.ENGLISH:
+                    return _EN_Description;
+                default:
+                    throw new ArgumentOutOfRangeException(nameof(language), $"Idioma no soportado: {language}");
+            }
+        }
 
         /// <summary>
         /// Obtener los resultados de la acción una vez se ha ejecutado

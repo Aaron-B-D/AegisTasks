@@ -5,11 +5,12 @@ using System.Text;
 namespace AegisTasks.Core.Common
 {
     /// <summary>
-    /// El tipo de ejecución que posee la tarea de Aegis
+    /// Lenguajes disponibles
     /// </summary>
-    public enum TaskActionExecution
+    public enum Language
     {
-        Sync,
-        Async
+        SPANISH,
+        GALICIAN,
+        ENGLISH
     }
 }

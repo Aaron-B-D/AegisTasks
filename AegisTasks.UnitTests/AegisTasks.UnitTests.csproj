@@ -232,7 +232,9 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="DataAccess\DataAccessConnection_Tests.cs" />
+    <Compile Include="BLL\AegisManagerBLL_Tests.cs" />
+    <Compile Include="BLL\DataAccessBLL_Tests.cs" />
+    <Compile Include="DataAccess\DataAccess_Tests.cs" />
     <Compile Include="PlansTests\CopyDirectoryPlan_Test.cs" />
     <Compile Include="PlansTests\PlanTemplate_Test.cs" />
     <Compile Include="PlansTests\WriteInFilePlan_Test.cs" />
@@ -252,6 +254,10 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\AegisTasks.BLL\AegisTasks.BLL.csproj">
+      <Project>{d725bd9c-e68d-4ce1-b53c-2ad923044cd6}</Project>
+      <Name>AegisTasks.BLL</Name>
+    </ProjectReference>
     <ProjectReference Include="..\AegisTasks.Core\AegisTasks.Core.csproj">
       <Project>{53630aa5-84b7-452c-8420-b82f7bc0e260}</Project>
       <Name>AegisTasks.Core</Name>

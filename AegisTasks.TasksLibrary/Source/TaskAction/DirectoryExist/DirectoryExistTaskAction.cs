@@ -7,6 +7,7 @@ using System;
 using System.IO;
 using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
+using System.Xml.Linq;
 using WorkflowCore.Interface;
 using WorkflowCore.Models;
 
@@ -19,23 +20,20 @@ namespace AegisTasks.TasksLibrary.TaskAction
     {
         #region PROPERTIES
 
-        #region CONSTANTS
+        // Nombres en distintos idiomas
+        private const string NAME_ES = "Directorio existe";
+        private const string NAME_GL = "Directorio existe";
+        private const string NAME_EN = "Directory exists";
 
-        #region PRIVATE CONSTANTS
-        #endregion PRIVATE CONSTANTS
-        #region PUBLIC CONSTANTS
-        #endregion PUBLIC CONSTANTS
-
-        #endregion CONSTANTS
+        // Descripciones en distintos idiomas
+        private const string DESCRIPTION_ES = "Comprueba si un directorio existe en la ruta especificada";
+        private const string DESCRIPTION_GL = "Comprueba se un directorio existe na ruta especificada";
+        private const string DESCRIPTION_EN = "Checks if a directory exists at the specified path";
 
         #region STATIC PROPERTIES
-        #region STATIC PRIVATE PROPERTIES
-        #endregion STATIC PRIVATE PROPERTIES
+
         #region STATIC PUBLIC PROPERTIES
         public readonly static string CALL_NAME = nameof(DirectoryExistTaskAction);
-        public readonly static string NAME = "Directory exists action";
-        public readonly static string DESCRIPTION = "Una acción de tarea responsable de comprobar la existencia de un directorio en una ruta especificada";
-
 
         #endregion STATIC PUBLIC PROPERTIES
         #endregion STATIC PROPERTIES
@@ -49,16 +47,16 @@ namespace AegisTasks.TasksLibrary.TaskAction
         #endregion PROPERTIES
 
 
-
-        #region METHODS
-
         #region CONSTRUCTOR
 
         public DirectoryExistTaskAction()
-            : base(CALL_NAME, Constants.TASK_CATEGORY_FILES, TaskActionExecution.Sync, NAME, DESCRIPTION)
+            : base(CALL_NAME, Constants.TASK_CATEGORY_FILES, NAME_ES, DESCRIPTION_ES, NAME_GL, DESCRIPTION_GL, NAME_EN, DESCRIPTION_EN)
         { }
 
         #endregion CONSTRUCTOR
+
+        #region METHODS
+
 
         #region STATIC METHODS
 

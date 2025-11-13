@@ -16,26 +16,37 @@ namespace AegisTasks.TasksLibrary.TaskAction
 	/// </summary>
 	public class WriteInFileTaskAction : TaskActionBase<WriteInFileTaskActionInputParams, object>
 	{
-		#region PROPERTIES
+        #region PROPERTIES
 
-		#region CONSTANTS
+        #region CONSTANTS
 
-		#region PRIVATE CONSTANTS
-		#endregion PRIVATE CONSTANTS
+        #region PRIVATE CONSTANTS
 
-		#region PUBLIC CONSTANTS
-		#endregion PUBLIC CONSTANTS
+        // Nombres en distintos idiomas
+        private const string NAME_ES = "Escribir en archivo";
+        private const string NAME_GL = "Escribir en arquivo";
+        private const string NAME_EN = "Write in file";
 
-		#endregion CONSTANTS
+        // Descripciones en distintos idiomas
+        private const string DESCRIPTION_ES = "Escribe un contenido genérico en un archivo";
+        private const string DESCRIPTION_GL = "Escribe un contido xenérico nun arquivo";
+        private const string DESCRIPTION_EN = "Writes generic content into a file";
 
-		#region STATIC PROPERTIES
+        #endregion PRIVATE CONSTANTS
 
-		#region STATIC PRIVATE PROPERTIES
-		#endregion STATIC PRIVATE PROPERTIES
+        #region PUBLIC CONSTANTS
+        #endregion PUBLIC CONSTANTS
 
-		#region STATIC PUBLIC PROPERTIES
+        #endregion CONSTANTS
 
-		public readonly static string CALL_NAME = nameof(WriteInFileTaskAction);
+        #region STATIC PROPERTIES
+
+        #region STATIC PRIVATE PROPERTIES
+        #endregion STATIC PRIVATE PROPERTIES
+
+        #region STATIC PUBLIC PROPERTIES
+
+        public readonly static string CALL_NAME = nameof(WriteInFileTaskAction);
 		public readonly static string NAME = "Write in file action";
 		public readonly static string DESCRIPTION = "Acción de tarea responsable de escribir un contenido en un archivo";
 
@@ -55,7 +66,7 @@ namespace AegisTasks.TasksLibrary.TaskAction
 
 		#region CONSTRUCTOR
 		public WriteInFileTaskAction()
-			: base(CALL_NAME, Constants.TASK_CATEGORY_FILES, TaskActionExecution.Sync, NAME, DESCRIPTION)
+			: base(CALL_NAME, Constants.TASK_CATEGORY_FILES, NAME_ES, DESCRIPTION_ES, NAME_GL, DESCRIPTION_GL, NAME_EN, DESCRIPTION_EN)
 		{ }
 		#endregion CONSTRUCTOR
 

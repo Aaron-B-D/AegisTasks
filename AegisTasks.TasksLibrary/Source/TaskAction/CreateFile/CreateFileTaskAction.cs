@@ -22,6 +22,17 @@ namespace AegisTasks.TasksLibrary.TaskAction
         #region CONSTANTS
 
         #region PRIVATE CONSTANTS
+
+        // Nombres en distintos idiomas
+        private const string NAME_ES = "Crear archivo";
+        private const string NAME_GL = "Crear arquivo";
+        private const string NAME_EN = "Create file";
+
+        // Descripciones en distintos idiomas
+        private const string DESCRIPTION_ES = "Crea un archivo en la ruta especificada";
+        private const string DESCRIPTION_GL = "Crea un arquivo na ruta especificada";
+        private const string DESCRIPTION_EN = "Creates a file at the specified path";
+
         #endregion PRIVATE CONSTANTS
 
         #region PUBLIC CONSTANTS
@@ -54,7 +65,12 @@ namespace AegisTasks.TasksLibrary.TaskAction
 
         #region CONSTRUCTOR
         public CreateFileTaskAction()
-            : base(CALL_NAME, Constants.TASK_CATEGORY_FILES, TaskActionExecution.Sync, NAME, DESCRIPTION)
+            : base(CALL_NAME, Constants.TASK_CATEGORY_FILES, NAME_ES,
+                DESCRIPTION_ES,
+                NAME_GL,
+                DESCRIPTION_GL,
+                NAME_EN,
+                DESCRIPTION_EN)
         { }
         #endregion CONSTRUCTOR
 

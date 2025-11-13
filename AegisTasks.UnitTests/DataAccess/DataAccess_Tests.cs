@@ -8,7 +8,7 @@ using AegisTasks.DataAccess.DataAccesses;
 namespace AegisTasks.UnitTests.DataAccess
 {
     [TestClass]
-    public class DataAccessConnection_Tests
+    public class DataAccess_Tests
     {
         private static string _ConnectionString = Properties.Settings.Default.SqlServerConnectionString;
         private static DBConnectionFactorySqlServer _FactorySqlServer = null;
@@ -60,13 +60,15 @@ namespace AegisTasks.UnitTests.DataAccess
                 {
                     conn.Open();
 
+                    Assert.IsTrue(new DatabaseInstaller().DatabaseExists(conn));
+
                     new UsersDataAccess().CreateTable(conn);
                     new UserParametersAccess().CreateTable(conn);
                     new ExecutionHistoryDataAccess().CreateTable(conn);
                     new TemplatesAccess().CreateTable(conn);
 
-                    Assert.IsTrue(tableExists(conn, $"{UsersDataAccess.DB_USERS_TABLE_NAME}_TEST"), "La tabla Users no fue creada.");
-                    Assert.IsTrue(tableExists(conn, $"{UserParametersAccess.DB_USER_PARAMETERS_TABLE_NAME}_TEST"), "La tabla UserParameters no fue creada.");
+                    Assert.IsTrue(tableExists(conn, $"{UsersDataAccess.DB_USERS_TABLE_NAME}"), "La tabla Users no fue creada.");
+                    Assert.IsTrue(tableExists(conn, $"{UserParametersAccess.DB_USER_PARAMETERS_TABLE_NAME}"), "La tabla UserParameters no fue creada.");
                     Assert.IsTrue(tableExists(conn, ExecutionHistoryDataAccess.DB_EXECUTION_HISTORY_TABLE_NAME), "La tabla ExecutionHistory no fue creada.");
                     Assert.IsTrue(tableExists(conn, TemplatesAccess.DB_TEMPLATES_TABLE_NAME), "La tabla Templates no fue creada.");
                 }

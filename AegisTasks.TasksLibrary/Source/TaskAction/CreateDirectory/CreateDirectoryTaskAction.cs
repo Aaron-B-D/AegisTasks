@@ -25,6 +25,17 @@ namespace AegisTasks.TasksLibrary.TaskAction
         #region CONSTANTS
 
         #region PRIVATE CONSTANTS
+
+        // Nombres en varios idiomas
+        private const string NAME_ES = "Comprobar si el archivo es escribible";
+        private const string NAME_GL = "Comprobar se o arquivo é escribible";
+        private const string NAME_EN = "Is file writable action";
+
+        // Descripciones en varios idiomas
+        private const string DESCRIPTION_ES = "Comprueba si un archivo se puede escribir";
+        private const string DESCRIPTION_GL = "Comprueba se un arquivo se pode escribir";
+        private const string DESCRIPTION_EN = "Checks if a file is writable";
+
         #endregion PRIVATE CONSTANTS
         #region PUBLIC CONSTANTS
         public readonly static string CALL_NAME = nameof(CreateDirectoryTaskAction);
@@ -61,7 +72,12 @@ namespace AegisTasks.TasksLibrary.TaskAction
         { }
 
         public CreateDirectoryTaskAction(CreateDirectoryTaskActionInputParams inputParams)
-            : base(CALL_NAME, Constants.TASK_CATEGORY_FILES, TaskActionExecution.Sync, NAME, DESCRIPTION)
+            : base(CALL_NAME, Constants.TASK_CATEGORY_FILES, NAME_ES,
+        DESCRIPTION_ES,
+        NAME_GL,
+        DESCRIPTION_GL,
+        NAME_EN,
+        DESCRIPTION_EN)
         {
             this.InputParams = inputParams;
         }

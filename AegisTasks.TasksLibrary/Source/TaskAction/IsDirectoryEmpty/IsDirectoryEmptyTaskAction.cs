@@ -21,6 +21,16 @@ namespace AegisTasks.TasksLibrary.Source.TaskAction.IsDirectoryEmpty
     public class IsDirectoryEmptyTaskAction : TaskActionBase<IsDirectoryEmptyTaskActionInputParams, bool>
     {
 
+        // Nombres en distintos idiomas
+        private const string NAME_ES = "Directorio vacío";
+        private const string NAME_GL = "Directorio baleiro";
+        private const string NAME_EN = "Is directory empty";
+
+        // Descripciones en distintos idiomas
+        private const string DESCRIPTION_ES = "Comprueba si un directorio está vacío o no";
+        private const string DESCRIPTION_GL = "Comprueba se un directorio está baleiro ou non";
+        private const string DESCRIPTION_EN = "Checks if a directory is empty or not";
+
         #region STATIC PUBLIC PROPERTIES
 
         public readonly static string CALL_NAME = nameof(IsDirectoryEmptyTaskAction);
@@ -33,7 +43,13 @@ namespace AegisTasks.TasksLibrary.Source.TaskAction.IsDirectoryEmpty
         #region CONSTRUCTOR
 
         public IsDirectoryEmptyTaskAction()
-            : base(CALL_NAME, Constants.TASK_CATEGORY_FILES, TaskActionExecution.Sync, NAME, DESCRIPTION)
+            : base(CALL_NAME, Constants.TASK_CATEGORY_FILES,
+                NAME_ES,
+                DESCRIPTION_ES,
+                NAME_GL,
+                DESCRIPTION_GL,
+                NAME_EN,
+                DESCRIPTION_EN)
         { }
 
 

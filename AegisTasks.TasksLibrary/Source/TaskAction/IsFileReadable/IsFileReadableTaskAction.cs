@@ -20,6 +20,17 @@ namespace AegisTasks.TasksLibrary.TaskAction
         #region CONSTANTS
 
         #region PRIVATE CONSTANTS
+
+        // Nombres en distintos idiomas
+        private const string NAME_ES = "Archivo legible";
+        private const string NAME_GL = "Arquivo lexible";
+        private const string NAME_EN = "Is file readable";
+
+        // Descripciones en distintos idiomas
+        private const string DESCRIPTION_ES = "Comprueba si un archivo se puede leer en la ruta especificada";
+        private const string DESCRIPTION_GL = "Comprueba se un arquivo é lexible na ruta especificada";
+        private const string DESCRIPTION_EN = "Checks if a file can be read at the specified path";
+
         #endregion PRIVATE CONSTANTS
         #region PUBLIC CONSTANTS
         #endregion PUBLIC CONSTANTS
@@ -31,8 +42,7 @@ namespace AegisTasks.TasksLibrary.TaskAction
         #endregion STATIC PRIVATE PROPERTIES
         #region STATIC PUBLIC PROPERTIES
         public readonly static string CALL_NAME = nameof(IsFileReadableTaskAction);
-        public readonly static string NAME = "Is file readable action";
-        public readonly static string DESCRIPTION = "Acción de tarea responsable de comprobar si un archivo se puede leer";
+
         #endregion STATIC PUBLIC PROPERTIES
 
         #endregion STATIC PROPERTIES
@@ -51,7 +61,7 @@ namespace AegisTasks.TasksLibrary.TaskAction
 
         #region CONSTRUCTOR
         public IsFileReadableTaskAction()
-            : base(CALL_NAME, Constants.TASK_CATEGORY_FILES, TaskActionExecution.Sync, NAME, DESCRIPTION)
+            : base(CALL_NAME, Constants.TASK_CATEGORY_FILES, NAME_ES, DESCRIPTION_ES, NAME_GL, DESCRIPTION_GL, NAME_EN, DESCRIPTION_EN)
         { }
 
         #endregion CONSTRUCTOR

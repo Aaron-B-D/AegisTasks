@@ -28,16 +28,21 @@ namespace AegisTasks.TasksLibrary.TaskPlan
 		private const int NUM_RETRIES = 3;
 		private const int RETRY_INTERVAL_MS = 1000;
 
-		#endregion PRIVATE CONSTANTS
-		#region PUBLIC CONSTANTS
-		#endregion PUBLIC CONSTANTS
+        private const string NAME_ES = "Plan de escritura en archivo";
+        private const string NAME_GL = "Plan de escritura en archivo";
+        private const string NAME_EN = "Write in file plan";
+        
+        private const string DESCRIPTION_ES = "Plan de acción que escribe en un archivo dado el contenido deseado";
+        private const string DESCRIPTION_GL = "Plan de acción que escribe en un archivo dado el contenido deseado";
+        private const string DESCRIPTION_EN = "Action plan that writes desired content to a given file";
 
-		#endregion CONSTANTS
+        #endregion PRIVATE CONSTANTS
+        #region PUBLIC CONSTANTS
+        #endregion PUBLIC CONSTANTS
 
-		#region STATIC PROPERTIES
+        #endregion CONSTANTS
 
-		private readonly static string NAME = "Write in file plan";
-		private readonly static string DESCRIPTION = "Un plan de acción que escribe en un archivo dado el contenido deseado";
+        #region STATIC PROPERTIES
 
 		public readonly static string CALL_NAME = nameof(WriteInFilePlan);
 		public readonly static int VERSION = 1;
@@ -50,8 +55,11 @@ namespace AegisTasks.TasksLibrary.TaskPlan
 
 		#region PUBLIC METHODS
 
-		public WriteInFilePlan() : base(Constants.TASK_CATEGORY_FILES, VERSION, CALL_NAME, NAME, DESCRIPTION)
-		{ }
+		public WriteInFilePlan() : base(Constants.TASK_CATEGORY_FILES, VERSION, CALL_NAME,
+                NAME_ES, DESCRIPTION_ES,
+                NAME_GL, DESCRIPTION_GL,
+                NAME_EN, DESCRIPTION_EN)
+        { }
 
 		public override void Build(IWorkflowBuilder<WriteInFilePlanParams> builder)
 		{

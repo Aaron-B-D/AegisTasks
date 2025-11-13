@@ -14,26 +14,6 @@ namespace AegisTasks.Core.TaskPlan
     {
         #region PROPERTIES
 
-        #region CONSTANTS
-
-        #region PRIVATE CONSTANTS
-        #endregion PRIVATE CONSTANTS
-        #region PUBLIC CONSTANTS
-        #endregion PUBLIC CONSTANTS
-
-        #endregion CONSTANTS
-
-        #region STATIC PROPERTIES
-        #region STATIC PRIVATE PROPERTIES
-        #endregion STATIC PRIVATE PROPERTIES
-        #region STATIC PUBLIC PROPERTIES
-        #endregion STATIC PUBLIC PROPERTIES
-        #endregion STATIC PROPERTIES
-
-        #region PRIVATE PROPERTIES
-
-        #endregion PRIVATE PROPERTIES
-
         #region PUBLIC PROPERTIES
 
         /// <summary>
@@ -61,18 +41,15 @@ namespace AegisTasks.Core.TaskPlan
         /// </summary>
         public int Version { get; }
 
-        /// <summary>
-        /// Nombre de la tarea (que se mostrará en la interfaz gráfica)
-        /// </summary>
-        public string Name { get; set; }
-
-
-        /// <summary>
-        /// La descripción de la tarea (que se mostrará en la interfaz gráfica)
-        /// </summary>
-        public string Description { get; set; }
 
         #endregion PUBLIC PROPERTIES
+
+        protected readonly string _ES_Name;
+        protected readonly string _ES_Description;
+        protected readonly string _GL_Name;
+        protected readonly string _GL_Description;
+        protected readonly string _EN_Name;
+        protected readonly string _EN_Description;
 
         #endregion PROPERTIES
 
@@ -80,15 +57,30 @@ namespace AegisTasks.Core.TaskPlan
 
         #region CONSTRUCTOR
 
-        protected TaskPlanBase(string category, int version, string callName, string name, string description) {
-            this.Category = category;
-            this.Id = callName;
-            this.Version = version;
-            this.Name = name;
-            this.Description = description;
+        protected TaskPlanBase(
+                    string category,
+                    int version,
+                    string callName,
+                    string esName,
+                    string esDescription,
+                    string glName,
+                    string glDescription,
+                    string enName,
+                    string enDescription)
+        {
+            Id = callName;
+            Category = category;
+            Version = version;
+
+            _ES_Name = esName;
+            _ES_Description = esDescription;
+            _GL_Name = glName;
+            _GL_Description = glDescription;
+            _EN_Name = enName;
+            _EN_Description = enDescription;
         }
 
-        protected TaskPlanBase(int version, string callName, string name, string description) : this("", version, callName, name, description)
+        protected TaskPlanBase(int version, string callName) : this("", version, callName, "", "", "", "", "", "")
         {}
 
         #endregion CONSTRUCTOR
@@ -110,6 +102,36 @@ namespace AegisTasks.Core.TaskPlan
         /// </summary>
         /// <param name="builder"></param>
         public abstract void Build(IWorkflowBuilder<TaskPlanBaseInputParams> builder);
+
+        public string GetName(Language language)
+        {
+            switch (language)
+            {
+                case Language.SPANISH:
+                    return _ES_Name;
+                case Language.GALICIAN:
+                    return _GL_Name;
+                case Language.ENGLISH:
+                    return _EN_Name;
+                default:
+                    throw new ArgumentOutOfRangeException(nameof(language), $"Idioma no soportado: {language}");
+            }
+        }
+
+        public string GetDescription(Language language)
+        {
+            switch (language)
+            {
+                case Language.SPANISH:
+                    return _ES_Description;
+                case Language.GALICIAN:
+                    return _GL_Description;
+                case Language.ENGLISH:
+                    return _EN_Description;
+                default:
+                    throw new ArgumentOutOfRangeException(nameof(language), $"Idioma no soportado: {language}");
+            }
+        }
 
         public abstract object Clone();
 

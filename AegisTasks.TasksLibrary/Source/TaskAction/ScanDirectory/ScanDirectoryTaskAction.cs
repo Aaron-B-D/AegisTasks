@@ -20,8 +20,17 @@ namespace AegisTasks.TasksLibrary.TaskAction
     {
         #region CONSTANTS
         public readonly static string CALL_NAME = nameof(ScanDirectoryTaskAction);
-        public readonly static string NAME = "Scan directory action";
-        public readonly static string DESCRIPTION = "Acción de tarea que escanea el contenido de un directorio hasta la profundidad indicada";
+
+        // Nombres en distintos idiomas
+        private const string NAME_ES = "Escanear directorio";
+        private const string NAME_GL = "Escanear directorio";
+        private const string NAME_EN = "Scan Directory";
+
+        // Descripciones en distintos idiomas
+        private const string DESCRIPTION_ES = "Escanea todo el contenido de un directorio hasta una profundidad específica";
+        private const string DESCRIPTION_GL = "Escanea todo o contido dun directorio ata unha profundidade específica";
+        private const string DESCRIPTION_EN = "Scans the entire content of a directory up to a specific depth";
+
         #endregion CONSTANTS
 
         #region CONSTRUCTOR
@@ -30,7 +39,12 @@ namespace AegisTasks.TasksLibrary.TaskAction
         { }
 
         public ScanDirectoryTaskAction(ScanDirectoryTaskActionInputParams inputParams)
-            : base(CALL_NAME, Constants.TASK_CATEGORY_FILES, TaskActionExecution.Sync, NAME, DESCRIPTION)
+            : base(CALL_NAME, Constants.TASK_CATEGORY_FILES, NAME_ES,
+                DESCRIPTION_ES,
+                NAME_GL,
+                DESCRIPTION_GL,
+                NAME_EN,
+                DESCRIPTION_EN)
         {
             this.InputParams = inputParams;
         }
