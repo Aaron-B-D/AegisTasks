@@ -12,3 +12,5 @@
 /packages
 /AegisTasks.UnitTests/.vs
 /AegisTasks.BLL/bin
+/AegisTasks.UI/obj
+/AegisTasksTests
