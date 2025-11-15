@@ -248,6 +248,7 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
       <DependentUpon>Settings.settings</DependentUpon>
     </Compile>
+    <Compile Include="UI\LanguageTexts_Test.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
@@ -273,6 +274,10 @@
     <ProjectReference Include="..\AegisTasks.TasksLibrary\AegisTasks.TasksLibrary.csproj">
       <Project>{88f06dae-def4-44fa-8f3f-7190216f41b5}</Project>
       <Name>AegisTasks.TasksLibrary</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\AegisTasks.UI\AegisTasks.UI.csproj">
+      <Project>{4c7b6f0c-dcb9-42f0-b82f-eb3da12ce8b4}</Project>
+      <Name>AegisTasks.UI</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets" Condition="Exists('$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets')" />

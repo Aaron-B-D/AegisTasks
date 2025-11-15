@@ -13,6 +13,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AegisTasks.DataAccess", "Ae
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AegisTasks.BLL", "AegisTasks.BLL\AegisTasks.BLL.csproj", "{D725BD9C-E68D-4CE1-B53C-2AD923044CD6}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AegisTasks.UI", "AegisTasks.UI\AegisTasks.UI.csproj", "{4C7B6F0C-DCB9-42F0-B82F-EB3DA12CE8B4}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +41,10 @@ Global
 		{D725BD9C-E68D-4CE1-B53C-2AD923044CD6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D725BD9C-E68D-4CE1-B53C-2AD923044CD6}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D725BD9C-E68D-4CE1-B53C-2AD923044CD6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4C7B6F0C-DCB9-42F0-B82F-EB3DA12CE8B4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4C7B6F0C-DCB9-42F0-B82F-EB3DA12CE8B4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4C7B6F0C-DCB9-42F0-B82F-EB3DA12CE8B4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4C7B6F0C-DCB9-42F0-B82F-EB3DA12CE8B4}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
