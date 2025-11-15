@@ -350,7 +350,7 @@ namespace AegisTasks.Core.WorkflowHost
         private async void handleLifeCycleEvent(LifeCycleEvent lifecycleEvent)
         {
             // Obtener el WorkflowInstance completo a partir del ID
-            var workflow = await _Host.PersistenceStore.GetWorkflowInstance(lifecycleEvent.WorkflowInstanceId);
+            WorkflowInstance workflow = await _Host.PersistenceStore.GetWorkflowInstance(lifecycleEvent.WorkflowInstanceId);
 
             if (workflow != null)
             {

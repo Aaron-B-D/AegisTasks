@@ -28,9 +28,14 @@ namespace AegisTasks.UnitTests.BLL
             using (SqlConnection conn = _FactorySqlServer.CreateConnection())
             {
                 conn.Open();
+
                 UsersDataAccess userDA = new UsersDataAccess();
                 userDA.CreateTable(conn);
-                Assert.IsTrue(userDA.Exists(conn), "La tabla Users no se creó correctamente.");
+                Assert.IsTrue(userDA.Exists(conn), $"La tabla {UsersDataAccess.DB_USERS_TABLE_NAME} no se creó correctamente.");
+
+                UserParametersAccess userParametersAccess = new UserParametersAccess();
+                userParametersAccess.CreateTable(conn);
+                Assert.IsTrue(userDA.Exists(conn), $"La tabla {UserParametersAccess.DB_USER_PARAMETERS_TABLE_NAME} no se creó correctamente.");
             }
         }
 
@@ -55,7 +60,6 @@ namespace AegisTasks.UnitTests.BLL
         [TestMethod]
         public void GetUser_Should_ReturnUserWithoutPassword()
         {
-            // Ensure user exists
             UserDTO testUser = new UserDTO
             {
                 Username = TEST_USERNAME,

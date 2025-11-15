@@ -14,7 +14,7 @@ namespace AegisTasks.UnitTests.DataAccess
         private static DBConnectionFactorySqlServer _FactorySqlServer = null;
         private static UsersDataAccess _UserDA = null;
 
-        private const string TEST_USERNAME = "testuser";
+        private const string TEST_USERNAME = "userdataaccesstestuser";
         private const string TEST_FIRSTNAME = "Test";
         private const string TEST_LASTNAME = "User";
         private const string TEST_PASSWORD = "Password123!";
@@ -32,7 +32,7 @@ namespace AegisTasks.UnitTests.DataAccess
                 _UserDA.CreateTable(conn);
 
                 bool tableExists = _UserDA.Exists(conn);
-                Assert.IsTrue(tableExists, "La tabla Users no se creó correctamente.");
+                Assert.IsTrue(tableExists, $"La tabla {UsersDataAccess.DB_USERS_TABLE_NAME} no se creó correctamente.");
             }
         }
 

@@ -152,14 +152,14 @@ namespace AegisTasks.TasksLibrary.TaskAction
             }
             else if (InputParams.Content is Stream inputStream)
             {
-                using (var stream = new FileStream(InputParams.FilePath.FullName, InputParams.Append ? FileMode.Append : FileMode.Create))
+                using (FileStream stream = new FileStream(InputParams.FilePath.FullName, InputParams.Append ? FileMode.Append : FileMode.Create))
                 {
                     inputStream.CopyTo(stream);
                 }
             }
             else
             {
-                using (var writer = new StreamWriter(InputParams.FilePath.FullName, InputParams.Append))
+                using (StreamWriter writer = new StreamWriter(InputParams.FilePath.FullName, InputParams.Append))
                 {
                     writer.Write(InputParams.Content.ToString());
                 }

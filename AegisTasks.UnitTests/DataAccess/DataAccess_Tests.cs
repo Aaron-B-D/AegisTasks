@@ -74,10 +74,10 @@ namespace AegisTasks.UnitTests.DataAccess
                     _ExeHistoryDA.CreateTable(conn);
                     _TemplatesAccess.CreateTable(conn);
 
-                    Assert.IsTrue(_UserDA.Exists(conn), "La tabla Users no fue creada.");
-                    Assert.IsTrue(_UserParamsDA.Exists(conn), "La tabla UserParameters no fue creada.");
-                    Assert.IsTrue(_ExeHistoryDA.Exists(conn), "La tabla ExecutionHistory no fue creada.");
-                    Assert.IsTrue(_TemplatesAccess.Exists(conn), "La tabla Templates no fue creada.");
+                    Assert.IsTrue(_UserDA.Exists(conn), $"La tabla {UsersDataAccess.DB_USERS_TABLE_NAME} no fue creada.");
+                    Assert.IsTrue(_UserParamsDA.Exists(conn), $"La tabla {UserParametersAccess.DB_USER_PARAMETERS_TABLE_NAME} no fue creada.");
+                    Assert.IsTrue(_ExeHistoryDA.Exists(conn), $"La tabla {ExecutionHistoryDataAccess.DB_EXECUTION_HISTORY_TABLE_NAME} no fue creada.");
+                    Assert.IsTrue(_TemplatesAccess.Exists(conn), $"La tabla ${TemplatesAccess.DB_TEMPLATES_TABLE_NAME} no fue creada.");
                 }
             }
             catch (Exception ex)

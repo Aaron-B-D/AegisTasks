@@ -28,7 +28,9 @@ namespace AegisTasks.BLL.DataAccess
             using (SqlConnection conn = DataAccessBLL.CreateConnection())
             {
                 conn.Open();
-                return _UsersDataAccess.InsertUser(conn, user);
+                bool userCreated = _UsersDataAccess.InsertUser(conn, user);
+                bool userParametersCreated = UserParametersBLL.CreateUserParameters(user.Username);
+                return userCreated && userParametersCreated;
             }
         }
 
@@ -39,7 +41,9 @@ namespace AegisTasks.BLL.DataAccess
             using (SqlConnection conn = DataAccessBLL.CreateConnection())
             {
                 conn.Open();
-                return _UsersDataAccess.DeleteUser(conn, username);
+                bool userParamsDeleted = UserParametersBLL.DeleteUserParameters(username);
+                bool userDeleted = _UsersDataAccess.DeleteUser(conn, username);
+                return userDeleted && userParamsDeleted;
             }
         }
 

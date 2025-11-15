@@ -29,7 +29,7 @@ namespace AegisTasks.BLL.Aegis
             // Inicia el workflow y obtiene su ID inmediatamente
             string workflowId = await _Manager.StartWorkflow(workflowName, inputParams);
 
-            var tcs = new TaskCompletionSource<string>();
+            TaskCompletionSource<string> tcs = new TaskCompletionSource<string>();
 
             // Handler para cuando el workflow concluya
             void Handler(object sender, TaskPlanEventArgs e)

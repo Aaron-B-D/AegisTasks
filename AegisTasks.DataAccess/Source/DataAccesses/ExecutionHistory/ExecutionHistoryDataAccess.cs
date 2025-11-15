@@ -54,7 +54,7 @@ WHERE TABLE_NAME = '{0}'",
 
         public override void CreateTable(SqlConnection conn)
         {
-            using (var command = new SqlCommand(CREATE_EXECUTION_HISTORY_TABLE, conn))
+            using (SqlCommand command = new SqlCommand(CREATE_EXECUTION_HISTORY_TABLE, conn))
             {
                 command.CommandType = System.Data.CommandType.Text;
                 command.ExecuteNonQuery();
@@ -63,7 +63,7 @@ WHERE TABLE_NAME = '{0}'",
 
         public override void DropTable(SqlConnection conn)
         {
-            using (var command = new SqlCommand(DROP_EXECUTION_HISTORY_TABLE, conn))
+            using (SqlCommand command = new SqlCommand(DROP_EXECUTION_HISTORY_TABLE, conn))
             {
                 command.CommandType = System.Data.CommandType.Text;
                 command.ExecuteNonQuery();
@@ -72,7 +72,7 @@ WHERE TABLE_NAME = '{0}'",
 
         public override bool Exists(SqlConnection conn)
         {
-            using (var command = new SqlCommand(EXISTS_EXECUTION_HISTORY_TABLE, conn))
+            using (SqlCommand command = new SqlCommand(EXISTS_EXECUTION_HISTORY_TABLE, conn))
             {
                 command.CommandType = System.Data.CommandType.Text;
                 int count = (int)command.ExecuteScalar();
