@@ -92,7 +92,7 @@ namespace AegisTasks.UnitTests.BLL
             };
             UserDataAccessBLL.CreateUser(testUser);
 
-            bool result = UserDataAccessBLL.CheckPassword(TEST_USERNAME, TEST_PASSWORD);
+            bool result = UserDataAccessBLL.IsValidPassword(TEST_USERNAME, TEST_PASSWORD);
             Assert.IsTrue(result, "La contraseña válida no pasó la verificación.");
 
             // Cleanup
@@ -112,7 +112,7 @@ namespace AegisTasks.UnitTests.BLL
             };
             UserDataAccessBLL.CreateUser(testUser);
 
-            bool result = UserDataAccessBLL.CheckPassword(TEST_USERNAME, "WrongPassword!");
+            bool result = UserDataAccessBLL.IsValidPassword(TEST_USERNAME, "WrongPassword!");
             Assert.IsFalse(result, "Una contraseña incorrecta pasó la verificación.");
 
             // Cleanup
@@ -135,8 +135,8 @@ namespace AegisTasks.UnitTests.BLL
             bool updated = UserDataAccessBLL.UpdatePassword(TEST_USERNAME, TEST_PASSWORD, NEW_TEST_PASSWORD);
             Assert.IsTrue(updated, "No se pudo actualizar la contraseña.");
 
-            Assert.IsTrue(UserDataAccessBLL.CheckPassword(TEST_USERNAME, NEW_TEST_PASSWORD), "La nueva contraseña no coincide.");
-            Assert.IsFalse(UserDataAccessBLL.CheckPassword(TEST_USERNAME, TEST_PASSWORD), "La antigua contraseña sigue siendo válida.");
+            Assert.IsTrue(UserDataAccessBLL.IsValidPassword(TEST_USERNAME, NEW_TEST_PASSWORD), "La nueva contraseña no coincide.");
+            Assert.IsFalse(UserDataAccessBLL.IsValidPassword(TEST_USERNAME, TEST_PASSWORD), "La antigua contraseña sigue siendo válida.");
 
             // Cleanup
             UserDataAccessBLL.DeleteUser(TEST_USERNAME);

@@ -234,6 +234,7 @@
   <ItemGroup>
     <Compile Include="BLL\AegisManagerBLL_Tests.cs" />
     <Compile Include="BLL\DataAccessBLL_Tests.cs" />
+    <Compile Include="BLL\SessionManager_Tests.cs" />
     <Compile Include="BLL\UserDataAccessBLL_Tests.cs" />
     <Compile Include="BLL\UserParametersBLL_Tests.cs" />
     <Compile Include="DataAccess\DataAccess_Tests.cs" />

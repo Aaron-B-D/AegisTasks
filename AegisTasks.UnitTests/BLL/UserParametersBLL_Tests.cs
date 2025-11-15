@@ -102,6 +102,27 @@ namespace AegisTasks.UnitTests.BLL
             Assert.AreEqual(Language.ENGLISH, langParam.Value);
         }
 
+        [TestMethod]
+        public void GetParameters_ShouldReturnAllUserParameters()
+        {
+            UserDTO user = new UserDTO(TEST_USERNAME, TEST_FIRSTNAME, TEST_LASTNAME, TEST_PASSWORD, DateTime.Now);
+            UserDataAccessBLL.CreateUser(user);
+
+            UserParameterDTO<object> newParam = new UserParameterDTO<object>(UserParameterType.LANGUAGE, Language.SPANISH);
+            UserParametersBLL.ModifyParameter(TEST_USERNAME, newParam);
+
+            UserParametersDTO parameters = UserParametersBLL.GetParameters(TEST_USERNAME);
+
+            Assert.IsNotNull(parameters);
+            Assert.AreEqual(TEST_USERNAME, parameters.Username);
+
+            Assert.IsTrue(parameters.TryGetParameter<Language>(UserParameterType.LANGUAGE, out var langParam));
+            Assert.IsNotNull(langParam);
+            Assert.AreEqual(UserParameterType.LANGUAGE, langParam.Type);
+            Assert.AreEqual(Language.SPANISH, langParam.Value);
+        }
+
+
         [TestCleanup]
         public void TestCleanup()
         {

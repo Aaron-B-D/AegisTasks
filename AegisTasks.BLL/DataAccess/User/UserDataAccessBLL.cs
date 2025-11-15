@@ -72,7 +72,7 @@ namespace AegisTasks.BLL.DataAccess
             }
         }
 
-        public static bool CheckPassword(string username, string password)
+        public static bool IsValidPassword(string username, string password)
         {
             username = username.ToLowerInvariant();
 

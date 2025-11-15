@@ -12,15 +12,15 @@ public class UserParametersDTO
         Username = username;
     }
 
-    public void SetParameter<T>(UserParameterDTO<T> parameter)
+    public void SetParameter<UserParameterValueType>(UserParameterDTO<UserParameterValueType> parameter)
     {
         Parameters[parameter.Type] = parameter;
     }
 
-    public bool TryGetParameter<T>(UserParameterType type, out UserParameterDTO<T> parameter)
+    public bool TryGetParameter<UserParameterValueType>(UserParameterType type, out UserParameterDTO<UserParameterValueType> parameter)
     {
         parameter = null;
-        if (Parameters.TryGetValue(type, out object obj) && obj is UserParameterDTO<T> dto)
+        if (Parameters.TryGetValue(type, out object obj) && obj is UserParameterDTO<UserParameterValueType> dto)
         {
             parameter = dto;
             return true;

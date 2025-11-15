@@ -56,6 +56,8 @@ namespace AegisTasks.BLL.DataAccess
             }
         }
 
+
+
         public static UserParameterDTO<UserParameterValueType> GetParameter<UserParameterValueType>(string username, UserParameterType type)
         {
             if (string.IsNullOrEmpty(username))
@@ -74,6 +76,37 @@ namespace AegisTasks.BLL.DataAccess
                     UserParameterValueType typedValue = (UserParameterValueType)Enum.Parse(typeof(UserParameterValueType), value);
                     return new UserParameterDTO<UserParameterValueType>(type, typedValue);
                 }
+                return null;
+            }
+        }
+
+        public static UserParametersDTO GetParameters(string username)
+        {
+            if (string.IsNullOrEmpty(username))
+            {
+                throw new ArgumentNullException(nameof(username), "El nombre de usuario no puede ser nulo o vacío");
+            }
+
+            username = username.ToLowerInvariant();
+
+
+            if (UserDataAccessBLL.GetUser(username) != null)
+            {
+                UserParametersDTO userParameters = new UserParametersDTO(username);
+
+                using (SqlConnection conn = DataAccessBLL.CreateConnection())
+                {
+                    conn.Open();
+
+                    UserParameterDTO<Language> languageParameter = GetParameter<Language>(username, UserParameterType.LANGUAGE);
+
+                    userParameters.SetParameter<Language>(languageParameter);
+
+                    return userParameters;
+                }
+            }
+            else
+            {
                 return null;
             }
         }
