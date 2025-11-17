@@ -8,13 +8,18 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace AegisTasks.UI
+namespace AegisTasks.UI.Forms
 {
-    public partial class Form1 : Form
+    public partial class TaskPlansViewer : Form
     {
-        public Form1()
+        public TaskPlansViewer()
         {
             InitializeComponent();
+        }
+
+        private void TaskPlansViewer_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }

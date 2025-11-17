@@ -74,7 +74,7 @@ namespace AegisTasks.UnitTests.BLL
         public void Login_ShouldApplyUserLanguageSettings()
         {
             // Modificar el parámetro de idioma del usuario
-            UserParameterDTO<object> langParam = new UserParameterDTO<object>(UserParameterType.LANGUAGE, Language.SPANISH);
+            UserParameterDTO<object> langParam = new UserParameterDTO<object>(UserParameterType.LANGUAGE, SupportedLanguage.SPANISH);
             UserParametersBLL.ModifyParameter(TEST_USERNAME, langParam);
 
             SessionManager.Login(TEST_USERNAME, TEST_PASSWORD);

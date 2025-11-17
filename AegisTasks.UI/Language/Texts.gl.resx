@@ -117,6 +117,12 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="Access" xml:space="preserve">
+    <value>Acceder</value>
+  </data>
+  <data name="AccessDenied" xml:space="preserve">
+    <value>Acceso denegado</value>
+  </data>
   <data name="AegisTasks" xml:space="preserve">
     <value>AegisTasks</value>
   </data>
@@ -132,17 +138,29 @@
   <data name="English" xml:space="preserve">
     <value>Inglés</value>
   </data>
+  <data name="Error" xml:space="preserve">
+    <value>Erro</value>
+  </data>
   <data name="Execute" xml:space="preserve">
     <value>Ejecutar</value>
   </data>
   <data name="ExecutionStatus" xml:space="preserve">
     <value>Estado de execución</value>
   </data>
+  <data name="FormInitializeError" xml:space="preserve">
+    <value>Erro ao inicializar o formulario</value>
+  </data>
   <data name="Galician" xml:space="preserve">
     <value>Galego</value>
   </data>
   <data name="History" xml:space="preserve">
     <value>Historial</value>
+  </data>
+  <data name="IntroducePassword" xml:space="preserve">
+    <value>Introduza contrasinal</value>
+  </data>
+  <data name="IntroduceUser" xml:space="preserve">
+    <value>Introduza usuario</value>
   </data>
   <data name="Language" xml:space="preserve">
     <value>Idioma</value>
@@ -162,14 +180,17 @@
   <data name="NewPassword" xml:space="preserve">
     <value>Novo contrasinal</value>
   </data>
-  <data name="OldPassword" xml:space="preserve">
-    <value>Contrasinal antigo</value>
+  <data name="Password" xml:space="preserve">
+    <value>Contrasinal</value>
   </data>
   <data name="Save" xml:space="preserve">
     <value>Gardar</value>
   </data>
   <data name="SaveAsTemplate" xml:space="preserve">
     <value>Guardar como plantilla</value>
+  </data>
+  <data name="SessionNotFound" xml:space="preserve">
+    <value>Non se puido encontrar unha sesión</value>
   </data>
   <data name="SignIn" xml:space="preserve">
     <value>Acceder</value>
@@ -206,5 +227,74 @@
   </data>
   <data name="Users" xml:space="preserve">
     <value>Usuarios</value>
+  </data>
+  <data name="OldPassword" xml:space="preserve">
+    <value>Contrasinal antigo</value>
+  </data>
+  <data name="Warning" xml:space="preserve">
+    <value>Aviso</value>
+  </data>
+  <data name="AvailableUsers" xml:space="preserve">
+    <value>Usuarios dispoñibles</value>
+  </data>
+  <data name="UserDetails" xml:space="preserve">
+    <value>Detalles de usuario</value>
+  </data>
+  <data name="GeneralInfo" xml:space="preserve">
+    <value>Información xeral</value>
+  </data>
+  <data name="Add" xml:space="preserve">
+    <value>Engadir</value>
+  </data>
+  <data name="SaveChanges" xml:space="preserve">
+    <value>Gardar cambios</value>
+  </data>
+  <data name="Parameters" xml:space="preserve">
+    <value>Parámetros</value>
+  </data>
+  <data name="UserCannotEraseThemselves" xml:space="preserve">
+    <value>Un usuario non pode borrarse a si mesmo</value>
+  </data>
+  <data name="SavedSuccessfully" xml:space="preserve">
+    <value>Gardado con éxito</value>
+  </data>
+  <data name="SaveError" xml:space="preserve">
+    <value>Error ao gardar</value>
+  </data>
+  <data name="UserEditor" xml:space="preserve">
+    <value>Editor de usuarios</value>
+  </data>
+  <data name="AddNewUser" xml:space="preserve">
+    <value>Engadir novo usuario</value>
+  </data>
+  <data name="ConfirmPassword" xml:space="preserve">
+    <value>Confirme contrasinal</value>
+  </data>
+  <data name="PasswordsDoNotMatch" xml:space="preserve">
+    <value>Os contrasinais non coinciden</value>
+  </data>
+  <data name="UserCreated" xml:space="preserve">
+    <value>Usuario creado</value>
+  </data>
+  <data name="UserExists" xml:space="preserve">
+    <value>O usuario xa existe</value>
+  </data>
+  <data name="IntroduceOldPassword" xml:space="preserve">
+    <value>Introduza contrasinal vello</value>
+  </data>
+  <data name="IntroduceNewPassword" xml:space="preserve">
+    <value>Introduzca contrasinal novo</value>
+  </data>
+  <data name="PasswordChangesSuccess" xml:space="preserve">
+    <value>Cambio de contrasinal exitoso</value>
+  </data>
+  <data name="OldPasswordIncorrect" xml:space="preserve">
+    <value>Contrasinal antigo incorrecto</value>
+  </data>
+  <data name="PasswordChangesError" xml:space="preserve">
+    <value>Error no cambio de contrasinal</value>
+  </data>
+  <data name="AdminUserCannotBeErased" xml:space="preserve">
+    <value>O usuario do sistema non pode ser eliminado</value>
   </data>
 </root>

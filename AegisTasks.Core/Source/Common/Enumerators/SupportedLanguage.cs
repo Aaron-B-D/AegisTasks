@@ -6,7 +6,7 @@ namespace AegisTasks.Core.Common
     /// <summary>
     /// Lenguajes disponibles
     /// </summary>
-    public enum Language
+    public enum SupportedLanguage
     {
         SPANISH,
         GALICIAN,
@@ -18,15 +18,15 @@ namespace AegisTasks.Core.Common
         /// <summary>
         /// Convierte un Language a CultureInfo
         /// </summary>
-        public static CultureInfo ToCulture(this Language language)
+        public static CultureInfo ToCulture(this SupportedLanguage language)
         {
             switch (language)
             {
-                case Language.SPANISH:
+                case SupportedLanguage.SPANISH:
                     return new CultureInfo("es-ES");
-                case Language.GALICIAN:
+                case SupportedLanguage.GALICIAN:
                     return new CultureInfo("gl-ES");
-                case Language.ENGLISH:
+                case SupportedLanguage.ENGLISH:
                     return new CultureInfo("en-US");
                 default:
                     return CultureInfo.InvariantCulture;

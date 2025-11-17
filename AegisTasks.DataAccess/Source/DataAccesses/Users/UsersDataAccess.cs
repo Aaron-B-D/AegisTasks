@@ -3,6 +3,7 @@ using AegisTasks.Core.DTO;
 using Microsoft.Data.SqlClient;
 using System;
 using System.Data;
+using System.Collections.Generic;
 
 namespace AegisTasks.DataAccess.DataAccesses
 {
@@ -96,6 +97,28 @@ WHERE {0} = @Username;",
             DB_USERS_TABLE_FIELD_CREATEDAT,
             DB_USERS_TABLE_NAME
         );
+
+        private readonly string SELECT_USERS = string.Format(@"
+SELECT {0}, {1}, {2}, {3}, {4}
+FROM {5}",
+    DB_USERS_TABLE_FIELD_USERNAME,
+    DB_USERS_TABLE_FIELD_FIRSTNAME,
+    DB_USERS_TABLE_FIELD_LASTNAME,
+    DB_USERS_TABLE_FIELD_PASSWORD,
+    DB_USERS_TABLE_FIELD_CREATEDAT,
+    DB_USERS_TABLE_NAME
+);
+
+        private readonly string UPDATE_USER_INFO = string.Format(@"
+UPDATE {0}
+SET {1} = @FirstName,
+    {2} = @LastName
+WHERE {3} = @Username;",
+    DB_USERS_TABLE_NAME,
+    DB_USERS_TABLE_FIELD_FIRSTNAME,
+    DB_USERS_TABLE_FIELD_LASTNAME,
+    DB_USERS_TABLE_FIELD_USERNAME
+);
 
         public UsersDataAccess() : base() { }
 
@@ -195,6 +218,44 @@ WHERE {0} = @Username;",
             }
 
             return null;
+        }
+
+        public List<UserDTO> Get(SqlConnection conn)
+        {
+            List<UserDTO> users = new List<UserDTO>();
+
+            using (SqlCommand command = new SqlCommand(SELECT_USERS, conn))
+            {
+                using (SqlDataReader reader = command.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        users.Add(new UserDTO
+                        {
+                            Username = reader.GetString(0),
+                            FirstName = reader.GetString(1),
+                            LastName = reader.GetString(2),
+                            Password = reader.GetString(3),
+                            CreatedAt = reader.GetDateTime(4)
+                        });
+                    }
+                }
+            }
+
+            return users;
+        }
+
+        public bool UpdateUserInfo(SqlConnection conn, string username, string firstName, string lastName)
+        {
+            using (SqlCommand command = new SqlCommand(UPDATE_USER_INFO, conn))
+            {
+                command.Parameters.AddWithValue("@Username", username);
+                command.Parameters.AddWithValue("@FirstName", firstName);
+                command.Parameters.AddWithValue("@LastName", lastName);
+
+                int result = command.ExecuteNonQuery();
+                return result > 0;
+            }
         }
     }
 }

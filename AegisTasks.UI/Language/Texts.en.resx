@@ -117,6 +117,12 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="Access" xml:space="preserve">
+    <value>Enter</value>
+  </data>
+  <data name="AccessDenied" xml:space="preserve">
+    <value>Access denied</value>
+  </data>
   <data name="AegisTasks" xml:space="preserve">
     <value>AegisTasks</value>
   </data>
@@ -132,17 +138,29 @@
   <data name="English" xml:space="preserve">
     <value>English</value>
   </data>
+  <data name="Error" xml:space="preserve">
+    <value>Error</value>
+  </data>
   <data name="Execute" xml:space="preserve">
     <value>Execute</value>
   </data>
   <data name="ExecutionStatus" xml:space="preserve">
     <value>Execution status</value>
   </data>
+  <data name="FormInitializeError" xml:space="preserve">
+    <value>Error initializing the form</value>
+  </data>
   <data name="Galician" xml:space="preserve">
     <value>Galician</value>
   </data>
   <data name="History" xml:space="preserve">
     <value>History</value>
+  </data>
+  <data name="IntroducePassword" xml:space="preserve">
+    <value>Enter password</value>
+  </data>
+  <data name="IntroduceUser" xml:space="preserve">
+    <value>Enter user</value>
   </data>
   <data name="Language" xml:space="preserve">
     <value>Language</value>
@@ -162,14 +180,17 @@
   <data name="NewPassword" xml:space="preserve">
     <value>New password</value>
   </data>
-  <data name="OldPassword" xml:space="preserve">
-    <value>Old password</value>
+  <data name="Password" xml:space="preserve">
+    <value>Password</value>
   </data>
   <data name="Save" xml:space="preserve">
     <value>Save</value>
   </data>
   <data name="SaveAsTemplate" xml:space="preserve">
     <value>Save as template</value>
+  </data>
+  <data name="SessionNotFound" xml:space="preserve">
+    <value>Session not found</value>
   </data>
   <data name="SignIn" xml:space="preserve">
     <value>Sign in</value>
@@ -206,5 +227,74 @@
   </data>
   <data name="Users" xml:space="preserve">
     <value>Users</value>
+  </data>
+  <data name="OldPassword" xml:space="preserve">
+    <value>Old password</value>
+  </data>
+  <data name="Warning" xml:space="preserve">
+    <value>Warning</value>
+  </data>
+  <data name="AvailableUsers" xml:space="preserve">
+    <value>Available users</value>
+  </data>
+  <data name="UserDetails" xml:space="preserve">
+    <value>User details</value>
+  </data>
+  <data name="GeneralInfo" xml:space="preserve">
+    <value>General info</value>
+  </data>
+  <data name="Add" xml:space="preserve">
+    <value>Add</value>
+  </data>
+  <data name="SaveChanges" xml:space="preserve">
+    <value>Save changes</value>
+  </data>
+  <data name="Parameters" xml:space="preserve">
+    <value>Parameters</value>
+  </data>
+  <data name="UserCannotEraseThemselves" xml:space="preserve">
+    <value>A user cannot delete themselves</value>
+  </data>
+  <data name="SavedSuccessfully" xml:space="preserve">
+    <value>Saved successfully</value>
+  </data>
+  <data name="SaveError" xml:space="preserve">
+    <value>Saving error</value>
+  </data>
+  <data name="UserEditor" xml:space="preserve">
+    <value>User editors</value>
+  </data>
+  <data name="AddNewUser" xml:space="preserve">
+    <value>Add new user</value>
+  </data>
+  <data name="ConfirmPassword" xml:space="preserve">
+    <value>Confirm password</value>
+  </data>
+  <data name="PasswordsDoNotMatch" xml:space="preserve">
+    <value>Passwords do not match</value>
+  </data>
+  <data name="UserCreated" xml:space="preserve">
+    <value>User created</value>
+  </data>
+  <data name="UserExists" xml:space="preserve">
+    <value>User already exists</value>
+  </data>
+  <data name="IntroduceOldPassword" xml:space="preserve">
+    <value>Introduce old password</value>
+  </data>
+  <data name="IntroduceNewPassword" xml:space="preserve">
+    <value>Introduce new password</value>
+  </data>
+  <data name="PasswordChangesSuccess" xml:space="preserve">
+    <value>Successful password change</value>
+  </data>
+  <data name="OldPasswordIncorrect" xml:space="preserve">
+    <value>Old password incorrect</value>
+  </data>
+  <data name="PasswordChangesError" xml:space="preserve">
+    <value>Change password error</value>
+  </data>
+  <data name="AdminUserCannotBeErased" xml:space="preserve">
+    <value>System user can not be deleted</value>
   </data>
 </root>

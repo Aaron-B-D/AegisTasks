@@ -6,6 +6,9 @@ namespace AegisTasks.Core.DTO
 {
     public class UserDTO
     {
+        public static readonly string ADMIN_USER_USERNAME = "admin";
+
+
         public string Username { get; set; } = string.Empty;
         public string FirstName { get; set; } = string.Empty;
         public string LastName { get; set; } = string.Empty;

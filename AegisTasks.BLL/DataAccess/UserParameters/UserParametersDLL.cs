@@ -11,8 +11,8 @@ namespace AegisTasks.BLL.DataAccess
         private static readonly UserParametersAccess _DataAccess = new UserParametersAccess();
 
         // Parámetros por defecto tipados
-        private static readonly UserParameterDTO<Language> DefaultLanguageParameter =
-            new UserParameterDTO<Language>(UserParameterType.LANGUAGE, Language.ENGLISH);
+        private static readonly UserParameterDTO<SupportedLanguage> DefaultLanguageParameter =
+            new UserParameterDTO<SupportedLanguage>(UserParameterType.LANGUAGE, SupportedLanguage.ENGLISH);
 
         public static bool CreateUserParameters(string username)
         {
@@ -98,9 +98,9 @@ namespace AegisTasks.BLL.DataAccess
                 {
                     conn.Open();
 
-                    UserParameterDTO<Language> languageParameter = GetParameter<Language>(username, UserParameterType.LANGUAGE);
+                    UserParameterDTO<SupportedLanguage> languageParameter = GetParameter<SupportedLanguage>(username, UserParameterType.LANGUAGE);
 
-                    userParameters.SetParameter<Language>(languageParameter);
+                    userParameters.SetParameter<SupportedLanguage>(languageParameter);
 
                     return userParameters;
                 }

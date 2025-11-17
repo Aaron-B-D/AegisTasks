@@ -59,11 +59,11 @@ namespace AegisTasks.UnitTests.DataAccess
 
                 _ParamDA.DeleteUserParameters(conn, _TestUser.Username);
 
-                bool inserted = _ParamDA.AddParameter(conn, _TestUser.Username, UserParameterType.LANGUAGE, Language.ENGLISH.ToString());
+                bool inserted = _ParamDA.AddParameter(conn, _TestUser.Username, UserParameterType.LANGUAGE, SupportedLanguage.ENGLISH.ToString());
                 Assert.IsTrue(inserted, "No se pudo insertar el parámetro del usuario.");
 
                 string value = _ParamDA.GetParameter(conn, _TestUser.Username, UserParameterType.LANGUAGE);
-                Assert.AreEqual(Language.ENGLISH.ToString(), value, "El valor del parámetro no coincide.");
+                Assert.AreEqual(SupportedLanguage.ENGLISH.ToString(), value, "El valor del parámetro no coincide.");
 
                 _ParamDA.DeleteUserParameters(conn, _TestUser.Username);
             }
@@ -77,13 +77,13 @@ namespace AegisTasks.UnitTests.DataAccess
                 conn.Open();
 
                 _ParamDA.DeleteUserParameters(conn, _TestUser.Username);
-                _ParamDA.AddParameter(conn, _TestUser.Username, UserParameterType.LANGUAGE, Language.ENGLISH.ToString());
+                _ParamDA.AddParameter(conn, _TestUser.Username, UserParameterType.LANGUAGE, SupportedLanguage.ENGLISH.ToString());
 
-                bool updated = _ParamDA.UpdateParameter(conn, _TestUser.Username, UserParameterType.LANGUAGE, Language.SPANISH.ToString());
+                bool updated = _ParamDA.UpdateParameter(conn, _TestUser.Username, UserParameterType.LANGUAGE, SupportedLanguage.SPANISH.ToString());
                 Assert.IsTrue(updated, "No se pudo actualizar el parámetro.");
 
                 string value = _ParamDA.GetParameter(conn, _TestUser.Username, UserParameterType.LANGUAGE);
-                Assert.AreEqual(Language.SPANISH.ToString(), value, "El valor actualizado del parámetro no coincide.");
+                Assert.AreEqual(SupportedLanguage.SPANISH.ToString(), value, "El valor actualizado del parámetro no coincide.");
 
                 _ParamDA.DeleteUserParameters(conn, _TestUser.Username);
             }
@@ -97,7 +97,7 @@ namespace AegisTasks.UnitTests.DataAccess
                 conn.Open();
 
                 _ParamDA.DeleteUserParameters(conn, _TestUser.Username);
-                _ParamDA.AddParameter(conn, _TestUser.Username, UserParameterType.LANGUAGE, Language.ENGLISH.ToString());
+                _ParamDA.AddParameter(conn, _TestUser.Username, UserParameterType.LANGUAGE, SupportedLanguage.ENGLISH.ToString());
 
                 bool deleted = _ParamDA.DeleteUserParameters(conn, _TestUser.Username);
                 Assert.IsTrue(deleted, "No se pudo eliminar los parámetros del usuario.");

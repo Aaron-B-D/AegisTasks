@@ -15,7 +15,7 @@ namespace AegisTasks.DataAccess.DataAccesses
         public static readonly string DB_EXECUTION_HISTORY_TABLE_FIELD_SUCCESS = "Success";
 
 
-       //TODO debería asociarse a un username
+       //TODO debería asociarlo a un username
        //TODO no se borra como tal. solo pasa a active false para no mostrarlo
 
         private readonly string CREATE_EXECUTION_HISTORY_TABLE = string.Format(@"

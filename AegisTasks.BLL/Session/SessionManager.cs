@@ -11,14 +11,21 @@ public static class SessionManager
 
     public static bool Login(string username, string password)
     {
-        if (UserDataAccessBLL.IsValidPassword(username, password))
+        if (UserDataAccessBLL.GetUser(username) != null)
         {
-            CurrentUser = UserDataAccessBLL.GetUser(username);
-            CurrentUserParameters = UserParametersBLL.GetParameters(username);
+            if (UserDataAccessBLL.IsValidPassword(username, password))
+            {
+                CurrentUser = UserDataAccessBLL.GetUser(username);
+                CurrentUserParameters = UserParametersBLL.GetParameters(username);
 
-            applyUserSettings();
+                applyUserSettings();
 
-            return true;
+                return true;
+            }
+            else
+            {
+                return false;
+            }
         }
         else
         {
@@ -51,7 +58,7 @@ public static class SessionManager
     {
         if (CurrentUserParameters != null)
         {
-            if (CurrentUserParameters.TryGetParameter<Language>(UserParameterType.LANGUAGE, out UserParameterDTO<Language> language))
+            if (CurrentUserParameters.TryGetParameter<SupportedLanguage>(UserParameterType.LANGUAGE, out UserParameterDTO<SupportedLanguage> language))
             {
                 CultureInfo culture = language.Value.ToCulture();
 

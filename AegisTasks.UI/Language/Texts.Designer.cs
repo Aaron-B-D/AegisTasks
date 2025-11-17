@@ -61,6 +61,51 @@ namespace AegisTasks.UI.Language {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Acceder.
+        /// </summary>
+        public static string Access {
+            get {
+                return ResourceManager.GetString("Access", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Acceso denegado.
+        /// </summary>
+        public static string AccessDenied {
+            get {
+                return ResourceManager.GetString("AccessDenied", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Añadir.
+        /// </summary>
+        public static string Add {
+            get {
+                return ResourceManager.GetString("Add", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Añadir nuevo usuario.
+        /// </summary>
+        public static string AddNewUser {
+            get {
+                return ResourceManager.GetString("AddNewUser", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to El usuario del sistema no puede ser eliminado.
+        /// </summary>
+        public static string AdminUserCannotBeErased {
+            get {
+                return ResourceManager.GetString("AdminUserCannotBeErased", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to AegisTasks.
         /// </summary>
         public static string AegisTasks {
@@ -70,11 +115,29 @@ namespace AegisTasks.UI.Language {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Usuarios disponibles.
+        /// </summary>
+        public static string AvailableUsers {
+            get {
+                return ResourceManager.GetString("AvailableUsers", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Cambiar contraseña.
         /// </summary>
         public static string ChangePassword {
             get {
                 return ResourceManager.GetString("ChangePassword", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Confirme contraseña.
+        /// </summary>
+        public static string ConfirmPassword {
+            get {
+                return ResourceManager.GetString("ConfirmPassword", resourceCulture);
             }
         }
         
@@ -106,6 +169,15 @@ namespace AegisTasks.UI.Language {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Error.
+        /// </summary>
+        public static string Error {
+            get {
+                return ResourceManager.GetString("Error", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Ejecutar.
         /// </summary>
         public static string Execute {
@@ -124,6 +196,15 @@ namespace AegisTasks.UI.Language {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Error al inicializar el formulario.
+        /// </summary>
+        public static string FormInitializeError {
+            get {
+                return ResourceManager.GetString("FormInitializeError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Gallego.
         /// </summary>
         public static string Galician {
@@ -133,11 +214,56 @@ namespace AegisTasks.UI.Language {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Información general.
+        /// </summary>
+        public static string GeneralInfo {
+            get {
+                return ResourceManager.GetString("GeneralInfo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Historial.
         /// </summary>
         public static string History {
             get {
                 return ResourceManager.GetString("History", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Introduzca nueva contraseña.
+        /// </summary>
+        public static string IntroduceNewPassword {
+            get {
+                return ResourceManager.GetString("IntroduceNewPassword", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Introduzca contraseña antigua.
+        /// </summary>
+        public static string IntroduceOldPassword {
+            get {
+                return ResourceManager.GetString("IntroduceOldPassword", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Introduzca contraseña.
+        /// </summary>
+        public static string IntroducePassword {
+            get {
+                return ResourceManager.GetString("IntroducePassword", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Introduzca usuario.
+        /// </summary>
+        public static string IntroduceUser {
+            get {
+                return ResourceManager.GetString("IntroduceUser", resourceCulture);
             }
         }
         
@@ -205,6 +331,60 @@ namespace AegisTasks.UI.Language {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Contraseña antigua incorrecta.
+        /// </summary>
+        public static string OldPasswordIncorrect {
+            get {
+                return ResourceManager.GetString("OldPasswordIncorrect", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Parámetros.
+        /// </summary>
+        public static string Parameters {
+            get {
+                return ResourceManager.GetString("Parameters", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Contraseña.
+        /// </summary>
+        public static string Password {
+            get {
+                return ResourceManager.GetString("Password", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Error en el cambio de contraseña.
+        /// </summary>
+        public static string PasswordChangesError {
+            get {
+                return ResourceManager.GetString("PasswordChangesError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Cambio de contraseña exitoso.
+        /// </summary>
+        public static string PasswordChangesSuccess {
+            get {
+                return ResourceManager.GetString("PasswordChangesSuccess", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Las contraseñas no coinciden.
+        /// </summary>
+        public static string PasswordsDoNotMatch {
+            get {
+                return ResourceManager.GetString("PasswordsDoNotMatch", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Guardar.
         /// </summary>
         public static string Save {
@@ -219,6 +399,42 @@ namespace AegisTasks.UI.Language {
         public static string SaveAsTemplate {
             get {
                 return ResourceManager.GetString("SaveAsTemplate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Guardar cambios.
+        /// </summary>
+        public static string SaveChanges {
+            get {
+                return ResourceManager.GetString("SaveChanges", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Guardado con éxito.
+        /// </summary>
+        public static string SavedSuccessfully {
+            get {
+                return ResourceManager.GetString("SavedSuccessfully", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Error al guardar.
+        /// </summary>
+        public static string SaveError {
+            get {
+                return ResourceManager.GetString("SaveError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to No se ha podido encontrar una sesión.
+        /// </summary>
+        public static string SessionNotFound {
+            get {
+                return ResourceManager.GetString("SessionNotFound", resourceCulture);
             }
         }
         
@@ -313,6 +529,51 @@ namespace AegisTasks.UI.Language {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Un usuario no puede borrarse a sí mismo.
+        /// </summary>
+        public static string UserCannotEraseThemselves {
+            get {
+                return ResourceManager.GetString("UserCannotEraseThemselves", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Usuario creado.
+        /// </summary>
+        public static string UserCreated {
+            get {
+                return ResourceManager.GetString("UserCreated", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Detalles de usuario.
+        /// </summary>
+        public static string UserDetails {
+            get {
+                return ResourceManager.GetString("UserDetails", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Editor de usuarios.
+        /// </summary>
+        public static string UserEditor {
+            get {
+                return ResourceManager.GetString("UserEditor", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to El usuario ya existe.
+        /// </summary>
+        public static string UserExists {
+            get {
+                return ResourceManager.GetString("UserExists", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Parámetros de usuario.
         /// </summary>
         public static string UserParameters {
@@ -327,6 +588,15 @@ namespace AegisTasks.UI.Language {
         public static string Users {
             get {
                 return ResourceManager.GetString("Users", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Aviso.
+        /// </summary>
+        public static string Warning {
+            get {
+                return ResourceManager.GetString("Warning", resourceCulture);
             }
         }
     }

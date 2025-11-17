@@ -1,10 +1,11 @@
 ﻿using AegisTasks.Core.DTO;
 using AegisTasks.DataAccess.DataAccesses;
+using Microsoft.Data.SqlClient;
 using System;
+using System.Collections.Generic;
 using System.Security.Cryptography;
 using System.Text;
 using System.Text.RegularExpressions;
-using Microsoft.Data.SqlClient;
 
 namespace AegisTasks.BLL.DataAccess
 {
@@ -107,6 +108,34 @@ namespace AegisTasks.BLL.DataAccess
                     user.Password = null;
                 }
                 return user;
+            }
+        }
+
+        public static List<UserDTO> Get()
+        {
+            List<UserDTO> users = new List<UserDTO>();
+
+            using (SqlConnection conn = DataAccessBLL.CreateConnection())
+            {
+                conn.Open();
+                users = _UsersDataAccess.Get(conn);
+
+                foreach(UserDTO user in users) {
+                    // No devolvemos la contraseña
+                    user.Password = null;
+                }
+                return users;
+            }
+        }
+
+        public static bool UpdateUserInfo(string username, string firstName, string lastName)
+        {
+            username = username.ToLowerInvariant();
+
+            using (SqlConnection conn = DataAccessBLL.CreateConnection())
+            {
+                conn.Open();
+                return _UsersDataAccess.UpdateUserInfo(conn, username, firstName, lastName);
             }
         }
 

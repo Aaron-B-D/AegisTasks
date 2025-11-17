@@ -53,10 +53,10 @@ namespace AegisTasks.UnitTests.BLL
             bool created = UserDataAccessBLL.CreateUser(user);
             Assert.IsTrue(created, "No se pudo crear el usuario.");
 
-            UserParameterDTO<Language> langParam = UserParametersBLL.GetParameter<Language>(TEST_USERNAME, UserParameterType.LANGUAGE);
+            UserParameterDTO<SupportedLanguage> langParam = UserParametersBLL.GetParameter<SupportedLanguage>(TEST_USERNAME, UserParameterType.LANGUAGE);
             Assert.IsNotNull(langParam, "No se crearon los parámetros automáticamente.");
             Assert.AreEqual(UserParameterType.LANGUAGE, langParam.Type);
-            Assert.AreEqual(Language.ENGLISH, langParam.Value);
+            Assert.AreEqual(SupportedLanguage.ENGLISH, langParam.Value);
         }
 
         [TestMethod]
@@ -65,12 +65,12 @@ namespace AegisTasks.UnitTests.BLL
             UserDTO user = new UserDTO(TEST_USERNAME, TEST_FIRSTNAME, TEST_LASTNAME, TEST_PASSWORD, DateTime.Now);
             UserDataAccessBLL.CreateUser(user);
 
-            UserParameterDTO<object> newParam = new UserParameterDTO<object>(UserParameterType.LANGUAGE, Language.SPANISH);
+            UserParameterDTO<object> newParam = new UserParameterDTO<object>(UserParameterType.LANGUAGE, SupportedLanguage.SPANISH);
             bool updated = UserParametersBLL.ModifyParameter(TEST_USERNAME, newParam);
             Assert.IsTrue(updated, "No se pudo modificar el parámetro.");
 
-            UserParameterDTO<Language> langParam = UserParametersBLL.GetParameter<Language>(TEST_USERNAME, UserParameterType.LANGUAGE);
-            Assert.AreEqual(Language.SPANISH, langParam.Value);
+            UserParameterDTO<SupportedLanguage> langParam = UserParametersBLL.GetParameter<SupportedLanguage>(TEST_USERNAME, UserParameterType.LANGUAGE);
+            Assert.AreEqual(SupportedLanguage.SPANISH, langParam.Value);
         }
 
         [TestMethod]
@@ -82,7 +82,7 @@ namespace AegisTasks.UnitTests.BLL
             bool deleted = UserParametersBLL.DeleteUserParameters(TEST_USERNAME);
             Assert.IsTrue(deleted, "No se pudieron borrar los parámetros del usuario.");
 
-            UserParameterDTO<Language> langParam = UserParametersBLL.GetParameter<Language>(TEST_USERNAME, UserParameterType.LANGUAGE);
+            UserParameterDTO<SupportedLanguage> langParam = UserParametersBLL.GetParameter<SupportedLanguage>(TEST_USERNAME, UserParameterType.LANGUAGE);
             Assert.IsNull(langParam, "El parámetro todavía existe después de borrar.");
         }
 
@@ -97,9 +97,9 @@ namespace AegisTasks.UnitTests.BLL
             bool inserted = UserParametersBLL.CreateUserParameters(TEST_USERNAME);
             Assert.IsTrue(inserted, "No se pudieron crear los parámetros del usuario.");
 
-            UserParameterDTO<Language> langParam = UserParametersBLL.GetParameter<Language>(TEST_USERNAME, UserParameterType.LANGUAGE);
+            UserParameterDTO<SupportedLanguage> langParam = UserParametersBLL.GetParameter<SupportedLanguage>(TEST_USERNAME, UserParameterType.LANGUAGE);
             Assert.IsNotNull(langParam, "El parámetro no se insertó correctamente.");
-            Assert.AreEqual(Language.ENGLISH, langParam.Value);
+            Assert.AreEqual(SupportedLanguage.ENGLISH, langParam.Value);
         }
 
         [TestMethod]
@@ -108,7 +108,7 @@ namespace AegisTasks.UnitTests.BLL
             UserDTO user = new UserDTO(TEST_USERNAME, TEST_FIRSTNAME, TEST_LASTNAME, TEST_PASSWORD, DateTime.Now);
             UserDataAccessBLL.CreateUser(user);
 
-            UserParameterDTO<object> newParam = new UserParameterDTO<object>(UserParameterType.LANGUAGE, Language.SPANISH);
+            UserParameterDTO<object> newParam = new UserParameterDTO<object>(UserParameterType.LANGUAGE, SupportedLanguage.SPANISH);
             UserParametersBLL.ModifyParameter(TEST_USERNAME, newParam);
 
             UserParametersDTO parameters = UserParametersBLL.GetParameters(TEST_USERNAME);
@@ -116,10 +116,10 @@ namespace AegisTasks.UnitTests.BLL
             Assert.IsNotNull(parameters);
             Assert.AreEqual(TEST_USERNAME, parameters.Username);
 
-            Assert.IsTrue(parameters.TryGetParameter<Language>(UserParameterType.LANGUAGE, out var langParam));
+            Assert.IsTrue(parameters.TryGetParameter<SupportedLanguage>(UserParameterType.LANGUAGE, out var langParam));
             Assert.IsNotNull(langParam);
             Assert.AreEqual(UserParameterType.LANGUAGE, langParam.Type);
-            Assert.AreEqual(Language.SPANISH, langParam.Value);
+            Assert.AreEqual(SupportedLanguage.SPANISH, langParam.Value);
         }
 
 

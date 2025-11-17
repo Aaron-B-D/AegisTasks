@@ -157,30 +157,30 @@ namespace AegisTasks.Core.TaskAction
         /// <returns></returns>
         public abstract ExecutionResult Compensate(IStepExecutionContext context);
 
-        public string GetName(Language language)
+        public string GetName(SupportedLanguage language)
         {
             switch (language)
             {
-                case Language.SPANISH:
+                case SupportedLanguage.SPANISH:
                     return _ES_Name;
-                case Language.GALICIAN:
+                case SupportedLanguage.GALICIAN:
                     return _GL_Name;
-                case Language.ENGLISH:
+                case SupportedLanguage.ENGLISH:
                     return _EN_Name;
                 default:
                     throw new ArgumentOutOfRangeException(nameof(language), $"Idioma no soportado: {language}");
             }
         }
 
-        public string GetDescription(Language language)
+        public string GetDescription(SupportedLanguage language)
         {
             switch (language)
             {
-                case Language.SPANISH:
+                case SupportedLanguage.SPANISH:
                     return _ES_Description;
-                case Language.GALICIAN:
+                case SupportedLanguage.GALICIAN:
                     return _GL_Description;
-                case Language.ENGLISH:
+                case SupportedLanguage.ENGLISH:
                     return _EN_Description;
                 default:
                     throw new ArgumentOutOfRangeException(nameof(language), $"Idioma no soportado: {language}");

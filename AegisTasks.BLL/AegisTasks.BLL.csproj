@@ -5,6 +5,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Microsoft.Data.SqlClient" Version="6.1.2" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\AegisTasks.DataAccess\AegisTasks.DataAccess.csproj" />
     <ProjectReference Include="..\AegisTasks.TasksLibrary\AegisTasks.TasksLibrary.csproj" />
   </ItemGroup>
