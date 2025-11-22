@@ -18,14 +18,14 @@ namespace AegisTasks.UI.Presenters
 
         public override void Initialize()
         {
-            this._Form.Text = Texts.ChangePassword;
-            this._Form.OldPasswordLabel.Text = Texts.OldPassword;
-            this._Form.NewPasswordLabel.Text = Texts.NewPassword;
-            this._Form.ConfirmPasswordLabel.Text = Texts.ConfirmPassword;
-            this._Form.SaveButton.Text = Texts.Save;
+            this._View.Text = Texts.ChangePassword;
+            this._View.OldPasswordLabel.Text = Texts.OldPassword;
+            this._View.NewPasswordLabel.Text = Texts.NewPassword;
+            this._View.ConfirmPasswordLabel.Text = Texts.ConfirmPassword;
+            this._View.SaveButton.Text = Texts.Save;
 
-            this._Form.SaveButton.Click -= onSaveClicked;
-            this._Form.SaveButton.Click += onSaveClicked;
+            this._View.SaveButton.Click -= onSaveClicked;
+            this._View.SaveButton.Click += onSaveClicked;
         }
 
         protected override bool isLoadAllowed()
@@ -35,9 +35,9 @@ namespace AegisTasks.UI.Presenters
 
         private void onSaveClicked(object sender, EventArgs e)
         {
-            string oldPassword = this._Form.OldPasswordTextBox.Text;
-            string newPassword = this._Form.NewPasswordTextBox.Text;
-            string confirmPassword = this._Form.ConfirmPasswordTextBox.Text;
+            string oldPassword = this._View.OldPasswordTextBox.Text;
+            string newPassword = this._View.NewPasswordTextBox.Text;
+            string confirmPassword = this._View.ConfirmPasswordTextBox.Text;
 
             if (string.IsNullOrEmpty(oldPassword))
             {
@@ -63,8 +63,8 @@ namespace AegisTasks.UI.Presenters
                         if (changed)
                         {
                             MessageBox.Show(Texts.PasswordChangesSuccess);
-                            this._Form.DialogResult = DialogResult.OK;
-                            this._Form.Close();
+                            this._View.DialogResult = DialogResult.OK;
+                            this._View.Close();
                         }
                         else
                         {

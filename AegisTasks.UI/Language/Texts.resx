@@ -297,4 +297,64 @@
   <data name="AdminUserCannotBeErased" xml:space="preserve">
     <value>El usuario del sistema no puede ser eliminado</value>
   </data>
+  <data name="FilePath" xml:space="preserve">
+    <value>Ruta del archivo</value>
+  </data>
+  <data name="Search" xml:space="preserve">
+    <value>Buscar</value>
+  </data>
+  <data name="Content" xml:space="preserve">
+    <value>Contenido</value>
+  </data>
+  <data name="AppendContent" xml:space="preserve">
+    <value>Añadir contenido al anterior</value>
+  </data>
+  <data name="TextFile" xml:space="preserve">
+    <value>Archivo de texto</value>
+  </data>
+  <data name="ParamsNotValid" xml:space="preserve">
+    <value>Los parámetros establecidos no son válidos</value>
+  </data>
+  <data name="LoadingError" xml:space="preserve">
+    <value>Error al cargar</value>
+  </data>
+  <data name="TaskPlansEditor" xml:space="preserve">
+    <value>Editor de planes de acción</value>
+  </data>
+  <data name="ExecutionFailed" xml:space="preserve">
+    <value>La ejecución ha fallado</value>
+  </data>
+  <data name="Completed" xml:space="preserve">
+    <value>Completado</value>
+  </data>
+  <data name="Terminated" xml:space="preserve">
+    <value>Cesado</value>
+  </data>
+  <data name="Started" xml:space="preserve">
+    <value>Iniciado</value>
+  </data>
+  <data name="InternalTaskAction" xml:space="preserve">
+    <value>Acción de tarea interna</value>
+  </data>
+  <data name="CopyDepth" xml:space="preserve">
+    <value>Profundidad de la copia</value>
+  </data>
+  <data name="OverwriteDirectoriesIfExist" xml:space="preserve">
+    <value>Sobrescribir directorios si existen en el destino</value>
+  </data>
+  <data name="OverwriteFilesIfExist" xml:space="preserve">
+    <value>Sobrescribir archivos si existe en el destino</value>
+  </data>
+  <data name="OriginDirectory" xml:space="preserve">
+    <value>Directorio de origen</value>
+  </data>
+  <data name="DestinationDirectory" xml:space="preserve">
+    <value>Directorio de destino</value>
+  </data>
+  <data name="LimitDepth" xml:space="preserve">
+    <value>Limitar profundidad</value>
+  </data>
+  <data name="DepthConfiguration" xml:space="preserve">
+    <value>Configuración de profundidad</value>
+  </data>
 </root>

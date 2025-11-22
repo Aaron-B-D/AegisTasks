@@ -30,6 +30,9 @@ namespace AegisTasks.Core.Events
         /// </summary>
         public string StepId { get; set; }
 
+        public string StepName { get; set; }
+
+
         public TaskActionEventArgs()
         {
         }
@@ -40,11 +43,12 @@ namespace AegisTasks.Core.Events
             WorkflowInstanceId = workflowInstance?.Id;
         }
 
-        public TaskActionEventArgs(WorkflowInstance workflowInstance, string stepId)
+        public TaskActionEventArgs(WorkflowInstance workflowInstance, string stepId, string stepName)
         {
             WorkflowInstance = workflowInstance;
             WorkflowInstanceId = workflowInstance?.Id;
             StepId = stepId;
+            StepName = stepName;
         }
     }
 }

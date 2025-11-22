@@ -16,15 +16,15 @@ namespace AegisTasks.UI.Presenters
 
         public override void Initialize()
         {
-            this._Form.Text = Texts.AddNewUser;
-            this._Form.UserLabel.Text = Texts.User;
-            this._Form.NameLabel.Text = Texts.Name;
-            this._Form.SurnameLabel.Text = Texts.Surname;
-            this._Form.PasswordLabel.Text = Texts.Password;
-            this._Form.ConfirmPasswordLabel.Text = Texts.ConfirmPassword;
-            this._Form.SaveButton.Text = Texts.Save;
+            this._View.Text = Texts.AddNewUser;
+            this._View.UserLabel.Text = Texts.User;
+            this._View.NameLabel.Text = Texts.Name;
+            this._View.SurnameLabel.Text = Texts.Surname;
+            this._View.PasswordLabel.Text = Texts.Password;
+            this._View.ConfirmPasswordLabel.Text = Texts.ConfirmPassword;
+            this._View.SaveButton.Text = Texts.Save;
 
-            this._Form.SaveButton.Click += onSaveClicked;
+            this._View.SaveButton.Click += onSaveClicked;
         }
 
         protected override bool isLoadAllowed()
@@ -34,11 +34,11 @@ namespace AegisTasks.UI.Presenters
 
         private void onSaveClicked(object sender, EventArgs e)
         {
-            string username = this._Form.UserTextBox.Text.Trim();
-            string firstName = this._Form.NameTextBox.Text.Trim();
-            string lastName = this._Form.SurnameTextBox.Text.Trim();
-            string password = this._Form.PasswordTextBox.Text;
-            string confirmPassword = this._Form.ConfirmPasswordTextBox.Text;
+            string username = this._View.UserTextBox.Text.Trim();
+            string firstName = this._View.NameTextBox.Text.Trim();
+            string lastName = this._View.SurnameTextBox.Text.Trim();
+            string password = this._View.PasswordTextBox.Text;
+            string confirmPassword = this._View.ConfirmPasswordTextBox.Text;
 
             if (string.IsNullOrEmpty(username))
             {
@@ -73,8 +73,8 @@ namespace AegisTasks.UI.Presenters
                     if (created)
                     {
                         MessageBox.Show(Texts.UserCreated);
-                        this._Form.DialogResult = DialogResult.OK;
-                        this._Form.Close();
+                        this._View.DialogResult = DialogResult.OK;
+                        this._View.Close();
                     }
                     else
                     {

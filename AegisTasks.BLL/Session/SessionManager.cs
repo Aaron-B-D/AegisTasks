@@ -8,6 +8,7 @@ public static class SessionManager
 {
     public static UserDTO CurrentUser { get; private set; }
     public static UserParametersDTO CurrentUserParameters { get; private set; }
+    public static SupportedLanguage CurrentLanguage { get; private set; }
 
     public static bool Login(string username, string password)
     {
@@ -17,6 +18,9 @@ public static class SessionManager
             {
                 CurrentUser = UserDataAccessBLL.GetUser(username);
                 CurrentUserParameters = UserParametersBLL.GetParameters(username);
+                CurrentUserParameters.TryGetParameter<SupportedLanguage>(UserParameterType.LANGUAGE, out UserParameterDTO<SupportedLanguage> userLanguage);
+
+                CurrentLanguage = userLanguage.Value;
 
                 applyUserSettings();
 
@@ -53,6 +57,8 @@ public static class SessionManager
             }
         }
     }
+
+
 
     private static void applyUserSettings()
     {

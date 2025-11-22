@@ -56,5 +56,10 @@ namespace AegisTasks.TasksLibrary.TaskPlan
 
         #endregion CONSTRUCTOR
 
+        public bool IsValid()
+        {
+            return this.DirectoryToCopy != null && this.DestinationDirectory != null && this.CopyDepth == null || this.CopyDepth >= 0;
+        }
+
     }
 }

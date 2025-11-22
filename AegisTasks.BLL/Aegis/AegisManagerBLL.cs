@@ -5,6 +5,7 @@ using AegisTasks.TasksLibrary.TaskPlan;
 using AegisTasks.TasksLibrary.WorkflowHost;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Threading.Tasks;
 
 namespace AegisTasks.BLL.Aegis
@@ -19,42 +20,35 @@ namespace AegisTasks.BLL.Aegis
         static AegisManagerBLL()
         {
             _Manager = new PreconfiguredAegisWorkflowsManager();
-
-            // Arranca el manager
             _Manager.Start();
+
         }
 
-        private static async Task<string> startWorkflowAndWait<TInput>(string workflowName, TInput inputParams)
+        private static async void startWorkflowAndWait<TInput>(string workflowName, TInput inputParams, TaskPlanEventHandler taskPlanStarted, TaskPlanEventHandler taskPlanCompleted, TaskPlanEventHandler taskPlanTerminated, TaskActionEventHandler taskActionStarted, TaskActionEventHandler taskActionEnded)
         {
-            // Inicia el workflow y obtiene su ID inmediatamente
-            string workflowId = await _Manager.StartWorkflow(workflowName, inputParams);
 
+            string workflowId = String.Empty;
             TaskCompletionSource<string> tcs = new TaskCompletionSource<string>();
 
-            // Handler para cuando el workflow concluya
-            void Handler(object sender, TaskPlanEventArgs e)
-            {
-                if (e.WorkflowInstanceId == workflowId)
-                {
-                    tcs.TrySetResult(e.WorkflowInstanceId);
-                    _Manager.TaskPlanConcluded -= Handler;
-                }
-            }
+            _Manager.TaskPlanStarted += taskPlanStarted;
+            _Manager.TaskPlanCompleted += taskPlanCompleted;
+            _Manager.TaskPlanTerminated += taskPlanTerminated;
+            _Manager.TaskActionStarted += taskActionStarted;
+            _Manager.TaskActionCompleted += taskActionEnded;
 
-            _Manager.TaskPlanConcluded += Handler;
-
-            return await tcs.Task;
+            await _Manager.StartWorkflow(workflowName, inputParams);
         }
 
 
-        public static Task<string> ExecuteWriteInPlan(WriteInFilePlanInputParams inputParams)
+
+        public static void ExecuteWriteInPlan(WriteInFilePlanInputParams inputParams, TaskPlanEventHandler taskPlanStarted, TaskPlanEventHandler taskPlanCompleted, TaskPlanEventHandler taskPlanTerminated, TaskActionEventHandler taskActionStarted, TaskActionEventHandler taskActionEnded)
         {
-            return startWorkflowAndWait(WriteInFilePlan.CALL_NAME, inputParams);
+            startWorkflowAndWait(WriteInFilePlan.CALL_NAME, new WriteInFilePlanParams(inputParams), taskPlanStarted, taskPlanCompleted, taskPlanTerminated, taskActionStarted, taskActionEnded);
         }
 
-        public static Task<string> ExecuteCopyDirectoryPlan(CopyDirectoryPlanInputParams inputParams)
+        public static void ExecuteCopyDirectoryPlan(CopyDirectoryPlanInputParams inputParams, TaskPlanEventHandler taskPlanStarted, TaskPlanEventHandler taskPlanCompleted, TaskPlanEventHandler taskPlanTerminated, TaskActionEventHandler taskActionStarted, TaskActionEventHandler taskActionEnded)
         {
-            return startWorkflowAndWait(CopyDirectoryPlan.CALL_NAME, inputParams);
+            startWorkflowAndWait(CopyDirectoryPlan.CALL_NAME, new CopyDirectoryPlanParams(inputParams), taskPlanStarted, taskPlanCompleted, taskPlanTerminated, taskActionStarted, taskActionEnded);
         }
 
         public static HashSet<ITaskPlanRegistrable> GetAvailableTaskPlans()

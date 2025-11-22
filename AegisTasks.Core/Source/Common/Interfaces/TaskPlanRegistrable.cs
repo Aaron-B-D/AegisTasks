@@ -11,6 +11,7 @@ namespace AegisTasks.Core.Common
     /// </summary>
     public interface ITaskPlanRegistrable
     {
+        string GetId();
         string GetName(SupportedLanguage language);
         string GetDescription(SupportedLanguage language);
         /// <summary>

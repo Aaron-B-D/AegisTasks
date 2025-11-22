@@ -16,40 +16,40 @@ namespace AegisTasks.UI.Presenters
 
         public override void Initialize()
         {
-            _Form.TaskPlansOptionsStripMenu.Text = Texts.TaskPlans;
-            _Form.UsersOptionsStripMenu.Text = Texts.Users;
-            _Form.HistoryOptionsStripMenu.Text = Texts.History;
-            _Form.LogoutOptionLoginStripMenu.Text = Texts.LogOut;
-            _Form.Text = Texts.MainMenu;
+            _View.TaskPlansOptionsStripMenu.Text = Texts.TaskPlans;
+            _View.UsersOptionsStripMenu.Text = Texts.Users;
+            _View.HistoryOptionsStripMenu.Text = Texts.History;
+            _View.LogoutOptionLoginStripMenu.Text = Texts.LogOut;
+            _View.Text = Texts.MainMenu;
 
-            _Form.TaskPlansOptionsStripMenu.Click += onOpenTaskPlansViewerButtonClicked;
-            _Form.UsersOptionsStripMenu.Click += onOpenUsersEditorButtonClicked;
-            _Form.HistoryOptionsStripMenu.Click += onOpenHistoryViewerButtonClicked;
-            _Form.LogoutOptionLoginStripMenu.Click += onLogoutButtonClicked;
-            _Form.FormClosed += onMainMenuClosed;
+            _View.TaskPlansOptionsStripMenu.Click += onOpenTaskPlansViewerButtonClicked;
+            _View.UsersOptionsStripMenu.Click += onOpenUsersEditorButtonClicked;
+            _View.HistoryOptionsStripMenu.Click += onOpenHistoryViewerButtonClicked;
+            _View.LogoutOptionLoginStripMenu.Click += onLogoutButtonClicked;
+            _View.FormClosed += onMainMenuClosed;
 
 
         }
 
         protected void onOpenTaskPlansViewerButtonClicked(object sender, EventArgs e)
         {
-            new TaskPlansViewer().ShowDialog(this._Form);
+            new TaskPlansViewer().ShowDialog(this._View);
         }
 
         protected void onOpenUsersEditorButtonClicked(object sender, EventArgs e)
         {
-            new UserEditor().ShowDialog(this._Form);
+            new UserEditor().ShowDialog(this._View);
         }
 
         protected void onOpenHistoryViewerButtonClicked(object sender, EventArgs e)
         {
-            new HistoryViewer().ShowDialog(this._Form);
+            new HistoryViewer().ShowDialog(this._View);
         }
 
         protected void onLogoutButtonClicked(object sender, EventArgs e)
         {
             SessionManager.Logout();
-            this._Form.FireLogoutEvent();
+            this._View.FireLogoutEvent();
         }
 
         protected void onMainMenuClosed(object sender, EventArgs e)

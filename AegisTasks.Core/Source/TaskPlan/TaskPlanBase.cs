@@ -97,6 +97,11 @@ namespace AegisTasks.Core.TaskPlan
 
         #region PUBLIC METHODS
 
+        public string GetId()
+        {
+            return this.CallName;
+        }
+
         /// <summary>
         /// Método llamado por WorkflowCore para definir los pasos que se ejecutan en un WorkFlow
         /// </summary>

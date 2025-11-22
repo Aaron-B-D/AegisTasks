@@ -30,7 +30,7 @@ namespace AegisTasks.UI
             {
                 //HACK LOGIN RÁPIDO PARA DEBUG. Comentar el login de debajo
                 //SessionManager.Login("admin", "Password123!");
-                // Mostrar el login
+                //Mostrar el login
                 using (Login loginForm = new Login())
                 {
                     loginForm.ShowDialog();

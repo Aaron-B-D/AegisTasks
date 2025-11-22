@@ -297,4 +297,64 @@
   <data name="AdminUserCannotBeErased" xml:space="preserve">
     <value>System user can not be deleted</value>
   </data>
+  <data name="FilePath" xml:space="preserve">
+    <value>File path</value>
+  </data>
+  <data name="Search" xml:space="preserve">
+    <value>Search</value>
+  </data>
+  <data name="Content" xml:space="preserve">
+    <value>Content</value>
+  </data>
+  <data name="AppendContent" xml:space="preserve">
+    <value>Append content to previous</value>
+  </data>
+  <data name="TextFile" xml:space="preserve">
+    <value>Text file</value>
+  </data>
+  <data name="ParamsNotValid" xml:space="preserve">
+    <value>Set parameters are not valid</value>
+  </data>
+  <data name="LoadingError" xml:space="preserve">
+    <value>Loading error</value>
+  </data>
+  <data name="TaskPlansEditor" xml:space="preserve">
+    <value>Task plans editor</value>
+  </data>
+  <data name="ExecutionFailed" xml:space="preserve">
+    <value>Execution failed</value>
+  </data>
+  <data name="Completed" xml:space="preserve">
+    <value>Completed</value>
+  </data>
+  <data name="Terminated" xml:space="preserve">
+    <value>Terminated</value>
+  </data>
+  <data name="Started" xml:space="preserve">
+    <value>Started</value>
+  </data>
+  <data name="InternalTaskAction" xml:space="preserve">
+    <value>Internal task action</value>
+  </data>
+  <data name="CopyDepth" xml:space="preserve">
+    <value>Copy depth</value>
+  </data>
+  <data name="OverwriteDirectoriesIfExist" xml:space="preserve">
+    <value>Overwrite directories if they exist at destination</value>
+  </data>
+  <data name="OverwriteFilesIfExist" xml:space="preserve">
+    <value>Overwrite files if they exist at destination</value>
+  </data>
+  <data name="OriginDirectory" xml:space="preserve">
+    <value>Origin directory</value>
+  </data>
+  <data name="DestinationDirectory" xml:space="preserve">
+    <value>Destination directory</value>
+  </data>
+  <data name="LimitDepth" xml:space="preserve">
+    <value>Limit depth</value>
+  </data>
+  <data name="DepthConfiguration" xml:space="preserve">
+    <value>Depth configuration</value>
+  </data>
 </root>

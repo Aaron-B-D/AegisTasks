@@ -29,6 +29,8 @@ namespace AegisTasks.Core.WorkflowHost
         /// </summary>
         public event TaskPlanEventHandler TaskPlanCompleted;
 
+        public event TaskPlanEventHandler TaskPlanStarted;
+
         /// <summary>
         /// Evento emitido cuando un workflow ha terminado abruptamente
         /// </summary>
@@ -354,7 +356,11 @@ namespace AegisTasks.Core.WorkflowHost
 
             if (workflow != null)
             {
-                if (lifecycleEvent is WorkflowCompleted)
+                if(lifecycleEvent is WorkflowStarted)
+                {
+                    onTaskPlanStarted(new TaskPlanEventArgs(workflow));
+                }
+                else if (lifecycleEvent is WorkflowCompleted)
                 {
                     onTaskPlanCompleted(new TaskPlanEventArgs(workflow));
                     onTaskPlanConcluded(new TaskPlanEventArgs(workflow));
@@ -366,11 +372,11 @@ namespace AegisTasks.Core.WorkflowHost
                 }
                 else if (lifecycleEvent is StepCompleted stepCompleted)
                 {
-                    onTaskActionCompleted(new TaskActionEventArgs(workflow, stepCompleted.StepId.ToString()));
+                    onTaskActionCompleted(new TaskActionEventArgs(workflow, stepCompleted.StepId.ToString(), workflow.ExecutionPointers.FirstOrDefault(ep => ep.StepId == stepCompleted.StepId).StepName));
                 }
                 else if (lifecycleEvent is StepStarted stepStarted)
                 {
-                    onTaskActionStarted(new TaskActionEventArgs(workflow, stepStarted.StepId.ToString()));
+                    onTaskActionStarted(new TaskActionEventArgs(workflow, stepStarted.StepId.ToString(), workflow.ExecutionPointers.FirstOrDefault(ep => ep.StepId == stepStarted.StepId).StepName));
                 }
                 else if (lifecycleEvent is WorkflowResumed)
                 {
@@ -394,6 +400,15 @@ namespace AegisTasks.Core.WorkflowHost
         {
             TaskPlanCompleted?.Invoke(this, e);
         }
+
+        /// <summary>
+        /// Dispara el evento TaskPlanStarted
+        /// </summary>
+        protected virtual void onTaskPlanStarted(TaskPlanEventArgs e)
+        {
+            TaskPlanStarted?.Invoke(this, e);
+        }
+
 
         /// <summary>
         /// Dispara el evento TaskPlanTerminated

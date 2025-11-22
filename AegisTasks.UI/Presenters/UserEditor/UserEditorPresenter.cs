@@ -34,32 +34,32 @@ namespace AegisTasks.UI.Presenters
 
             loadLanguagesIntoCombo();
 
-            _Form.Text = Texts.UserEditor;
-            _Form.UsersSelectorGroupBox.Text = Texts.AvailableUsers;
-            _Form.UserDetailsGeneralInfoBox.Text = Texts.UserDetails;
-            _Form.AddUserButton.Text = Texts.Add;
-            _Form.DeleteUserButton.Text = Texts.Delete;
-            _Form.SaveChangesButton.Text = Texts.SaveChanges;
-            _Form.UserLabel.Text = Texts.User;
-            _Form.NameLabel.Text = Texts.Name;
-            _Form.SurnameLabel.Text = Texts.Surname;
-            _Form.ChangePasswordButton.Text = Texts.ChangePassword;
-            _Form.LanguageLabel.Text = Texts.Language;
-            _Form.UserDetailsUserParamsBox.Text = Texts.Parameters;
-            _Form.UserDetailsGroupBox.Text = Texts.UserDetails;
+            _View.Text = Texts.UserEditor;
+            _View.UsersSelectorGroupBox.Text = Texts.AvailableUsers;
+            _View.UserDetailsGeneralInfoBox.Text = Texts.UserDetails;
+            _View.AddUserButton.Text = Texts.Add;
+            _View.DeleteUserButton.Text = Texts.Delete;
+            _View.SaveChangesButton.Text = Texts.SaveChanges;
+            _View.UserLabel.Text = Texts.User;
+            _View.NameLabel.Text = Texts.Name;
+            _View.SurnameLabel.Text = Texts.Surname;
+            _View.ChangePasswordButton.Text = Texts.ChangePassword;
+            _View.LanguageLabel.Text = Texts.Language;
+            _View.UserDetailsUserParamsBox.Text = Texts.Parameters;
+            _View.UserDetailsGroupBox.Text = Texts.UserDetails;
 
-            _Form.UsersList.DisplayMember = "Username";
-            _Form.UsersList.DataSource = _UsersBindingSource;
+            _View.UsersList.DisplayMember = "Username";
+            _View.UsersList.DataSource = _UsersBindingSource;
 
-            _Form.UsersList.SelectedIndexChanged += onUserSelected;
-            _Form.AddUserButton.Click += onAddUserClicked;
-            _Form.DeleteUserButton.Click += onDeleteUserClicked;
-            _Form.SaveChangesButton.Click += onSaveChangesClicked;
-            _Form.ChangePasswordButton.Click += onChangePasswordClicked;
+            _View.UsersList.SelectedIndexChanged += onUserSelected;
+            _View.AddUserButton.Click += onAddUserClicked;
+            _View.DeleteUserButton.Click += onDeleteUserClicked;
+            _View.SaveChangesButton.Click += onSaveChangesClicked;
+            _View.ChangePasswordButton.Click += onChangePasswordClicked;
 
-            _Form.NameTextBox.TextChanged += onUserDetailChanged;
-            _Form.SurnameTextBox.TextChanged += onUserDetailChanged;
-            _Form.LanguageComboBox.SelectedIndexChanged += onUserDetailChanged;
+            _View.NameTextBox.TextChanged += onUserDetailChanged;
+            _View.SurnameTextBox.TextChanged += onUserDetailChanged;
+            _View.LanguageComboBox.SelectedIndexChanged += onUserDetailChanged;
 
             _User = _Users.FirstOrDefault(u =>
             {
@@ -69,15 +69,15 @@ namespace AegisTasks.UI.Presenters
 
             if (_User != null)
             {
-                _Form.UsersList.SelectedItem = _User;
+                _View.UsersList.SelectedItem = _User;
                 loadUserIntoForm(_User);
             }
             else
             {
                 if (_Users.Count > 0)
                 {
-                    _Form.UsersList.SelectedIndex = 0;
-                    _User = (UserDTO)_Form.UsersList.SelectedItem;
+                    _View.UsersList.SelectedIndex = 0;
+                    _User = (UserDTO)_View.UsersList.SelectedItem;
                     loadUserIntoForm(_User);
                 }
             }
@@ -92,7 +92,7 @@ namespace AegisTasks.UI.Presenters
 
         private void onUserSelected(object sender, EventArgs e)
         {
-            UserDTO selected = _Form.UsersList.SelectedItem as UserDTO;
+            UserDTO selected = _View.UsersList.SelectedItem as UserDTO;
             if (selected != null)
             {
                 _User = selected;
@@ -117,14 +117,14 @@ namespace AegisTasks.UI.Presenters
                     if (_Users.Count > 0)
                     {
                         _User = _Users[0];
-                        _Form.UsersList.SelectedItem = _User;
+                        _View.UsersList.SelectedItem = _User;
                         loadUserIntoForm(_User);
                     }
 
                     updateButtonsState();
                 };
 
-                addForm.ShowDialog(this._Form);
+                addForm.ShowDialog(this._View);
             }
         }
 
@@ -151,7 +151,7 @@ namespace AegisTasks.UI.Presenters
 
                     if (_User != null)
                     {
-                        _Form.UsersList.SelectedItem = _User;
+                        _View.UsersList.SelectedItem = _User;
                         loadUserIntoForm(_User);
                     }
                 }
@@ -164,7 +164,7 @@ namespace AegisTasks.UI.Presenters
         {
             using (ChangePasswordEditor changePasswordForm = new ChangePasswordEditor(_User))
             {
-                changePasswordForm.ShowDialog(this._Form);
+                changePasswordForm.ShowDialog(this._View);
             }
         }
 
@@ -172,8 +172,8 @@ namespace AegisTasks.UI.Presenters
         {
             if (_User != null)
             {
-                string firstName = _Form.NameTextBox.Text;
-                string lastName = _Form.SurnameTextBox.Text;
+                string firstName = _View.NameTextBox.Text;
+                string lastName = _View.SurnameTextBox.Text;
 
                 bool updated = UserDataAccessBLL.UpdateUserInfo(_User.Username, firstName, lastName);
                 if (updated)
@@ -181,7 +181,7 @@ namespace AegisTasks.UI.Presenters
                     _User.FirstName = firstName;
                     _User.LastName = lastName;
 
-                    if (_Form.LanguageComboBox.SelectedItem is LanguageItem item)
+                    if (_View.LanguageComboBox.SelectedItem is LanguageItem item)
                     {
                         UserParameterDTO<object> param =
                             new UserParameterDTO<object>(UserParameterType.LANGUAGE, item.Value);
@@ -210,9 +210,9 @@ namespace AegisTasks.UI.Presenters
             {
                 _UserParameters = UserParametersBLL.GetParameters(user.Username);
 
-                _Form.UserTextBox.Text = user.Username;
-                _Form.NameTextBox.Text = user.FirstName;
-                _Form.SurnameTextBox.Text = user.LastName;
+                _View.UserTextBox.Text = user.Username;
+                _View.NameTextBox.Text = user.FirstName;
+                _View.SurnameTextBox.Text = user.LastName;
 
                 if (_UserParameters != null && _UserParameters.TryGetParameter<SupportedLanguage>(UserParameterType.LANGUAGE, out UserParameterDTO<SupportedLanguage> lang))
                 {
@@ -220,37 +220,37 @@ namespace AegisTasks.UI.Presenters
                 }
                 else
                 {
-                    _Form.LanguageComboBox.SelectedIndex = 0;
+                    _View.LanguageComboBox.SelectedIndex = 0;
                 }
             }
             else
             {
-                _Form.UserTextBox.Text = "";
-                _Form.NameTextBox.Text = "";
-                _Form.SurnameTextBox.Text = "";
-                _Form.LanguageComboBox.SelectedIndex = -1;
+                _View.UserTextBox.Text = "";
+                _View.NameTextBox.Text = "";
+                _View.SurnameTextBox.Text = "";
+                _View.LanguageComboBox.SelectedIndex = -1;
             }
         }
 
         private void loadLanguagesIntoCombo()
         {
-            _Form.LanguageComboBox.Items.Clear();
+            _View.LanguageComboBox.Items.Clear();
 
-            _Form.LanguageComboBox.Items.Add(new LanguageItem(SupportedLanguage.SPANISH, Texts.Spanish));
-            _Form.LanguageComboBox.Items.Add(new LanguageItem(SupportedLanguage.GALICIAN, Texts.Galician));
-            _Form.LanguageComboBox.Items.Add(new LanguageItem(SupportedLanguage.ENGLISH, Texts.English));
+            _View.LanguageComboBox.Items.Add(new LanguageItem(SupportedLanguage.SPANISH, Texts.Spanish));
+            _View.LanguageComboBox.Items.Add(new LanguageItem(SupportedLanguage.GALICIAN, Texts.Galician));
+            _View.LanguageComboBox.Items.Add(new LanguageItem(SupportedLanguage.ENGLISH, Texts.English));
         }
 
         private void selectLanguageInCombo(SupportedLanguage language)
         {
-            foreach (object obj in _Form.LanguageComboBox.Items)
+            foreach (object obj in _View.LanguageComboBox.Items)
             {
                 LanguageItem langItem = obj as LanguageItem;
                 if (langItem != null)
                 {
                     if (langItem.Value == language)
                     {
-                        _Form.LanguageComboBox.SelectedItem = langItem;
+                        _View.LanguageComboBox.SelectedItem = langItem;
                     }
                 }
             }
@@ -258,9 +258,9 @@ namespace AegisTasks.UI.Presenters
 
         private bool hasChanges(UserDTO original)
         {
-            bool nameChanged = _Form.NameTextBox.Text != original.FirstName;
-            bool surnameChanged = _Form.SurnameTextBox.Text != original.LastName;
-            LanguageItem selected = _Form.LanguageComboBox.SelectedItem as LanguageItem;
+            bool nameChanged = _View.NameTextBox.Text != original.FirstName;
+            bool surnameChanged = _View.SurnameTextBox.Text != original.LastName;
+            LanguageItem selected = _View.LanguageComboBox.SelectedItem as LanguageItem;
             bool languageChanged = false;
 
             if (_UserParameters != null && selected != null && _UserParameters.TryGetParameter<SupportedLanguage>(UserParameterType.LANGUAGE, out UserParameterDTO<SupportedLanguage> param))
@@ -275,13 +275,13 @@ namespace AegisTasks.UI.Presenters
         {
             if (_User == null)
             {
-                _Form.DeleteUserButton.Enabled = false;
-                _Form.SaveChangesButton.Enabled = false;
+                _View.DeleteUserButton.Enabled = false;
+                _View.SaveChangesButton.Enabled = false;
             }
             else
             {
-                _Form.DeleteUserButton.Enabled = true;
-                _Form.SaveChangesButton.Enabled = hasChanges(_User);
+                _View.DeleteUserButton.Enabled = true;
+                _View.SaveChangesButton.Enabled = hasChanges(_User);
             }
         }
     }

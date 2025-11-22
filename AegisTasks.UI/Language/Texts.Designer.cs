@@ -115,6 +115,15 @@ namespace AegisTasks.UI.Language {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Añadir contenido al anterior.
+        /// </summary>
+        public static string AppendContent {
+            get {
+                return ResourceManager.GetString("AppendContent", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Usuarios disponibles.
         /// </summary>
         public static string AvailableUsers {
@@ -133,11 +142,38 @@ namespace AegisTasks.UI.Language {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Completado.
+        /// </summary>
+        public static string Completed {
+            get {
+                return ResourceManager.GetString("Completed", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Confirme contraseña.
         /// </summary>
         public static string ConfirmPassword {
             get {
                 return ResourceManager.GetString("ConfirmPassword", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Contenido.
+        /// </summary>
+        public static string Content {
+            get {
+                return ResourceManager.GetString("Content", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Profundidad de la copia.
+        /// </summary>
+        public static string CopyDepth {
+            get {
+                return ResourceManager.GetString("CopyDepth", resourceCulture);
             }
         }
         
@@ -151,11 +187,29 @@ namespace AegisTasks.UI.Language {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Configuración de profundidad.
+        /// </summary>
+        public static string DepthConfiguration {
+            get {
+                return ResourceManager.GetString("DepthConfiguration", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Descripción.
         /// </summary>
         public static string Description {
             get {
                 return ResourceManager.GetString("Description", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Directorio de destino.
+        /// </summary>
+        public static string DestinationDirectory {
+            get {
+                return ResourceManager.GetString("DestinationDirectory", resourceCulture);
             }
         }
         
@@ -187,11 +241,29 @@ namespace AegisTasks.UI.Language {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to La ejecución ha fallado.
+        /// </summary>
+        public static string ExecutionFailed {
+            get {
+                return ResourceManager.GetString("ExecutionFailed", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Estado de ejecución.
         /// </summary>
         public static string ExecutionStatus {
             get {
                 return ResourceManager.GetString("ExecutionStatus", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Ruta del archivo.
+        /// </summary>
+        public static string FilePath {
+            get {
+                return ResourceManager.GetString("FilePath", resourceCulture);
             }
         }
         
@@ -228,6 +300,15 @@ namespace AegisTasks.UI.Language {
         public static string History {
             get {
                 return ResourceManager.GetString("History", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Acción de tarea interna.
+        /// </summary>
+        public static string InternalTaskAction {
+            get {
+                return ResourceManager.GetString("InternalTaskAction", resourceCulture);
             }
         }
         
@@ -273,6 +354,24 @@ namespace AegisTasks.UI.Language {
         public static string Language {
             get {
                 return ResourceManager.GetString("Language", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Limitar profundidad.
+        /// </summary>
+        public static string LimitDepth {
+            get {
+                return ResourceManager.GetString("LimitDepth", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Error al cargar.
+        /// </summary>
+        public static string LoadingError {
+            get {
+                return ResourceManager.GetString("LoadingError", resourceCulture);
             }
         }
         
@@ -340,11 +439,47 @@ namespace AegisTasks.UI.Language {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Directorio de origen.
+        /// </summary>
+        public static string OriginDirectory {
+            get {
+                return ResourceManager.GetString("OriginDirectory", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Sobrescribir directorios si existen en el destino.
+        /// </summary>
+        public static string OverwriteDirectoriesIfExist {
+            get {
+                return ResourceManager.GetString("OverwriteDirectoriesIfExist", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Sobrescribir archivos si existe en el destino.
+        /// </summary>
+        public static string OverwriteFilesIfExist {
+            get {
+                return ResourceManager.GetString("OverwriteFilesIfExist", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Parámetros.
         /// </summary>
         public static string Parameters {
             get {
                 return ResourceManager.GetString("Parameters", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Los parámetros establecidos no son válidos.
+        /// </summary>
+        public static string ParamsNotValid {
+            get {
+                return ResourceManager.GetString("ParamsNotValid", resourceCulture);
             }
         }
         
@@ -430,6 +565,15 @@ namespace AegisTasks.UI.Language {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Buscar.
+        /// </summary>
+        public static string Search {
+            get {
+                return ResourceManager.GetString("Search", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to No se ha podido encontrar una sesión.
         /// </summary>
         public static string SessionNotFound {
@@ -453,6 +597,15 @@ namespace AegisTasks.UI.Language {
         public static string Spanish {
             get {
                 return ResourceManager.GetString("Spanish", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Iniciado.
+        /// </summary>
+        public static string Started {
+            get {
+                return ResourceManager.GetString("Started", resourceCulture);
             }
         }
         
@@ -493,6 +646,15 @@ namespace AegisTasks.UI.Language {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Editor de planes de acción.
+        /// </summary>
+        public static string TaskPlansEditor {
+            get {
+                return ResourceManager.GetString("TaskPlansEditor", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Plantillas.
         /// </summary>
         public static string Templates {
@@ -502,11 +664,29 @@ namespace AegisTasks.UI.Language {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Cesado.
+        /// </summary>
+        public static string Terminated {
+            get {
+                return ResourceManager.GetString("Terminated", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Texto de prueba.
         /// </summary>
         public static string TestText {
             get {
                 return ResourceManager.GetString("TestText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Archivo de texto.
+        /// </summary>
+        public static string TextFile {
+            get {
+                return ResourceManager.GetString("TextFile", resourceCulture);
             }
         }
         

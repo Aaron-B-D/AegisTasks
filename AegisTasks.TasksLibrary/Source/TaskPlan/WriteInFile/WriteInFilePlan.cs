@@ -176,7 +176,7 @@ namespace AegisTasks.TasksLibrary.TaskPlan
 			return new WriteInFilePlan();
 		}
 
-		public override void RegisterAtHost(IWorkflowHost host)
+        public override void RegisterAtHost(IWorkflowHost host)
 		{
 			host.RegisterWorkflow<WriteInFilePlan, WriteInFilePlanParams>();
 		}

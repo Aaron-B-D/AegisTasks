@@ -74,6 +74,11 @@ namespace AegisTasks.TasksLibrary.TaskPlan
             return clone;
         }
 
+        public bool IsValid()
+        {
+            return this.FilePath != null && this.Content != null;
+        }
+
         #endregion PUBLIC METHODS
 
         #endregion METHODS
