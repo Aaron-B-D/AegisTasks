@@ -231,10 +231,12 @@
   <ItemGroup>
     <Compile Include="BLL\AegisManagerBLL_Tests.cs" />
     <Compile Include="BLL\DataAccessBLL_Tests.cs" />
+    <Compile Include="BLL\ExecutionHistoryBLL_Tests.cs" />
     <Compile Include="BLL\SessionManager_Tests.cs" />
     <Compile Include="BLL\UserDataAccessBLL_Tests.cs" />
     <Compile Include="BLL\UserParametersBLL_Tests.cs" />
     <Compile Include="DataAccess\DataAccess_Tests.cs" />
+    <Compile Include="DataAccess\ExecutionHistoryDataAccess_Tests.cs" />
     <Compile Include="DataAccess\UserParametersDataAccess_Tests.cs" />
     <Compile Include="DataAccess\UsersDataAccess_Tests.cs" />
     <Compile Include="PlansTests\CopyDirectoryPlan_Test.cs" />
