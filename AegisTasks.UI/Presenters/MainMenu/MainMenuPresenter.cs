@@ -28,6 +28,7 @@ namespace AegisTasks.UI.Presenters
             _View.LogoutOptionLoginStripMenu.Click += onLogoutButtonClicked;
             _View.FormClosed += onMainMenuClosed;
 
+            _View.AegisBannerContainer.Image = Images.Images.Aegis_Banner;
 
         }
 

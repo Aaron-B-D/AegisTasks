@@ -32,5 +32,9 @@ namespace AegisTasks.UI.Forms
             Logout?.Invoke(this, EventArgs.Empty);
         }
 
+        private void AegisBannerContainer_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

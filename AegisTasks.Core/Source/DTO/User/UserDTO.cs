@@ -27,5 +27,13 @@ namespace AegisTasks.Core.DTO
             Password = password;
             CreatedAt = createdAt;
         }
+
+        public UserDTO(string username, string firstName, string lastName, string password)
+        {
+            Username = username;
+            FirstName = firstName;
+            LastName = lastName;
+            Password = password;
+        }
     }
 }

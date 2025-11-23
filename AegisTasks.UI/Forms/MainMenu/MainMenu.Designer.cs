@@ -34,8 +34,10 @@
             this.HistoryOptionsStripMenu = new System.Windows.Forms.ToolStripMenuItem();
             this.LoginStripMenu = new System.Windows.Forms.MenuStrip();
             this.LogoutOptionLoginStripMenu = new System.Windows.Forms.ToolStripMenuItem();
+            this.AegisBannerContainer = new System.Windows.Forms.PictureBox();
             this.OptionsStripMenu.SuspendLayout();
             this.LoginStripMenu.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.AegisBannerContainer)).BeginInit();
             this.SuspendLayout();
             // 
             // OptionsStripMenu
@@ -48,7 +50,8 @@
             this.OptionsStripMenu.LayoutStyle = System.Windows.Forms.ToolStripLayoutStyle.Flow;
             this.OptionsStripMenu.Location = new System.Drawing.Point(0, 0);
             this.OptionsStripMenu.Name = "OptionsStripMenu";
-            this.OptionsStripMenu.Size = new System.Drawing.Size(375, 23);
+            this.OptionsStripMenu.Padding = new System.Windows.Forms.Padding(8, 2, 0, 2);
+            this.OptionsStripMenu.Size = new System.Drawing.Size(1384, 23);
             this.OptionsStripMenu.TabIndex = 0;
             this.OptionsStripMenu.Text = "menuStrip1";
             // 
@@ -79,9 +82,10 @@
             this.LoginStripMenu.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.LoginStripMenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.LogoutOptionLoginStripMenu});
-            this.LoginStripMenu.Location = new System.Drawing.Point(0, 206);
+            this.LoginStripMenu.Location = new System.Drawing.Point(0, 637);
             this.LoginStripMenu.Name = "LoginStripMenu";
-            this.LoginStripMenu.Size = new System.Drawing.Size(375, 24);
+            this.LoginStripMenu.Padding = new System.Windows.Forms.Padding(8, 2, 0, 2);
+            this.LoginStripMenu.Size = new System.Drawing.Size(1384, 24);
             this.LoginStripMenu.TabIndex = 1;
             this.LoginStripMenu.Text = "menuStrip2";
             // 
@@ -93,14 +97,28 @@
             this.LogoutOptionLoginStripMenu.Size = new System.Drawing.Size(57, 20);
             this.LogoutOptionLoginStripMenu.Text = "Logout";
             // 
+            // AegisBannerContainer
+            // 
+            this.AegisBannerContainer.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.AegisBannerContainer.InitialImage = null;
+            this.AegisBannerContainer.Location = new System.Drawing.Point(0, 23);
+            this.AegisBannerContainer.Name = "AegisBannerContainer";
+            this.AegisBannerContainer.Size = new System.Drawing.Size(1384, 614);
+            this.AegisBannerContainer.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
+            this.AegisBannerContainer.TabIndex = 2;
+            this.AegisBannerContainer.TabStop = false;
+            this.AegisBannerContainer.Click += new System.EventHandler(this.AegisBannerContainer_Click);
+            // 
             // MainMenu
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(375, 230);
+            this.ClientSize = new System.Drawing.Size(1384, 661);
+            this.Controls.Add(this.AegisBannerContainer);
             this.Controls.Add(this.OptionsStripMenu);
             this.Controls.Add(this.LoginStripMenu);
             this.MainMenuStrip = this.OptionsStripMenu;
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "MainMenu";
             this.Text = "MainMenu";
             this.Load += new System.EventHandler(this.MainMenu_Load);
@@ -108,6 +126,7 @@
             this.OptionsStripMenu.PerformLayout();
             this.LoginStripMenu.ResumeLayout(false);
             this.LoginStripMenu.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.AegisBannerContainer)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -121,5 +140,6 @@
         public System.Windows.Forms.ToolStripMenuItem HistoryOptionsStripMenu;
         public System.Windows.Forms.MenuStrip LoginStripMenu;
         public System.Windows.Forms.ToolStripMenuItem LogoutOptionLoginStripMenu;
+        public System.Windows.Forms.PictureBox AegisBannerContainer;
     }
 }

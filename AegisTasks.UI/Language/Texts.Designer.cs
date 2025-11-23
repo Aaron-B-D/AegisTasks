@@ -529,6 +529,15 @@ namespace AegisTasks.UI.Language {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to La contraseña no cumple los requisitos mínimos de seguridad. Emplee letras mayúsculas, minúsculas, números y un carácter especial.
+        /// </summary>
+        public static string PasswordDoNotMeetCriteria {
+            get {
+                return ResourceManager.GetString("PasswordDoNotMeetCriteria", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Las contraseñas no coinciden.
         /// </summary>
         public static string PasswordsDoNotMatch {

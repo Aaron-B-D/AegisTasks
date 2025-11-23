@@ -34,53 +34,65 @@ namespace AegisTasks.UI.Presenters
 
         private void onSaveClicked(object sender, EventArgs e)
         {
-            string username = this._View.UserTextBox.Text.Trim();
-            string firstName = this._View.NameTextBox.Text.Trim();
-            string lastName = this._View.SurnameTextBox.Text.Trim();
-            string password = this._View.PasswordTextBox.Text;
-            string confirmPassword = this._View.ConfirmPasswordTextBox.Text;
+            try
+            {
+                string username = this._View.UserTextBox.Text.Trim();
+                string firstName = this._View.NameTextBox.Text.Trim();
+                string lastName = this._View.SurnameTextBox.Text.Trim();
+                string password = this._View.PasswordTextBox.Text;
+                string confirmPassword = this._View.ConfirmPasswordTextBox.Text;
 
-            if (string.IsNullOrEmpty(username))
-            {
-                MessageBox.Show(Texts.IntroduceUser);
-            }
-            else if (string.IsNullOrEmpty(password))
-            {
-                MessageBox.Show(Texts.IntroducePassword);
-            }
-            else if (password != confirmPassword)
-            {
-                MessageBox.Show(Texts.PasswordsDoNotMatch);
-            }
-            else
-            {
-                // Validar que el usuario no exista
-                if (UserDataAccessBLL.GetUser(username) != null)
+                if (string.IsNullOrEmpty(username))
                 {
-                    MessageBox.Show(Texts.UserExists);
+                    this.showWarn(Texts.IntroduceUser);
+                }
+                else if (string.IsNullOrEmpty(password))
+                {
+                    this.showWarn(Texts.IntroducePassword);
+                }
+                else if (password != confirmPassword)
+                {
+                    this.showWarn(Texts.PasswordsDoNotMatch);
                 }
                 else
                 {
-                    UserDTO newUser = new UserDTO()
+                    // Validar que el usuario no exista
+                    if (UserDataAccessBLL.GetUser(username) != null)
                     {
-                        Username = username,
-                        FirstName = firstName,
-                        LastName = lastName,
-                        Password = password
-                    };
-
-                    bool created = UserDataAccessBLL.CreateUser(newUser);
-                    if (created)
-                    {
-                        MessageBox.Show(Texts.UserCreated);
-                        this._View.DialogResult = DialogResult.OK;
-                        this._View.Close();
+                        this.showWarn(Texts.UserExists);
                     }
                     else
                     {
-                        MessageBox.Show(Texts.SaveError);
+                        UserDTO newUser = new UserDTO()
+                        {
+                            Username = username,
+                            FirstName = firstName,
+                            LastName = lastName,
+                            Password = password
+                        };
+
+                        bool created = UserDataAccessBLL.CreateUser(newUser);
+                        if (created)
+                        {
+                            this.showInfo(Texts.UserCreated);
+                            this._View.DialogResult = DialogResult.OK;
+                            this._View.Close();
+                        }
+                        else
+                        {
+                            this.showError(Texts.SaveError);
+                        }
                     }
                 }
+            }
+            catch (ArgumentException ex)
+            {
+                Logger.LogException(ex);
+                this.showWarn(Texts.PasswordDoNotMeetCriteria);
+            }
+            catch (Exception ex) {
+                Logger.LogException(ex);
+                this.showError(Texts.SaveError);
             }
         }
 

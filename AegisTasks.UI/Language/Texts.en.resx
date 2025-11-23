@@ -381,4 +381,7 @@
   <data name="TemplateNameCannotBeEmpty" xml:space="preserve">
     <value>Template name can not be empty</value>
   </data>
+  <data name="PasswordDoNotMeetCriteria" xml:space="preserve">
+    <value>The password does not meet the minimum security requirements. Use uppercase letters, lowercase letters, numbers, and a special character</value>
+  </data>
 </root>

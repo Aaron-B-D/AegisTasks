@@ -62,24 +62,28 @@ namespace AegisTasks.UI.Presenters
 
                         if (changed)
                         {
-                            MessageBox.Show(Texts.PasswordChangesSuccess);
+                            this.showInfo(Texts.PasswordChangesSuccess);
                             this._View.DialogResult = DialogResult.OK;
                             this._View.Close();
                         }
                         else
                         {
-                            MessageBox.Show(Texts.PasswordChangesError);
+                            this.showError(Texts.PasswordChangesError);
 
                         }
                     }
                     else
                     {
-                        MessageBox.Show(Texts.OldPasswordIncorrect);
+                        this.showWarn(Texts.OldPasswordIncorrect);
                     }
                 }
-                catch (Exception ex)
+                catch (ArgumentException)
                 {
-                    MessageBox.Show(Texts.SaveError + "\n" + ex.Message);
+                    this.showError(Texts.SaveError + "\n" + Texts.PasswordDoNotMeetCriteria);
+                }
+                catch (Exception)
+                {
+                    this.showError(Texts.SaveError);
                 }
             }
         }

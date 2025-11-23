@@ -1,4 +1,6 @@
-﻿using AegisTasks.UI.Forms;
+﻿using AegisTasks.BLL.DataAccess;
+using AegisTasks.Core.Common;
+using AegisTasks.UI.Forms;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -19,7 +21,28 @@ namespace AegisTasks.UI
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
 
-            run();
+            try
+            {           
+                if (DataAccessBLL.CanConnect())
+                {
+                    if (!DataAccessBLL.IsAppDatabaseInstalled())
+                    {
+                        DataAccessBLL.InstallDatabase();
+
+                        MessageBox.Show("Database installed", "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
+
+                    run();
+                }
+                else
+                {
+                    MessageBox.Show("App database not found. AegisTask terminated", "Database not found", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+            catch(Exception ex) {
+                Logger.LogException(ex);
+                MessageBox.Show("App launch error. AegisTask terminated", "Launch error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         private static void run()
@@ -28,8 +51,8 @@ namespace AegisTasks.UI
 
             while (keepRunning)
             {
-                //HACK LOGIN RÁPIDO PARA DEBUG. Comentar el login de debajo
-                //SessionManager.Login("admin", "Password123!");
+                    //HACK LOGIN RÁPIDO PARA DEBUG. Comentar el login de debajo
+                    //SessionManager.Login("admin", "Password123!");
                 //Mostrar el login
                 using (Login loginForm = new Login())
                 {
@@ -45,29 +68,31 @@ namespace AegisTasks.UI
 
                 // Si llegamos aquí, el login fue exitoso
                 if (SessionManager.IsLoggedIn)
-                {
-                    using (MainMenu mainMenu = new MainMenu())
                     {
-                        bool logout = false;
-
-                        // Suscribirse al evento de logout
-                        mainMenu.Logout += (s, e) =>
+                        using (MainMenu mainMenu = new MainMenu())
                         {
-                            logout = true;
-                            mainMenu.Close();
-                        };
+                            bool logout = false;
 
-                        // Mostrar el menú principal
-                        Application.Run(mainMenu);
+                            // Suscribirse al evento de logout
+                            mainMenu.Logout += (s, e) =>
+                            {
+                                logout = true;
+                                mainMenu.Close();
+                            };
 
-                        // Si NO fue logout (se cerró directamente), salir de la app
-                        if (!logout)
-                        {
-                            keepRunning = false;
+                            // Mostrar el menú principal
+                            Application.Run(mainMenu);
+
+                            // Si NO fue logout (se cerró directamente), salir de la app
+                            if (!logout)
+                            {
+                                keepRunning = false;
+                            }
+                            // Si fue logout, el bucle continúa y vuelve al login
                         }
-                        // Si fue logout, el bucle continúa y vuelve al login
                     }
-                }
+  
+
             }
         }
     }

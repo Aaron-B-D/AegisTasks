@@ -1,4 +1,5 @@
-﻿using AegisTasks.DataAccess;
+﻿using AegisTasks.Core.Common;
+using AegisTasks.DataAccess;
 using AegisTasks.DataAccess.ConnectionFactory;
 using AegisTasks.DataAccess.DataAccesses;
 using Microsoft.Data.SqlClient;
@@ -10,14 +11,16 @@ namespace AegisTasks.BLL.DataAccess
 {
     public class DataAccessBLL
     {
-        private static string _ConnectionString = $"Data Source=(localdb)\\MSSQLLocalDB;Initial Catalog={DatabaseInstaller.DATABASE_NAME};Integrated Security=True;Connect Timeout=30;";
+        private static readonly string _ConnectionString;
 
         private static DBConnectionFactorySqlServer _ConnectionFactorySqlServer;
         private static DatabaseInstaller _DatabaseInstaller = new DatabaseInstaller();
 
         static DataAccessBLL()
         {
+            _ConnectionString = ConnectionProvider.Get();
             _ConnectionFactorySqlServer = new DBConnectionFactorySqlServer(_ConnectionString);
+
         }
 
         public static bool CanConnect()
@@ -39,8 +42,53 @@ namespace AegisTasks.BLL.DataAccess
         public static void InstallDatabase()
         {
             using (SqlConnection conn = _ConnectionFactorySqlServer.CreateConnection()) {
+                conn.Open();
+
                 _DatabaseInstaller.Install(conn);
             }
+        }
+
+        public static bool IsAppDatabaseInstalled()
+        {
+            bool result = false;
+
+            try
+            {
+                using (SqlConnection conn = _ConnectionFactorySqlServer.CreateConnection())
+                {
+                    conn.Open();
+
+                    result = _DatabaseInstaller.IsDatabaseInstalled(conn);
+                }
+            }
+            catch (Exception ex)
+            {
+                Logger.LogException(ex);
+                result = false;
+            }
+
+            return result;
+        }
+
+        public static bool AppDatabaseExist()
+        {
+            bool result = false;
+
+            try
+            {
+                using (SqlConnection conn = _ConnectionFactorySqlServer.CreateConnection())
+                {
+                    conn.Open();
+                    result = _DatabaseInstaller.DatabaseExists(conn);
+                }
+            }
+            catch (Exception ex)
+            {
+                Logger.LogException(ex);
+                result = false;
+            }
+
+            return result;
         }
 
         public static SqlConnection CreateConnection()

@@ -1,4 +1,6 @@
-﻿using AegisTasks.DataAccess.DataAccesses;
+﻿using AegisTasks.Core.Common;
+using AegisTasks.Core.DTO;
+using AegisTasks.DataAccess.DataAccesses;
 using Microsoft.Data.SqlClient;
 using System;
 using System.Collections.Generic;
@@ -10,6 +12,9 @@ namespace AegisTasks.DataAccess
     {
         public static readonly string DATABASE_NAME = "AegisTasks";
 
+        //Por defecto "Password123!"
+        private readonly UserDTO DEFAULT_ADMIN_USER;
+
         private UsersDataAccess _UsersAccess = new UsersDataAccess();
         private UserParametersAccess _UserParametersAccess = new UserParametersAccess();
         private TemplatesAccess _TemplatesAccess = new TemplatesAccess();
@@ -17,6 +22,8 @@ namespace AegisTasks.DataAccess
 
         public DatabaseInstaller()
         {
+            //Por defecto "Password123!"
+            DEFAULT_ADMIN_USER = new UserDTO("admin", "Administrator", "", "a109e36947ad56de1dca1cc49f0ef8ac9ad9a7b1aa0df41fb3c4cb73c1ff01ea");
         }
 
         /// <summary>
@@ -44,12 +51,40 @@ namespace AegisTasks.DataAccess
             }
         }
 
+        public bool IsDatabaseInstalled(SqlConnection conn)
+        {
+            bool result = false;
+
+            try
+            {
+                bool tablesExist = this._UsersAccess.Exists(conn) && this._UserParametersAccess.Exists(conn) && this._TemplatesAccess.Exists(conn) && this._ExecutionHistoryAccess.Exists(conn);
+
+                bool adminUserExist = false;
+                if (tablesExist)
+                {
+                    adminUserExist = _UsersAccess.GetUser(conn, DEFAULT_ADMIN_USER.Username) != null;
+                }
+                result = adminUserExist && tablesExist;
+            }
+            catch(Exception ex)
+            {
+                Logger.LogException(ex);
+                result = false;
+            }
+
+            return result;
+
+        }
+
         public void Install(SqlConnection conn)
         {
             _UsersAccess.CreateTable(conn);
             _UserParametersAccess.CreateTable(conn);
             _TemplatesAccess.CreateTable(conn);
             _ExecutionHistoryAccess.CreateTable(conn);
+
+            _UsersAccess.InsertUser(conn, DEFAULT_ADMIN_USER);
+            _UserParametersAccess.AddParameter(conn, DEFAULT_ADMIN_USER.Username, UserParameterType.LANGUAGE, SupportedLanguage.ENGLISH.ToString());
         }
     }
 }

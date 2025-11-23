@@ -142,7 +142,7 @@
     <value>Erro</value>
   </data>
   <data name="Execute" xml:space="preserve">
-    <value>Ejecutar</value>
+    <value>Executar</value>
   </data>
   <data name="ExecutionStatus" xml:space="preserve">
     <value>Estado de execución</value>
@@ -259,7 +259,7 @@
     <value>Gardado con éxito</value>
   </data>
   <data name="SaveError" xml:space="preserve">
-    <value>Error ao gardar</value>
+    <value>Erro ao gardar</value>
   </data>
   <data name="UserEditor" xml:space="preserve">
     <value>Editor de usuarios</value>
@@ -283,7 +283,7 @@
     <value>Introduza contrasinal vello</value>
   </data>
   <data name="IntroduceNewPassword" xml:space="preserve">
-    <value>Introduzca contrasinal novo</value>
+    <value>Introduza contrasinal novo</value>
   </data>
   <data name="PasswordChangesSuccess" xml:space="preserve">
     <value>Cambio de contrasinal exitoso</value>
@@ -292,7 +292,7 @@
     <value>Contrasinal antigo incorrecto</value>
   </data>
   <data name="PasswordChangesError" xml:space="preserve">
-    <value>Error no cambio de contrasinal</value>
+    <value>Erro no cambio de contrasinal</value>
   </data>
   <data name="AdminUserCannotBeErased" xml:space="preserve">
     <value>O usuario do sistema non pode ser eliminado</value>
@@ -380,5 +380,8 @@
   </data>
   <data name="TemplateNameCannotBeEmpty" xml:space="preserve">
     <value>O nome dunha plantilla non pode estar baleiro</value>
+  </data>
+  <data name="PasswordDoNotMeetCriteria" xml:space="preserve">
+    <value>O contrasinal non cumpre os requisitos mínimos de seguridade. Emprege maiúsculas, minúsculas, números e un carácter especial</value>
   </data>
 </root>
