@@ -1,65 +1,88 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using AegisTasks.Core.TaskPlan;
 using System.IO;
-using System.Text;
 
-namespace AegisTasks.TasksLibrary.TaskPlan
+public class CopyDirectoryPlanInputParams : TaskPlanInputParamsBase<CopyDirectoryPlanInputParams>
 {
-    public class CopyDirectoryPlanInputParams
+    #region PUBLIC PROPERTIES
+
+    public bool CreateDestinationDirectoryIfNotExists { get; set; }
+    public bool OverwriteDirectoriesIfExist { get; set; }
+    public bool OverwriteFilesIfExist { get; set; }
+    public DirectoryInfo DirectoryToCopy { get; set; }
+    public DirectoryInfo DestinationDirectory { get; set; }
+    public int? CopyDepth { get; set; }
+
+    #endregion
+
+    #region CONSTRUCTORS
+
+    public CopyDirectoryPlanInputParams(
+        bool createDestinationDirectoryIfNotExists,
+        bool overwriteDirectoriesIfExist,
+        bool overwriteFilesIfExist,
+        DirectoryInfo directoryToCopy,
+        DirectoryInfo destinationDirectory,
+        int? copyDepth)
     {
+        CreateDestinationDirectoryIfNotExists = createDestinationDirectoryIfNotExists;
+        OverwriteDirectoriesIfExist = overwriteDirectoriesIfExist;
+        OverwriteFilesIfExist = overwriteFilesIfExist;
+        DirectoryToCopy = directoryToCopy;
+        DestinationDirectory = destinationDirectory;
+        CopyDepth = copyDepth;
+    }
 
-        #region PUBLIC PROPERTIES
+    public CopyDirectoryPlanInputParams(
+        bool createDestinationDirectoryIfNotExists,
+        bool overwriteDirectoriesIfExist,
+        bool overwriteFilesIfExist,
+        DirectoryInfo directoryToCopy,
+        DirectoryInfo destinationDirectory)
+        : this(createDestinationDirectoryIfNotExists, overwriteDirectoriesIfExist, overwriteFilesIfExist, directoryToCopy, destinationDirectory, null)
+    { }
 
-        /// <summary>
-        /// Si el directorio de destino no existe, si se puede crear o no
-        /// </summary>
+    #endregion
+
+    public bool IsValid()
+    {
+        return DirectoryToCopy != null && DestinationDirectory != null && (CopyDepth == null || CopyDepth >= 0);
+    }
+
+    public override string ToJson()
+    {
+        CopyDirectoryPlanInputParamsDTO dto = new CopyDirectoryPlanInputParamsDTO
+        {
+            CreateDestinationDirectoryIfNotExists = this.CreateDestinationDirectoryIfNotExists,
+            OverwriteDirectoriesIfExist = this.OverwriteDirectoriesIfExist,
+            OverwriteFilesIfExist = this.OverwriteFilesIfExist,
+            DirectoryToCopy = this.DirectoryToCopy?.FullName,
+            DestinationDirectory = this.DestinationDirectory?.FullName,
+            CopyDepth = this.CopyDepth
+        };
+
+        return System.Text.Json.JsonSerializer.Serialize(dto, new System.Text.Json.JsonSerializerOptions { WriteIndented = false });
+    }
+
+    public static CopyDirectoryPlanInputParams FromJson(string json)
+    {
+        CopyDirectoryPlanInputParamsDTO dto = System.Text.Json.JsonSerializer.Deserialize<CopyDirectoryPlanInputParamsDTO>(json);
+        return new CopyDirectoryPlanInputParams(
+            dto.CreateDestinationDirectoryIfNotExists,
+            dto.OverwriteDirectoriesIfExist,
+            dto.OverwriteFilesIfExist,
+            new DirectoryInfo(dto.DirectoryToCopy),
+            new DirectoryInfo(dto.DestinationDirectory),
+            dto.CopyDepth
+        );
+    }
+
+    private class CopyDirectoryPlanInputParamsDTO
+    {
         public bool CreateDestinationDirectoryIfNotExists { get; set; }
-        /// <summary>
-        /// Si alguno de los directorios ya existen en el directorio de destino, si se sobrescriben o no
-        /// </summary>
         public bool OverwriteDirectoriesIfExist { get; set; }
-        /// <summary>
-        /// Si alguno de los archivos ya existen en el directorio de destino, si se sobrescriben o no
-        /// </summary>
         public bool OverwriteFilesIfExist { get; set; }
-        /// <summary>
-        /// El directorio del que se quiere copiar
-        /// </summary>
-        public DirectoryInfo DirectoryToCopy { get; set; }
-
-        /// <summary>
-        /// El directorio de destino
-        /// </summary>
-        public DirectoryInfo DestinationDirectory { get; set; }
-
-        /// <summary>
-        /// La profundidad a la que se desea copiar. Si no se aporta se copia el directorio entero hasta su fin
-        /// </summary>
+        public string DirectoryToCopy { get; set; }
+        public string DestinationDirectory { get; set; }
         public int? CopyDepth { get; set; }
-
-        #endregion PUBLIC PROPERTIES
-
-
-        #region CONSTRUCTOR
-        public CopyDirectoryPlanInputParams(bool createDestinationDirectoryIfNotExists, bool overwriteDirectoriesIfExist, bool overwriteFilesIfExist, DirectoryInfo directoryToCopy, DirectoryInfo destinationDirectory, int? copyDepth)
-        {
-            CreateDestinationDirectoryIfNotExists = createDestinationDirectoryIfNotExists;
-            OverwriteDirectoriesIfExist = overwriteDirectoriesIfExist;
-            OverwriteFilesIfExist = overwriteFilesIfExist;
-            DirectoryToCopy = directoryToCopy;
-            DestinationDirectory = destinationDirectory;
-            CopyDepth = copyDepth;
-        }
-
-        public CopyDirectoryPlanInputParams(bool createDestinationDirectoryIfNotExists, bool overwriteDirectoriesIfExist, bool overwriteFilesIfExist, DirectoryInfo directoryToCopy, DirectoryInfo destinationDirectory) : this(createDestinationDirectoryIfNotExists, overwriteFilesIfExist, overwriteFilesIfExist, directoryToCopy, destinationDirectory, null)
-        {}
-
-        #endregion CONSTRUCTOR
-
-        public bool IsValid()
-        {
-            return this.DirectoryToCopy != null && this.DestinationDirectory != null && this.CopyDepth == null || this.CopyDepth >= 0;
-        }
-
     }
 }

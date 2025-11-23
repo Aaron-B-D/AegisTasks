@@ -1,4 +1,6 @@
 ﻿using AegisTasks.BLL.Common;
+using AegisTasks.Core.DTO;
+using AegisTasks.DataAccess.Common.DTO;
 using AegisTasks.TasksLibrary.TaskPlan;
 using AegisTasks.UI.Presenters;
 using System;
@@ -35,7 +37,7 @@ namespace AegisTasks.UI.Forms
         }
 
 
-        public TaskPlanOrTemplateExecutionViewer(TaskPlanTemplate template)
+        public TaskPlanOrTemplateExecutionViewer(TemplateDTO template)
         {
             InitializeComponent();
 

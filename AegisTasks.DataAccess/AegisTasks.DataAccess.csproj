@@ -11,6 +11,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\AegisTasks.Core\AegisTasks.Core.csproj" />
+    <ProjectReference Include="..\AegisTasks.TasksLibrary\AegisTasks.TasksLibrary.csproj" />
   </ItemGroup>
 
 </Project>

@@ -4,6 +4,7 @@ using AegisTasks.BLL.DataAccess;
 using AegisTasks.Core.Common;
 using AegisTasks.Core.DTO;
 using AegisTasks.Core.Events;
+using AegisTasks.DataAccess.Common.DTO;
 using AegisTasks.TasksLibrary.Source.TaskAction.IsDirectoryEmpty;
 using AegisTasks.TasksLibrary.TaskAction;
 using AegisTasks.TasksLibrary.TaskPlan;
@@ -147,10 +148,10 @@ namespace AegisTasks.UI.Presenters {
             _InputParams = copyDirectoryParams;
 
         }
-        public TaskPlanOrTemplateExecutionViewerPresenter(TaskPlanOrTemplateExecutionViewer form, TaskPlanTemplate template) : base(form)
+        public TaskPlanOrTemplateExecutionViewerPresenter(TaskPlanOrTemplateExecutionViewer form, TemplateDTO template) : base(form)
         {
-            _TypeToExecute = template.GetType();
-            _InputParams = template.InputParams;
+            _TypeToExecute = template.GetTaskPlanType();
+            _InputParams = template.GetInputParameters();
         }
 
         public override void Initialize()
