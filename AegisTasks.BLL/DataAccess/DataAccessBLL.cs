@@ -6,6 +6,7 @@ using Microsoft.Data.SqlClient;
 using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Windows.Forms;
 
 namespace AegisTasks.BLL.DataAccess
 {
@@ -34,7 +35,8 @@ namespace AegisTasks.BLL.DataAccess
 
                 return true;
             }
-            catch (Exception) {
+            catch (Exception ex) {
+                Logger.LogException(ex);
                 return false;
             }
         }

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.IO;
+using System.Windows.Forms;
 
 namespace AegisTasks.DataAccess
 {
@@ -7,24 +8,18 @@ namespace AegisTasks.DataAccess
     {
         public static string Get()
         {
-            // Obtiene el directorio base del ensamblado actual
-            string baseDir = AppContext.BaseDirectory;
+            string appDataDir = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData);
+            string dbPath = Path.Combine(appDataDir, "ABD", "AegisTasks", "Database", $"{DatabaseInstaller.DATABASE_NAME}.mdf");
 
-            // Construye la ruta relativa a la base de datos
-            string dbPath = Path.Combine(baseDir, "Database", $"{DatabaseInstaller.DATABASE_NAME}.mdf");
-
-            // Validación: si no existe, lanzar excepción clara
             if (!File.Exists(dbPath))
             {
-                throw new FileNotFoundException(
-                    $"No se encontró la base de datos en la ruta esperada: {dbPath}. " +
-                    "Asegúrate de que la carpeta Database esté configurada para copiarse al directorio de salida.");
+                throw new FileNotFoundException($"Base de datos no encontrada en: {dbPath}");
             }
 
             return $@"Data Source=(LocalDB)\MSSQLLocalDB;
-                      AttachDbFilename={dbPath};
-                      Integrated Security=True;
-                      Connect Timeout=30;";
+              AttachDbFilename={dbPath};
+              Integrated Security=True;
+              Connect Timeout=30;";
         }
     }
 }
