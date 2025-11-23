@@ -47,6 +47,11 @@ namespace AegisTasks.UI.Presenters
                 this._CurrentParams.Content = editor.ContentTextBox.Text;
             };
 
+            editor.AppendContentCheckBox.CheckedChanged += (s, e) =>
+            {
+                this._CurrentParams.AppendContent = editor.AppendContentCheckBox.Checked;
+            };
+
         }
 
         private void clearForm()
@@ -110,8 +115,8 @@ namespace AegisTasks.UI.Presenters
             {
                 WriteInFilePlanInputParams currentParams = this._CurrentParams;
 
-                this._CurrentParams.CreateFileIfNotExists = false;
-                this._CurrentParams.CreateDirectoryIfNotExists = false;
+                currentParams.CreateFileIfNotExists = false;
+                currentParams.CreateDirectoryIfNotExists = false;
 
                 return currentParams;
             }

@@ -709,6 +709,15 @@ namespace AegisTasks.UI.Language {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to El nombre de la plantilla no puede estar vacío.
+        /// </summary>
+        public static string TemplateNameCannotBeEmpty {
+            get {
+                return ResourceManager.GetString("TemplateNameCannotBeEmpty", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Plantillas.
         /// </summary>
         public static string Templates {

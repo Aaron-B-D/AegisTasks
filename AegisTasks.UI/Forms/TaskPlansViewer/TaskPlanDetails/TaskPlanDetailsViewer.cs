@@ -14,19 +14,23 @@ namespace AegisTasks.UI.Forms
 {
     public partial class TaskPlanDetailsViewer : UserControl
     {
-        private TaskPlanDetailsViewerPresenter _Presenter = null;
+        public readonly TaskPlanDetailsViewerPresenter Presenter = null;
 
+        // Evento que propaga cuando se guarda un template
+        public event EventHandler TemplateSaved;
 
         public TaskPlanDetailsViewer()
         {
             InitializeComponent();
 
-            this._Presenter = new TaskPlanDetailsViewerPresenter(this);
+            this.Presenter = new TaskPlanDetailsViewerPresenter(this);
+
+            this.Presenter.SavedTemplate += (s, e) => TemplateSaved?.Invoke(this, e);
         }
 
         public void SetTaskPlan(ITaskPlanRegistrable taskPlan)
         {
-            this._Presenter.SetTaskPlan(taskPlan);
+            this.Presenter.SetTaskPlan(taskPlan);
         }
 
         private void TaskPlanParametersGroupBox_Enter(object sender, EventArgs e)
@@ -95,6 +99,11 @@ namespace AegisTasks.UI.Forms
         }
 
         private void ParametersGroupBox_Enter(object sender, EventArgs e)
+        {
+
+        }
+
+        private void SaveAsTemplateButton_Click(object sender, EventArgs e)
         {
 
         }

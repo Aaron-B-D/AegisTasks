@@ -85,7 +85,7 @@
             this.NameTextbox.Location = new System.Drawing.Point(76, 19);
             this.NameTextbox.Name = "NameTextbox";
             this.NameTextbox.ReadOnly = true;
-            this.NameTextbox.Size = new System.Drawing.Size(705, 20);
+            this.NameTextbox.Size = new System.Drawing.Size(705, 22);
             this.NameTextbox.TabIndex = 1;
             // 
             // DescriptionLabel
@@ -127,6 +127,7 @@
             this.SaveAsTemplateButton.TabIndex = 0;
             this.SaveAsTemplateButton.Text = "Save as template";
             this.SaveAsTemplateButton.UseVisualStyleBackColor = true;
+            this.SaveAsTemplateButton.Click += new System.EventHandler(this.SaveAsTemplateButton_Click);
             // 
             // ExecuteButton
             // 

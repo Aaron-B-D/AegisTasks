@@ -15,6 +15,9 @@ namespace AegisTasks.UI.Presenters
 {
     public class TaskPlanDetailsViewerPresenter: AegisControlPresenter<TaskPlanDetailsViewer>
     {
+        public event EventHandler SavedTemplate;
+
+
         private CopyDirectoryPlanParametersEditor _CopyDirectoryPlanParametersEditor = null;
         private WriteInFilePlanParametersEditor _WriteInFilePlamParametersEditor = null;
         private TaskPlanType _Mode = TaskPlanType.NONE;
@@ -123,8 +126,64 @@ namespace AegisTasks.UI.Presenters
 
         private void onSaveAsTemplateClicked(object sender, EventArgs e)
         {
+            DialogResult saveTemplateEditorResult = DialogResult.Cancel; // valor por defecto
 
+            switch (this._Mode)
+            {
+                case TaskPlanType.NONE:
+                    Logger.LogWarn("No hay un TaskPlan cargado en el editor y sin embargo se ha podido clicar en el botón de guardar como template");
+                    break;
+
+                case TaskPlanType.WRITE_IN_FILE:
+                    if (this._WriteInFilePlamParametersEditor.Presenter.AreParamsValid())
+                    {
+                        saveTemplateEditorResult = new SaveTemplateEditor(new DataAccess.Common.DTO.TemplateDTO(
+                            WriteInFilePlan.CALL_NAME,
+                            WriteInFilePlan.VERSION.ToString(),
+                            SessionManager.CurrentUser.Username,
+                            "",
+                            "",
+                            this._WriteInFilePlamParametersEditor.Presenter.GetParams().ToJson()
+                            ))
+                            .ShowDialog(this._View);
+                    }
+                    else
+                    {
+                        this.showError(Texts.ParamsNotValid);
+                    }
+                    break;
+
+                case TaskPlanType.COPY_DIRECTORY:
+                    if (this._CopyDirectoryPlanParametersEditor.Presenter.AreParamsValid())
+                    {
+                        saveTemplateEditorResult = new SaveTemplateEditor(new DataAccess.Common.DTO.TemplateDTO(
+                            CopyDirectoryPlan.CALL_NAME,
+                            CopyDirectoryPlan.VERSION.ToString(),
+                            SessionManager.CurrentUser.Username,
+                            "",
+                            "",
+                            this._CopyDirectoryPlanParametersEditor.Presenter.GetParams().ToJson()
+                            ))
+                            .ShowDialog(this._View);
+                    }
+                    else
+                    {
+                        this.showError(Texts.ParamsNotValid);
+                    }
+                    break;
+
+                default:
+                    Logger.LogWarn($"El modo {this._Mode} no está soportado");
+                    break;
+            }
+
+            // Solo se ejecuta si se guardó correctamente
+            if (saveTemplateEditorResult == System.Windows.Forms.DialogResult.OK)
+            {
+                onSavedTemplate();
+            }
         }
+
 
         private void onExecuteClicked(object sender, EventArgs e)
         {
@@ -161,6 +220,11 @@ namespace AegisTasks.UI.Presenters
                     Logger.LogWarn($"El modo {this._Mode} no está soportado");
                     break;
             }
+        }
+
+        protected virtual void onSavedTemplate()
+        {
+            SavedTemplate?.Invoke(this, EventArgs.Empty);
         }
     }
 }

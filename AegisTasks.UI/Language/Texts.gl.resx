@@ -378,4 +378,7 @@
   <data name="UnknownTaskPlan" xml:space="preserve">
     <value>Plan de acción descoñecido</value>
   </data>
+  <data name="TemplateNameCannotBeEmpty" xml:space="preserve">
+    <value>O nome dunha plantilla non pode estar baleiro</value>
+  </data>
 </root>

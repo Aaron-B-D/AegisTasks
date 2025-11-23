@@ -8,8 +8,35 @@ namespace AegisTasks.DataAccess.Common.DTO
     /// <summary>
     /// DTO que representa una plantilla de TaskPlan almacenada en base de datos.
     /// </summary>
-    public class TemplateDTO
+    public class TemplateDTO: ICloneable
     {
+        public TemplateDTO(string workflowId, string workflowVersion, string createdBy, string name, string description, string inputParametersJson)
+        {
+            WorkflowId = workflowId;
+            WorkflowVersion = workflowVersion;
+            CreatedBy = createdBy;
+            Name = name;
+            Description = description;
+            InputParametersJson = inputParametersJson;
+        }
+
+        public TemplateDTO(int id, string workflowId, string workflowVersion, string createdBy, string name, string description, string inputParametersJson, bool active, DateTime createdAt)
+        {
+            Id = id;
+            WorkflowId = workflowId;
+            WorkflowVersion = workflowVersion;
+            CreatedBy = createdBy;
+            Name = name;
+            Description = description;
+            InputParametersJson = inputParametersJson;
+            Active = active;
+            CreatedAt = createdAt;
+        }
+
+        public TemplateDTO()
+        {
+        }
+
         public int Id { get; set; }
         public string WorkflowId { get; set; }
         public string WorkflowVersion { get; set; }
@@ -78,5 +105,32 @@ namespace AegisTasks.DataAccess.Common.DTO
                 throw new NotSupportedException(string.Format("Tipo de InputParams '{0}' no soportado.", inputParams.GetType().Name));
             }
         }
+
+        public object Clone()
+        {
+            // Clonación profunda del objeto
+            var clone = new TemplateDTO
+            {
+                Id = this.Id,
+                WorkflowId = this.WorkflowId,
+                WorkflowVersion = this.WorkflowVersion,
+                CreatedBy = this.CreatedBy,
+                Name = this.Name,
+                Description = this.Description,
+                Active = this.Active,
+                CreatedAt = this.CreatedAt
+            };
+
+            // Clonación profunda del JSON de parámetros
+            if (!string.IsNullOrWhiteSpace(this.InputParametersJson))
+            {
+                // Deserializa según el tipo, lo vuelve a serializar y almacena en el clon
+                var inputParams = this.GetInputParameters();
+                clone.SetInputParameters(inputParams);
+            }
+
+            return clone;
+        }
+
     }
 }

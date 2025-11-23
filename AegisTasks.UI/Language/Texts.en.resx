@@ -378,4 +378,7 @@
   <data name="UnknownTaskPlan" xml:space="preserve">
     <value>Unknown task plan</value>
   </data>
+  <data name="TemplateNameCannotBeEmpty" xml:space="preserve">
+    <value>Template name can not be empty</value>
+  </data>
 </root>

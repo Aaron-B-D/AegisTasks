@@ -19,7 +19,6 @@ namespace AegisTasks.UnitTests.BLL
         private static string _ConnectionString = Properties.Settings.Default.SqlServerConnectionString;
         private static DBConnectionFactorySqlServer _FactorySqlServer = null;
         private static TemplatesAccess _TemplatesDA = null;
-        private static TemplateDataAccessBLL _TemplatesBLL = null;
         private static UsersDataAccess _UsersDA = null;
 
         #region Constantes de prueba
@@ -58,7 +57,6 @@ namespace AegisTasks.UnitTests.BLL
         {
             _FactorySqlServer = new DBConnectionFactorySqlServer(_ConnectionString);
             _TemplatesDA = new TemplatesAccess();
-            _TemplatesBLL = new TemplateDataAccessBLL();
             _UsersDA = new UsersDataAccess();
 
             using (SqlConnection conn = _FactorySqlServer.CreateConnection())
@@ -74,14 +72,18 @@ namespace AegisTasks.UnitTests.BLL
         }
 
         #region Helper: Limpiar templates del usuario de prueba
-        private void ClearUserTemplates(SqlConnection conn)
+        private void ClearUserTemplates()
         {
-            using (SqlCommand cmd = new SqlCommand(
-                $"DELETE FROM {TemplatesAccess.DB_TEMPLATES_TABLE_NAME} WHERE {TemplatesAccess.DB_TEMPLATES_TABLE_FIELD_CREATEDBY} = @CreatedBy",
-                conn))
+            using (SqlConnection conn = _FactorySqlServer.CreateConnection())
             {
-                cmd.Parameters.AddWithValue("@CreatedBy", TEST_USERNAME);
-                cmd.ExecuteNonQuery();
+                conn.Open();
+                using (SqlCommand cmd = new SqlCommand(
+                    $"DELETE FROM {TemplatesAccess.DB_TEMPLATES_TABLE_NAME} WHERE {TemplatesAccess.DB_TEMPLATES_TABLE_FIELD_CREATEDBY} = @CreatedBy",
+                    conn))
+                {
+                    cmd.Parameters.AddWithValue("@CreatedBy", TEST_USERNAME);
+                    cmd.ExecuteNonQuery();
+                }
             }
         }
         #endregion
@@ -91,142 +93,126 @@ namespace AegisTasks.UnitTests.BLL
         [TestMethod]
         public void InsertTemplate_Should_Work()
         {
-            using (SqlConnection conn = _FactorySqlServer.CreateConnection())
+            ClearUserTemplates();
+
+            WriteInFilePlanInputParams inputParams = new WriteInFilePlanInputParams(
+                new FileInfo(TEST_FILE_PATH),
+                TEST_FILE_CONTENT,
+                CREATE_FILE_IF_NOT_EXISTS,
+                CREATE_DIR_IF_NOT_EXISTS,
+                APPEND_CONTENT
+            );
+
+            TemplateDTO templateDTO = new TemplateDTO
             {
-                conn.Open();
-                ClearUserTemplates(conn);
+                WorkflowId = TEMPLATE_WORKFLOW_ID,
+                WorkflowVersion = TEMPLATE_WORKFLOW_VERSION,
+                CreatedBy = TEST_USERNAME,
+                Name = TEMPLATE_NAME,
+                Description = TEMPLATE_DESCRIPTION
+            };
+            templateDTO.SetInputParameters(inputParams);
 
-                WriteInFilePlanInputParams inputParams = new WriteInFilePlanInputParams(
-                    new FileInfo(TEST_FILE_PATH),
-                    TEST_FILE_CONTENT,
-                    CREATE_FILE_IF_NOT_EXISTS,
-                    CREATE_DIR_IF_NOT_EXISTS,
-                    APPEND_CONTENT
-                );
-
-                TemplateDTO templateDTO = new TemplateDTO
-                {
-                    WorkflowId = TEMPLATE_WORKFLOW_ID,
-                    WorkflowVersion = TEMPLATE_WORKFLOW_VERSION,
-                    CreatedBy = TEST_USERNAME,
-                    Name = TEMPLATE_NAME,
-                    Description = TEMPLATE_DESCRIPTION
-                };
-                templateDTO.SetInputParameters(inputParams);
-
-                int templateId = _TemplatesBLL.InsertTemplate(conn, templateDTO);
-                Assert.IsTrue(templateId > 0, "No se pudo insertar el template.");
-            }
+            int templateId = TemplateDataAccessBLL.InsertTemplate(templateDTO);
+            Assert.IsTrue(templateId > 0, "No se pudo insertar el template.");
         }
 
         [TestMethod]
         public void GetTemplates_Should_ReturnInsertedTemplate()
         {
-            using (SqlConnection conn = _FactorySqlServer.CreateConnection())
+            ClearUserTemplates();
+
+            WriteInFilePlanInputParams inputParams = new WriteInFilePlanInputParams(
+                new FileInfo(TEST_FILE_PATH),
+                TEST_FILE_CONTENT,
+                CREATE_FILE_IF_NOT_EXISTS,
+                CREATE_DIR_IF_NOT_EXISTS,
+                APPEND_CONTENT
+            );
+
+            TemplateDTO templateDTO = new TemplateDTO
             {
-                conn.Open();
-                ClearUserTemplates(conn);
+                WorkflowId = TEMPLATE_WORKFLOW_ID,
+                WorkflowVersion = TEMPLATE_WORKFLOW_VERSION,
+                CreatedBy = TEST_USERNAME,
+                Name = TEMPLATE_NAME,
+                Description = TEMPLATE_DESCRIPTION
+            };
+            templateDTO.SetInputParameters(inputParams);
+            TemplateDataAccessBLL.InsertTemplate(templateDTO);
 
-                WriteInFilePlanInputParams inputParams = new WriteInFilePlanInputParams(
-                    new FileInfo(TEST_FILE_PATH),
-                    TEST_FILE_CONTENT,
-                    CREATE_FILE_IF_NOT_EXISTS,
-                    CREATE_DIR_IF_NOT_EXISTS,
-                    APPEND_CONTENT
-                );
+            List<TemplateDTO> templates = TemplateDataAccessBLL.GetTemplates(TEST_USERNAME);
+            Assert.IsTrue(templates.Count > 0, "No se recuperó la plantilla.");
 
-                TemplateDTO templateDTO = new TemplateDTO
-                {
-                    WorkflowId = TEMPLATE_WORKFLOW_ID,
-                    WorkflowVersion = TEMPLATE_WORKFLOW_VERSION,
-                    CreatedBy = TEST_USERNAME,
-                    Name = TEMPLATE_NAME,
-                    Description = TEMPLATE_DESCRIPTION
-                };
-                templateDTO.SetInputParameters(inputParams);
-                _TemplatesBLL.InsertTemplate(conn, templateDTO);
-
-                List<TemplateDTO> templates = _TemplatesBLL.GetTemplates(conn, TEST_USERNAME);
-                Assert.IsTrue(templates.Count > 0, "No se recuperó la plantilla.");
-
-                TemplateDTO retrieved = templates[0];
-                object deserializedInput = retrieved.GetInputParameters();
-                Assert.IsInstanceOfType(deserializedInput, typeof(WriteInFilePlanInputParams));
-            }
+            TemplateDTO retrieved = templates[0];
+            object deserializedInput = retrieved.GetInputParameters();
+            Assert.IsInstanceOfType(deserializedInput, typeof(WriteInFilePlanInputParams));
         }
 
         [TestMethod]
         public void UpdateTemplate_Should_Work()
         {
-            using (SqlConnection conn = _FactorySqlServer.CreateConnection())
+            ClearUserTemplates();
+
+            WriteInFilePlanInputParams inputParams = new WriteInFilePlanInputParams(
+                new FileInfo(TEST_FILE_PATH),
+                TEST_FILE_CONTENT,
+                CREATE_FILE_IF_NOT_EXISTS,
+                CREATE_DIR_IF_NOT_EXISTS,
+                APPEND_CONTENT
+            );
+
+            TemplateDTO templateDTO = new TemplateDTO
             {
-                conn.Open();
-                ClearUserTemplates(conn);
+                WorkflowId = TEMPLATE_WORKFLOW_ID,
+                WorkflowVersion = TEMPLATE_WORKFLOW_VERSION,
+                CreatedBy = TEST_USERNAME,
+                Name = TEMPLATE_NAME,
+                Description = TEMPLATE_DESCRIPTION
+            };
+            templateDTO.SetInputParameters(inputParams);
+            int templateId = TemplateDataAccessBLL.InsertTemplate(templateDTO);
 
-                WriteInFilePlanInputParams inputParams = new WriteInFilePlanInputParams(
-                    new FileInfo(TEST_FILE_PATH),
-                    TEST_FILE_CONTENT,
-                    CREATE_FILE_IF_NOT_EXISTS,
-                    CREATE_DIR_IF_NOT_EXISTS,
-                    APPEND_CONTENT
-                );
+            templateDTO.Id = templateId;
+            templateDTO.Name = "Updated Name";
+            templateDTO.Description = "Updated Description";
+            bool updated = TemplateDataAccessBLL.UpdateTemplate(templateDTO);
+            Assert.IsTrue(updated, "No se pudo actualizar la plantilla.");
 
-                TemplateDTO templateDTO = new TemplateDTO
-                {
-                    WorkflowId = TEMPLATE_WORKFLOW_ID,
-                    WorkflowVersion = TEMPLATE_WORKFLOW_VERSION,
-                    CreatedBy = TEST_USERNAME,
-                    Name = TEMPLATE_NAME,
-                    Description = TEMPLATE_DESCRIPTION
-                };
-                templateDTO.SetInputParameters(inputParams);
-                int templateId = _TemplatesBLL.InsertTemplate(conn, templateDTO);
-
-                templateDTO.Id = templateId;
-                templateDTO.Name = "Updated Name";
-                templateDTO.Description = "Updated Description";
-                bool updated = _TemplatesBLL.UpdateTemplate(conn, templateDTO);
-                Assert.IsTrue(updated, "No se pudo actualizar la plantilla.");
-
-                TemplateDTO updatedTemplate = _TemplatesBLL.GetTemplates(conn, TEST_USERNAME)[0];
-                Assert.AreEqual("Updated Name", updatedTemplate.Name);
-                Assert.AreEqual("Updated Description", updatedTemplate.Description);
-            }
+            TemplateDTO updatedTemplate = TemplateDataAccessBLL.GetTemplates(TEST_USERNAME)[0];
+            Assert.AreEqual("Updated Name", updatedTemplate.Name);
+            Assert.AreEqual("Updated Description", updatedTemplate.Description);
         }
 
         [TestMethod]
         public void DeleteTemplate_Should_Work()
         {
-            using (SqlConnection conn = _FactorySqlServer.CreateConnection())
+            ClearUserTemplates();
+
+            WriteInFilePlanInputParams inputParams = new WriteInFilePlanInputParams(
+                new FileInfo(TEST_FILE_PATH),
+                TEST_FILE_CONTENT,
+                CREATE_FILE_IF_NOT_EXISTS,
+                CREATE_DIR_IF_NOT_EXISTS,
+                APPEND_CONTENT
+            );
+
+            TemplateDTO templateDTO = new TemplateDTO
             {
-                conn.Open();
-                ClearUserTemplates(conn);
+                WorkflowId = TEMPLATE_WORKFLOW_ID,
+                WorkflowVersion = TEMPLATE_WORKFLOW_VERSION,
+                CreatedBy = TEST_USERNAME,
+                Name = TEMPLATE_NAME,
+                Description = TEMPLATE_DESCRIPTION
+            };
+            templateDTO.SetInputParameters(inputParams);
+            int templateId = TemplateDataAccessBLL.InsertTemplate(templateDTO);
 
-                WriteInFilePlanInputParams inputParams = new WriteInFilePlanInputParams(
-                    new FileInfo(TEST_FILE_PATH),
-                    TEST_FILE_CONTENT,
-                    CREATE_FILE_IF_NOT_EXISTS,
-                    CREATE_DIR_IF_NOT_EXISTS,
-                    APPEND_CONTENT
-                );
+            bool deleted = TemplateDataAccessBLL.DeleteTemplate(templateId, TEST_USERNAME);
+            Assert.IsTrue(deleted, "No se pudo borrar la plantilla.");
 
-                TemplateDTO templateDTO = new TemplateDTO
-                {
-                    WorkflowId = TEMPLATE_WORKFLOW_ID,
-                    WorkflowVersion = TEMPLATE_WORKFLOW_VERSION,
-                    CreatedBy = TEST_USERNAME,
-                    Name = TEMPLATE_NAME,
-                    Description = TEMPLATE_DESCRIPTION
-                };
-                templateDTO.SetInputParameters(inputParams);
-                int templateId = _TemplatesBLL.InsertTemplate(conn, templateDTO);
-
-                bool deleted = _TemplatesBLL.DeleteTemplate(conn, templateId, TEST_USERNAME);
-                Assert.IsTrue(deleted, "No se pudo borrar la plantilla.");
-
-                List<TemplateDTO> templates = _TemplatesBLL.GetTemplates(conn, TEST_USERNAME);
-                Assert.IsTrue(templates.TrueForAll(t => t.Id != templateId), "La plantilla sigue apareciendo después del borrado.");
-            }
+            List<TemplateDTO> templates = TemplateDataAccessBLL.GetTemplates(TEST_USERNAME);
+            Assert.IsTrue(templates.TrueForAll(t => t.Id != templateId), "La plantilla sigue apareciendo después del borrado.");
         }
 
         #endregion

@@ -96,6 +96,14 @@ namespace AegisTasks.UI.Presenters
         {
             showWarn(message, Texts.Warning);
         }
+
+        /// <summary>
+        /// Muestra un mensaje de información
+        /// </summary>
+        protected void showInfo(string message)
+        {
+            showInfo(message, Texts.GeneralInfo);
+        }
     }
 
 }

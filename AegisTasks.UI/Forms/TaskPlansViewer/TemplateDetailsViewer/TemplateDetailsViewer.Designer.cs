@@ -37,7 +37,7 @@
             this.ParametersGroupBox = new System.Windows.Forms.GroupBox();
             this.ButtonsContainer = new System.Windows.Forms.FlowLayoutPanel();
             this.ExecuteButton = new System.Windows.Forms.Button();
-            this.SaveAsTemplateButton = new System.Windows.Forms.Button();
+            this.UpdateTemplateButton = new System.Windows.Forms.Button();
             this.DetailsContainer.SuspendLayout();
             this.GeneralInfoGroupBox.SuspendLayout();
             this.ButtonsContainer.SuspendLayout();
@@ -68,6 +68,7 @@
             this.GeneralInfoGroupBox.TabIndex = 0;
             this.GeneralInfoGroupBox.TabStop = false;
             this.GeneralInfoGroupBox.Text = "General info";
+            this.GeneralInfoGroupBox.Enter += new System.EventHandler(this.GeneralInfoGroupBox_Enter);
             // 
             // NameLabel
             // 
@@ -83,8 +84,7 @@
             // 
             this.NameTextbox.Location = new System.Drawing.Point(76, 19);
             this.NameTextbox.Name = "NameTextbox";
-            this.NameTextbox.ReadOnly = true;
-            this.NameTextbox.Size = new System.Drawing.Size(705, 20);
+            this.NameTextbox.Size = new System.Drawing.Size(705, 22);
             this.NameTextbox.TabIndex = 1;
             // 
             // DescriptionLabel
@@ -102,7 +102,6 @@
             this.DescriptionTextbox.Location = new System.Drawing.Point(21, 72);
             this.DescriptionTextbox.Multiline = true;
             this.DescriptionTextbox.Name = "DescriptionTextbox";
-            this.DescriptionTextbox.ReadOnly = true;
             this.DescriptionTextbox.Size = new System.Drawing.Size(760, 63);
             this.DescriptionTextbox.TabIndex = 3;
             // 
@@ -115,12 +114,13 @@
             this.ParametersGroupBox.TabIndex = 1;
             this.ParametersGroupBox.TabStop = false;
             this.ParametersGroupBox.Text = "Parameters";
+            this.ParametersGroupBox.Enter += new System.EventHandler(this.ParametersGroupBox_Enter);
             // 
             // ButtonsContainer
             // 
             this.ButtonsContainer.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.ButtonsContainer.Controls.Add(this.ExecuteButton);
-            this.ButtonsContainer.Controls.Add(this.SaveAsTemplateButton);
+            this.ButtonsContainer.Controls.Add(this.UpdateTemplateButton);
             this.ButtonsContainer.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.ButtonsContainer.FlowDirection = System.Windows.Forms.FlowDirection.RightToLeft;
             this.ButtonsContainer.Location = new System.Drawing.Point(0, 612);
@@ -139,15 +139,15 @@
             this.ExecuteButton.Text = "Execute";
             this.ExecuteButton.UseVisualStyleBackColor = true;
             // 
-            // SaveAsTemplateButton
+            // UpdateTemplateButton
             // 
-            this.SaveAsTemplateButton.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.SaveAsTemplateButton.Location = new System.Drawing.Point(384, 3);
-            this.SaveAsTemplateButton.Name = "SaveAsTemplateButton";
-            this.SaveAsTemplateButton.Size = new System.Drawing.Size(200, 30);
-            this.SaveAsTemplateButton.TabIndex = 0;
-            this.SaveAsTemplateButton.Text = "Save as template";
-            this.SaveAsTemplateButton.UseVisualStyleBackColor = true;
+            this.UpdateTemplateButton.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.UpdateTemplateButton.Location = new System.Drawing.Point(384, 3);
+            this.UpdateTemplateButton.Name = "UpdateTemplateButton";
+            this.UpdateTemplateButton.Size = new System.Drawing.Size(200, 30);
+            this.UpdateTemplateButton.TabIndex = 0;
+            this.UpdateTemplateButton.Text = "Update template";
+            this.UpdateTemplateButton.UseVisualStyleBackColor = true;
             // 
             // TemplateDetailsViewer
             // 
@@ -176,6 +176,6 @@
         public System.Windows.Forms.GroupBox ParametersGroupBox;
         private System.Windows.Forms.FlowLayoutPanel ButtonsContainer;
         public System.Windows.Forms.Button ExecuteButton;
-        public System.Windows.Forms.Button SaveAsTemplateButton;
+        public System.Windows.Forms.Button UpdateTemplateButton;
     }
 }
