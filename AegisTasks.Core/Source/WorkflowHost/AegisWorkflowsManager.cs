@@ -319,6 +319,19 @@ namespace AegisTasks.Core.WorkflowHost
             }
         }
 
+        public Task<bool> StopWorkflow(string workflowId)
+        {
+            if (!(_Host is null))
+            {
+                return _Host.SuspendWorkflow(workflowId);
+
+            }
+            else
+            {
+                throw new NullReferenceException(nameof(_Host));
+            }
+        }
+
 
         #endregion PUBLIC METHODS
         #region PRIVATE METHODS

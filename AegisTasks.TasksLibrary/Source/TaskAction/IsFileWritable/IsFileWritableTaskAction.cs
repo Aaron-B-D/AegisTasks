@@ -29,7 +29,7 @@ namespace AegisTasks.TasksLibrary.TaskAction
 
         // Descripciones en distintos idiomas
         private const string DESCRIPTION_ES = "Comprueba si un archivo se puede escribir en la ruta especificada";
-        private const string DESCRIPTION_GL = "Comprueba se un arquivo se pode escribir na ruta especificada";
+        private const string DESCRIPTION_GL = "Comproba se un arquivo se pode escribir na ruta especificada";
         private const string DESCRIPTION_EN = "Checks if a file can be written at the specified path";
 
         #endregion PRIVATE CONSTANTS

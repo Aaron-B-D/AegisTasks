@@ -19,84 +19,55 @@ namespace AegisTasks.DataAccess.DataAccesses
         public static readonly string DB_EXECUTION_HISTORY_TABLE_FIELD_ACTIVE = "Active";
         public static readonly string DB_EXECUTION_HISTORY_TABLE_FIELD_USERNAME = "Username";
 
-        private readonly string CREATE_EXECUTION_HISTORY_TABLE = string.Format(@"
-IF NOT EXISTS (SELECT * FROM sysobjects WHERE name = '{0}' AND xtype = 'U')
+        private readonly string CREATE_EXECUTION_HISTORY_TABLE = $@"
+IF NOT EXISTS (SELECT * FROM sysobjects WHERE name = '{DB_EXECUTION_HISTORY_TABLE_NAME}' AND xtype = 'U')
 BEGIN
-    CREATE TABLE {0} (
-        {1} INT IDENTITY(1,1) PRIMARY KEY,
-        {2} NVARCHAR(100) NOT NULL,
-        {3} NVARCHAR(255) NOT NULL,
-        {4} DATETIME NULL,
-        {5} DATETIME NULL,
-        {6} BIT NOT NULL DEFAULT 0,
-        {7} BIT NOT NULL DEFAULT 1,
-        {8} NVARCHAR(50) NOT NULL
+    CREATE TABLE {DB_EXECUTION_HISTORY_TABLE_NAME} (
+        {DB_EXECUTION_HISTORY_TABLE_FIELD_ID} INT IDENTITY(1,1) PRIMARY KEY,
+        {DB_EXECUTION_HISTORY_TABLE_FIELD_WORKFLOWID} NVARCHAR(100) NOT NULL,
+        {DB_EXECUTION_HISTORY_TABLE_FIELD_WORKFLOWNAME} NVARCHAR(255) NOT NULL,
+        {DB_EXECUTION_HISTORY_TABLE_FIELD_STARTDATE} DATETIME NULL,
+        {DB_EXECUTION_HISTORY_TABLE_FIELD_ENDDATE} DATETIME NULL,
+        {DB_EXECUTION_HISTORY_TABLE_FIELD_SUCCESS} BIT NOT NULL DEFAULT 0,
+        {DB_EXECUTION_HISTORY_TABLE_FIELD_ACTIVE} BIT NOT NULL DEFAULT 1,
+        {DB_EXECUTION_HISTORY_TABLE_FIELD_USERNAME} NVARCHAR(50) NOT NULL
     );
-END",
-            DB_EXECUTION_HISTORY_TABLE_NAME,
-            DB_EXECUTION_HISTORY_TABLE_FIELD_ID,
-            DB_EXECUTION_HISTORY_TABLE_FIELD_WORKFLOWID,
-            DB_EXECUTION_HISTORY_TABLE_FIELD_WORKFLOWNAME,
-            DB_EXECUTION_HISTORY_TABLE_FIELD_STARTDATE,
-            DB_EXECUTION_HISTORY_TABLE_FIELD_ENDDATE,
-            DB_EXECUTION_HISTORY_TABLE_FIELD_SUCCESS,
-            DB_EXECUTION_HISTORY_TABLE_FIELD_ACTIVE,
-            DB_EXECUTION_HISTORY_TABLE_FIELD_USERNAME
-        );
+END";
 
-        private readonly string DROP_EXECUTION_HISTORY_TABLE = string.Format(@"
-IF EXISTS (SELECT * FROM sysobjects WHERE name = '{0}' AND xtype = 'U')
+        private readonly string DROP_EXECUTION_HISTORY_TABLE = $@"
+IF EXISTS (SELECT * FROM sysobjects WHERE name = '{DB_EXECUTION_HISTORY_TABLE_NAME}' AND xtype = 'U')
 BEGIN
-    DROP TABLE {0};
-END",
-            DB_EXECUTION_HISTORY_TABLE_NAME
-        );
+    DROP TABLE {DB_EXECUTION_HISTORY_TABLE_NAME};
+END";
 
-        private readonly string EXISTS_EXECUTION_HISTORY_TABLE = string.Format(@"
+        private readonly string EXISTS_EXECUTION_HISTORY_TABLE = $@"
 SELECT COUNT(*) 
 FROM INFORMATION_SCHEMA.TABLES 
-WHERE TABLE_NAME = '{0}'",
-            DB_EXECUTION_HISTORY_TABLE_NAME
-        );
+WHERE TABLE_NAME = '{DB_EXECUTION_HISTORY_TABLE_NAME}'";
 
-        private readonly string INSERT_EXECUTION = string.Format(@"
-INSERT INTO {0} ({1}, {2}, {3}, {4}, {5}, {6})
-VALUES (@WorkflowId, @WorkflowName, @StartDate, 0, 1, @Username);",
-            DB_EXECUTION_HISTORY_TABLE_NAME,
-            DB_EXECUTION_HISTORY_TABLE_FIELD_WORKFLOWID,
-            DB_EXECUTION_HISTORY_TABLE_FIELD_WORKFLOWNAME,
-            DB_EXECUTION_HISTORY_TABLE_FIELD_STARTDATE,
-            DB_EXECUTION_HISTORY_TABLE_FIELD_SUCCESS,
-            DB_EXECUTION_HISTORY_TABLE_FIELD_ACTIVE,
-            DB_EXECUTION_HISTORY_TABLE_FIELD_USERNAME
-        );
+        private readonly string INSERT_EXECUTION_RETURN_ID = $@"
+INSERT INTO {DB_EXECUTION_HISTORY_TABLE_NAME} 
+({DB_EXECUTION_HISTORY_TABLE_FIELD_WORKFLOWID}, {DB_EXECUTION_HISTORY_TABLE_FIELD_WORKFLOWNAME}, {DB_EXECUTION_HISTORY_TABLE_FIELD_STARTDATE}, {DB_EXECUTION_HISTORY_TABLE_FIELD_SUCCESS}, {DB_EXECUTION_HISTORY_TABLE_FIELD_ACTIVE}, {DB_EXECUTION_HISTORY_TABLE_FIELD_USERNAME})
+VALUES (@WorkflowId, @WorkflowName, @StartDate, 0, 1, @Username);
+SELECT CAST(SCOPE_IDENTITY() AS INT);";
 
-        private readonly string UPDATE_EXECUTION = string.Format(@"
-UPDATE {0}
-SET {1} = @EndDate,
-    {2} = @Success
-WHERE {3} = @Id;",
-            DB_EXECUTION_HISTORY_TABLE_NAME,
-            DB_EXECUTION_HISTORY_TABLE_FIELD_ENDDATE,
-            DB_EXECUTION_HISTORY_TABLE_FIELD_SUCCESS,
-            DB_EXECUTION_HISTORY_TABLE_FIELD_ID
-        );
+        private readonly string UPDATE_EXECUTION = $@"
+UPDATE {DB_EXECUTION_HISTORY_TABLE_NAME}
+SET {DB_EXECUTION_HISTORY_TABLE_FIELD_ENDDATE} = @EndDate,
+    {DB_EXECUTION_HISTORY_TABLE_FIELD_SUCCESS} = @Success
+WHERE {DB_EXECUTION_HISTORY_TABLE_FIELD_ID} = @Id;";
 
-        // Query base para recuperar registros de un usuario (sin filtrar Active por defecto)
-        private readonly string SELECT_EXECUTIONS_BY_USER_BASE = string.Format(@"
-SELECT {0}, {1}, {2}, {3}, {4}, {5}, {6}
-FROM {7}
-WHERE {8} = @Username",
-            DB_EXECUTION_HISTORY_TABLE_FIELD_ID,
-            DB_EXECUTION_HISTORY_TABLE_FIELD_WORKFLOWID,
-            DB_EXECUTION_HISTORY_TABLE_FIELD_WORKFLOWNAME,
-            DB_EXECUTION_HISTORY_TABLE_FIELD_STARTDATE,
-            DB_EXECUTION_HISTORY_TABLE_FIELD_ENDDATE,
-            DB_EXECUTION_HISTORY_TABLE_FIELD_SUCCESS,
-            DB_EXECUTION_HISTORY_TABLE_FIELD_ACTIVE,
-            DB_EXECUTION_HISTORY_TABLE_NAME,
-            DB_EXECUTION_HISTORY_TABLE_FIELD_USERNAME
-        );
+        private readonly string SELECT_EXISTING_EXECUTION_ID = $@"
+SELECT {DB_EXECUTION_HISTORY_TABLE_FIELD_ID} 
+FROM {DB_EXECUTION_HISTORY_TABLE_NAME} 
+WHERE {DB_EXECUTION_HISTORY_TABLE_FIELD_WORKFLOWID} = @WorkflowId 
+  AND {DB_EXECUTION_HISTORY_TABLE_FIELD_ACTIVE} = 1;";
+
+        private readonly string SELECT_EXECUTIONS_BY_USER_BASE = $@"
+SELECT {DB_EXECUTION_HISTORY_TABLE_FIELD_ID}, {DB_EXECUTION_HISTORY_TABLE_FIELD_WORKFLOWID}, {DB_EXECUTION_HISTORY_TABLE_FIELD_WORKFLOWNAME}, 
+       {DB_EXECUTION_HISTORY_TABLE_FIELD_STARTDATE}, {DB_EXECUTION_HISTORY_TABLE_FIELD_ENDDATE}, {DB_EXECUTION_HISTORY_TABLE_FIELD_SUCCESS}, {DB_EXECUTION_HISTORY_TABLE_FIELD_ACTIVE}
+FROM {DB_EXECUTION_HISTORY_TABLE_NAME}
+WHERE {DB_EXECUTION_HISTORY_TABLE_FIELD_USERNAME} = @Username";
 
         public ExecutionHistoryDataAccess() : base() { }
 
@@ -128,15 +99,23 @@ WHERE {8} = @Username",
             }
         }
 
-        public void RegisterExecution(SqlConnection conn, string workflowId, string workflowName, string username)
+        // Método público para registrar ejecución (una fila por workflow activo)
+        public int RegisterExecution(SqlConnection conn, string workflowId, string workflowName, string username)
         {
-            using (SqlCommand command = new SqlCommand(INSERT_EXECUTION, conn))
+            int? existingId = GetActiveExecutionId(conn, workflowId);
+            if (existingId.HasValue)
+            {
+                return existingId.Value;
+            }
+
+            using (SqlCommand command = new SqlCommand(INSERT_EXECUTION_RETURN_ID, conn))
             {
                 command.Parameters.AddWithValue("@WorkflowId", workflowId);
                 command.Parameters.AddWithValue("@WorkflowName", workflowName);
                 command.Parameters.AddWithValue("@StartDate", DateTime.Now);
                 command.Parameters.AddWithValue("@Username", username);
-                command.ExecuteNonQuery();
+
+                return (int)command.ExecuteScalar();
             }
         }
 
@@ -183,6 +162,19 @@ WHERE {8} = @Username",
             }
 
             return results;
+        }
+
+        // Método privado para obtener Id de ejecución activa de un workflow
+        private int? GetActiveExecutionId(SqlConnection conn, string workflowId)
+        {
+            using (SqlCommand command = new SqlCommand(SELECT_EXISTING_EXECUTION_ID, conn))
+            {
+                command.Parameters.AddWithValue("@WorkflowId", workflowId);
+                object result = command.ExecuteScalar();
+                if (result != null && result != DBNull.Value)
+                    return (int)result;
+            }
+            return null;
         }
     }
 }

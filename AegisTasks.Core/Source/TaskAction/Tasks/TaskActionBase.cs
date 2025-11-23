@@ -98,7 +98,7 @@ namespace AegisTasks.Core.TaskAction
 
         /// <summary>
         /// Constructor base de la tarea atómica.
-        /// Todos los nombres y descripciones de los idiomas son obligatorios.
+        /// Aportar los nombres y descripciones de los idiomas son obligatorios.
         /// </summary>
         /// <param name="callName">Nombre de la tarea.</param>
         /// <param name="category">Categoría de la tarea.</param>

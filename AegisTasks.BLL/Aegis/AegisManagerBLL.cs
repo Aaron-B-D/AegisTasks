@@ -39,6 +39,10 @@ namespace AegisTasks.BLL.Aegis
             await _Manager.StartWorkflow(workflowName, inputParams);
         }
 
+        public static void StopWorkflow(string workflowId)
+        {
+            _Manager.StopWorkflow(workflowId);
+        }
 
 
         public static void ExecuteWriteInPlan(WriteInFilePlanInputParams inputParams, TaskPlanEventHandler taskPlanStarted, TaskPlanEventHandler taskPlanCompleted, TaskPlanEventHandler taskPlanTerminated, TaskActionEventHandler taskActionStarted, TaskActionEventHandler taskActionEnded)

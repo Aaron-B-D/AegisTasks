@@ -28,20 +28,40 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.HistoryViewerTable = new System.Windows.Forms.DataGridView();
+            ((System.ComponentModel.ISupportInitialize)(this.HistoryViewerTable)).BeginInit();
             this.SuspendLayout();
+            // 
+            // HistoryViewerTable
+            // 
+            this.HistoryViewerTable.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.HistoryViewerTable.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.HistoryViewerTable.Location = new System.Drawing.Point(0, 0);
+            this.HistoryViewerTable.MultiSelect = false;
+            this.HistoryViewerTable.Name = "HistoryViewerTable";
+            this.HistoryViewerTable.ReadOnly = true;
+            this.HistoryViewerTable.Size = new System.Drawing.Size(990, 551);
+            this.HistoryViewerTable.TabIndex = 0;
             // 
             // HistoryViewer
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(990, 551);
+            this.Controls.Add(this.HistoryViewerTable);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "HistoryViewer";
             this.Text = "HistoryViewer";
             this.Load += new System.EventHandler(this.HistoryViewer_Load);
+            ((System.ComponentModel.ISupportInitialize)(this.HistoryViewerTable)).EndInit();
             this.ResumeLayout(false);
 
         }
 
         #endregion
+
+        public System.Windows.Forms.DataGridView HistoryViewerTable;
     }
 }

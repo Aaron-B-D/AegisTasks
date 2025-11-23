@@ -357,4 +357,25 @@
   <data name="DepthConfiguration" xml:space="preserve">
     <value>Configuración de profundidad</value>
   </data>
+  <data name="Id" xml:space="preserve">
+    <value>Identificador</value>
+  </data>
+  <data name="TaskPlanId" xml:space="preserve">
+    <value>Identificador de plan de trabajo</value>
+  </data>
+  <data name="TaskPlanName" xml:space="preserve">
+    <value>Nombre del plan de trabajo</value>
+  </data>
+  <data name="StartDate" xml:space="preserve">
+    <value>Fecha de inicio</value>
+  </data>
+  <data name="EndDate" xml:space="preserve">
+    <value>Fecha de fin</value>
+  </data>
+  <data name="Sucessful" xml:space="preserve">
+    <value>Exitosa</value>
+  </data>
+  <data name="UnknownTaskPlan" xml:space="preserve">
+    <value>Plan de acción desconocido</value>
+  </data>
 </root>

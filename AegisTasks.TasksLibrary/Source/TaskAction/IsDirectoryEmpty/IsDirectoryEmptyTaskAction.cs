@@ -28,7 +28,7 @@ namespace AegisTasks.TasksLibrary.Source.TaskAction.IsDirectoryEmpty
 
         // Descripciones en distintos idiomas
         private const string DESCRIPTION_ES = "Comprueba si un directorio está vacío o no";
-        private const string DESCRIPTION_GL = "Comprueba se un directorio está baleiro ou non";
+        private const string DESCRIPTION_GL = "Comproba se un directorio está baleiro ou non";
         private const string DESCRIPTION_EN = "Checks if a directory is empty or not";
 
         #region STATIC PUBLIC PROPERTIES

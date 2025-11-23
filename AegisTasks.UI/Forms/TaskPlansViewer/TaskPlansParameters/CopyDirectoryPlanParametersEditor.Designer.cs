@@ -48,29 +48,26 @@
             // 
             // SearchOriginDirectoryButton
             // 
-            this.SearchOriginDirectoryButton.Location = new System.Drawing.Point(9, 48);
-            this.SearchOriginDirectoryButton.Margin = new System.Windows.Forms.Padding(4);
+            this.SearchOriginDirectoryButton.Location = new System.Drawing.Point(7, 39);
             this.SearchOriginDirectoryButton.Name = "SearchOriginDirectoryButton";
-            this.SearchOriginDirectoryButton.Size = new System.Drawing.Size(1023, 28);
+            this.SearchOriginDirectoryButton.Size = new System.Drawing.Size(767, 23);
             this.SearchOriginDirectoryButton.TabIndex = 5;
             this.SearchOriginDirectoryButton.Text = "Search";
             this.SearchOriginDirectoryButton.UseVisualStyleBackColor = true;
             // 
             // OriginDirectoryTextbox
             // 
-            this.OriginDirectoryTextbox.Location = new System.Drawing.Point(164, 11);
-            this.OriginDirectoryTextbox.Margin = new System.Windows.Forms.Padding(4);
+            this.OriginDirectoryTextbox.Location = new System.Drawing.Point(164, 9);
             this.OriginDirectoryTextbox.Name = "OriginDirectoryTextbox";
             this.OriginDirectoryTextbox.ReadOnly = true;
-            this.OriginDirectoryTextbox.Size = new System.Drawing.Size(867, 22);
+            this.OriginDirectoryTextbox.Size = new System.Drawing.Size(610, 20);
             this.OriginDirectoryTextbox.TabIndex = 4;
             // 
             // OriginDirectoryLabel
             // 
             this.OriginDirectoryLabel.AutoSize = true;
             this.OriginDirectoryLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.OriginDirectoryLabel.Location = new System.Drawing.Point(6, 16);
-            this.OriginDirectoryLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.OriginDirectoryLabel.Location = new System.Drawing.Point(4, 13);
             this.OriginDirectoryLabel.Name = "OriginDirectoryLabel";
             this.OriginDirectoryLabel.Size = new System.Drawing.Size(93, 13);
             this.OriginDirectoryLabel.TabIndex = 3;
@@ -78,29 +75,26 @@
             // 
             // SearchDestinationDirectoryButton
             // 
-            this.SearchDestinationDirectoryButton.Location = new System.Drawing.Point(9, 135);
-            this.SearchDestinationDirectoryButton.Margin = new System.Windows.Forms.Padding(4);
+            this.SearchDestinationDirectoryButton.Location = new System.Drawing.Point(7, 110);
             this.SearchDestinationDirectoryButton.Name = "SearchDestinationDirectoryButton";
-            this.SearchDestinationDirectoryButton.Size = new System.Drawing.Size(1024, 28);
+            this.SearchDestinationDirectoryButton.Size = new System.Drawing.Size(768, 23);
             this.SearchDestinationDirectoryButton.TabIndex = 8;
             this.SearchDestinationDirectoryButton.Text = "Search";
             this.SearchDestinationDirectoryButton.UseVisualStyleBackColor = true;
             // 
             // DestinationDirectoryTextBox
             // 
-            this.DestinationDirectoryTextBox.Location = new System.Drawing.Point(165, 98);
-            this.DestinationDirectoryTextBox.Margin = new System.Windows.Forms.Padding(4);
+            this.DestinationDirectoryTextBox.Location = new System.Drawing.Point(164, 80);
             this.DestinationDirectoryTextBox.Name = "DestinationDirectoryTextBox";
             this.DestinationDirectoryTextBox.ReadOnly = true;
-            this.DestinationDirectoryTextBox.Size = new System.Drawing.Size(867, 22);
+            this.DestinationDirectoryTextBox.Size = new System.Drawing.Size(611, 20);
             this.DestinationDirectoryTextBox.TabIndex = 7;
             // 
             // DestinationDirectoryLabel
             // 
             this.DestinationDirectoryLabel.AutoSize = true;
             this.DestinationDirectoryLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.DestinationDirectoryLabel.Location = new System.Drawing.Point(6, 103);
-            this.DestinationDirectoryLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.DestinationDirectoryLabel.Location = new System.Drawing.Point(4, 84);
             this.DestinationDirectoryLabel.Name = "DestinationDirectoryLabel";
             this.DestinationDirectoryLabel.Size = new System.Drawing.Size(124, 13);
             this.DestinationDirectoryLabel.TabIndex = 6;
@@ -110,8 +104,7 @@
             // 
             this.OverwriteDirectoriesIfExistCheckbox.AutoSize = true;
             this.OverwriteDirectoriesIfExistCheckbox.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.OverwriteDirectoriesIfExistCheckbox.Location = new System.Drawing.Point(9, 186);
-            this.OverwriteDirectoriesIfExistCheckbox.Margin = new System.Windows.Forms.Padding(4);
+            this.OverwriteDirectoriesIfExistCheckbox.Location = new System.Drawing.Point(7, 151);
             this.OverwriteDirectoriesIfExistCheckbox.Name = "OverwriteDirectoriesIfExistCheckbox";
             this.OverwriteDirectoriesIfExistCheckbox.Size = new System.Drawing.Size(184, 17);
             this.OverwriteDirectoriesIfExistCheckbox.TabIndex = 9;
@@ -122,8 +115,7 @@
             // 
             this.OverwriteFilesIfExistCheckbox.AutoSize = true;
             this.OverwriteFilesIfExistCheckbox.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.OverwriteFilesIfExistCheckbox.Location = new System.Drawing.Point(9, 226);
-            this.OverwriteFilesIfExistCheckbox.Margin = new System.Windows.Forms.Padding(4);
+            this.OverwriteFilesIfExistCheckbox.Location = new System.Drawing.Point(7, 184);
             this.OverwriteFilesIfExistCheckbox.Name = "OverwriteFilesIfExistCheckbox";
             this.OverwriteFilesIfExistCheckbox.Size = new System.Drawing.Size(148, 17);
             this.OverwriteFilesIfExistCheckbox.TabIndex = 10;
@@ -132,22 +124,22 @@
             // 
             // CopyDepthEditor
             // 
-            this.CopyDepthEditor.Location = new System.Drawing.Point(104, 63);
+            this.CopyDepthEditor.Location = new System.Drawing.Point(157, 52);
+            this.CopyDepthEditor.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.CopyDepthEditor.Maximum = new decimal(new int[] {
             99999,
             0,
             0,
             0});
             this.CopyDepthEditor.Name = "CopyDepthEditor";
-            this.CopyDepthEditor.Size = new System.Drawing.Size(116, 22);
+            this.CopyDepthEditor.Size = new System.Drawing.Size(132, 20);
             this.CopyDepthEditor.TabIndex = 14;
             // 
             // CopyDepthLabel
             // 
             this.CopyDepthLabel.AutoSize = true;
             this.CopyDepthLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.CopyDepthLabel.Location = new System.Drawing.Point(7, 67);
-            this.CopyDepthLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.CopyDepthLabel.Location = new System.Drawing.Point(5, 54);
             this.CopyDepthLabel.Name = "CopyDepthLabel";
             this.CopyDepthLabel.Size = new System.Drawing.Size(71, 13);
             this.CopyDepthLabel.TabIndex = 13;
@@ -158,9 +150,11 @@
             this.DepthConfigurationGroupBox.Controls.Add(this.LimitDepthCheckbox);
             this.DepthConfigurationGroupBox.Controls.Add(this.CopyDepthLabel);
             this.DepthConfigurationGroupBox.Controls.Add(this.CopyDepthEditor);
-            this.DepthConfigurationGroupBox.Location = new System.Drawing.Point(9, 268);
+            this.DepthConfigurationGroupBox.Location = new System.Drawing.Point(7, 218);
+            this.DepthConfigurationGroupBox.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.DepthConfigurationGroupBox.Name = "DepthConfigurationGroupBox";
-            this.DepthConfigurationGroupBox.Size = new System.Drawing.Size(1024, 105);
+            this.DepthConfigurationGroupBox.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.DepthConfigurationGroupBox.Size = new System.Drawing.Size(768, 85);
             this.DepthConfigurationGroupBox.TabIndex = 11;
             this.DepthConfigurationGroupBox.TabStop = false;
             this.DepthConfigurationGroupBox.Text = "Depth configuration";
@@ -169,8 +163,7 @@
             // 
             this.LimitDepthCheckbox.AutoSize = true;
             this.LimitDepthCheckbox.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.LimitDepthCheckbox.Location = new System.Drawing.Point(10, 31);
-            this.LimitDepthCheckbox.Margin = new System.Windows.Forms.Padding(4);
+            this.LimitDepthCheckbox.Location = new System.Drawing.Point(8, 25);
             this.LimitDepthCheckbox.Name = "LimitDepthCheckbox";
             this.LimitDepthCheckbox.Size = new System.Drawing.Size(88, 17);
             this.LimitDepthCheckbox.TabIndex = 12;
@@ -179,7 +172,7 @@
             // 
             // CopyDirectoryPlanParametersEditor
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.DepthConfigurationGroupBox);
             this.Controls.Add(this.OverwriteFilesIfExistCheckbox);
@@ -190,9 +183,8 @@
             this.Controls.Add(this.SearchOriginDirectoryButton);
             this.Controls.Add(this.OriginDirectoryTextbox);
             this.Controls.Add(this.OriginDirectoryLabel);
-            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "CopyDirectoryPlanParametersEditor";
-            this.Size = new System.Drawing.Size(1044, 537);
+            this.Size = new System.Drawing.Size(783, 436);
             this.Load += new System.EventHandler(this.CopyDirectoryPlanDetails_Load);
             ((System.ComponentModel.ISupportInitialize)(this.CopyDepthEditor)).EndInit();
             this.DepthConfigurationGroupBox.ResumeLayout(false);

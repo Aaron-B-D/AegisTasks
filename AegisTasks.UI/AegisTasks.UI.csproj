@@ -373,6 +373,7 @@
     <EmbeddedResource Include="Language\Texts.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>Texts.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">

@@ -27,7 +27,7 @@ namespace AegisTasks.TasksLibrary.TaskAction
 
         // Descripciones en distintos idiomas
         private const string DESCRIPTION_ES = "Comprueba si un directorio existe en la ruta especificada";
-        private const string DESCRIPTION_GL = "Comprueba se un directorio existe na ruta especificada";
+        private const string DESCRIPTION_GL = "Comproba se un directorio existe na ruta especificada";
         private const string DESCRIPTION_EN = "Checks if a directory exists at the specified path";
 
         #region STATIC PROPERTIES

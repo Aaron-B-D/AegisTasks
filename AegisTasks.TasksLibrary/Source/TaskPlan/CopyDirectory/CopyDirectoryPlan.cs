@@ -88,7 +88,7 @@ namespace AegisTasks.TasksLibrary.TaskPlan
 										data.DestinationDirectory.FullName
 									)
 								),
-								false
+								data.OverwriteDirectoriesIfExist
 							)
 						)
 						.Id(generateUniqueId("CreateSubDirectory"))
@@ -112,7 +112,7 @@ namespace AegisTasks.TasksLibrary.TaskPlan
 										)
 									)
 								),
-								false,
+								data.OverwriteFilesIfExists,
                                 NUM_COPY_FILE_RETRIES,
                                 COPY_FILE_RETRY_INTERVAL_MS
                             )

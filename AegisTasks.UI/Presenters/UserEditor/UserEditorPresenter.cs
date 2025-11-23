@@ -36,7 +36,7 @@ namespace AegisTasks.UI.Presenters
 
             _View.Text = Texts.UserEditor;
             _View.UsersSelectorGroupBox.Text = Texts.AvailableUsers;
-            _View.UserDetailsGeneralInfoBox.Text = Texts.UserDetails;
+            _View.UserDetailsGeneralInfoBox.Text = Texts.GeneralInfo;
             _View.AddUserButton.Text = Texts.Add;
             _View.DeleteUserButton.Text = Texts.Delete;
             _View.SaveChangesButton.Text = Texts.SaveChanges;

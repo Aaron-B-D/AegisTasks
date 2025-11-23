@@ -214,6 +214,15 @@ namespace AegisTasks.UI.Language {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Fecha de fin.
+        /// </summary>
+        public static string EndDate {
+            get {
+                return ResourceManager.GetString("EndDate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Inglés.
         /// </summary>
         public static string English {
@@ -300,6 +309,15 @@ namespace AegisTasks.UI.Language {
         public static string History {
             get {
                 return ResourceManager.GetString("History", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Identificador.
+        /// </summary>
+        public static string Id {
+            get {
+                return ResourceManager.GetString("Id", resourceCulture);
             }
         }
         
@@ -601,6 +619,15 @@ namespace AegisTasks.UI.Language {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Fecha de inicio.
+        /// </summary>
+        public static string StartDate {
+            get {
+                return ResourceManager.GetString("StartDate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Iniciado.
         /// </summary>
         public static string Started {
@@ -619,6 +646,15 @@ namespace AegisTasks.UI.Language {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Exitosa.
+        /// </summary>
+        public static string Sucessful {
+            get {
+                return ResourceManager.GetString("Sucessful", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Apellido.
         /// </summary>
         public static string Surname {
@@ -633,6 +669,24 @@ namespace AegisTasks.UI.Language {
         public static string TaskPlan {
             get {
                 return ResourceManager.GetString("TaskPlan", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Identificador de plan de trabajo.
+        /// </summary>
+        public static string TaskPlanId {
+            get {
+                return ResourceManager.GetString("TaskPlanId", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Nombre del plan de trabajo.
+        /// </summary>
+        public static string TaskPlanName {
+            get {
+                return ResourceManager.GetString("TaskPlanName", resourceCulture);
             }
         }
         
@@ -687,6 +741,15 @@ namespace AegisTasks.UI.Language {
         public static string TextFile {
             get {
                 return ResourceManager.GetString("TextFile", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Plan de acción desconocido.
+        /// </summary>
+        public static string UnknownTaskPlan {
+            get {
+                return ResourceManager.GetString("UnknownTaskPlan", resourceCulture);
             }
         }
         

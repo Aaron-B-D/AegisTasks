@@ -1,4 +1,5 @@
-﻿using System;
+﻿using AegisTasks.UI.Presenters;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -15,9 +16,16 @@ namespace AegisTasks.UI.Forms
         public HistoryViewer()
         {
             InitializeComponent();
+
+            new HistoryViewerPresenter(this);
         }
 
         private void HistoryViewer_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label1_Click(object sender, EventArgs e)
         {
 
         }

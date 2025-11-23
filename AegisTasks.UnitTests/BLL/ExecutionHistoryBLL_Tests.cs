@@ -69,13 +69,24 @@ namespace AegisTasks.UnitTests.BLL
         [TestInitialize]
         public void TestInitialize()
         {
+            CleanupExecutions(TEST_USERNAME);
+        }
+
+        [TestCleanup]
+        public void TestCleanup()
+        {
+            CleanupExecutions(TEST_USERNAME);
+        }
+
+        private void CleanupExecutions(string username)
+        {
             using (SqlConnection conn = _FactorySqlServer.CreateConnection())
             {
                 conn.Open();
                 string deleteQuery = $"DELETE FROM {ExecutionHistoryDataAccess.DB_EXECUTION_HISTORY_TABLE_NAME} WHERE {ExecutionHistoryDataAccess.DB_EXECUTION_HISTORY_TABLE_FIELD_USERNAME} = @Username";
                 using (SqlCommand cmd = new SqlCommand(deleteQuery, conn))
                 {
-                    cmd.Parameters.AddWithValue("@Username", TEST_USERNAME);
+                    cmd.Parameters.AddWithValue("@Username", username);
                     cmd.ExecuteNonQuery();
                 }
             }
@@ -100,7 +111,10 @@ namespace AegisTasks.UnitTests.BLL
         [TestMethod]
         public void UpdateExecution_Should_SetSuccessAndEndDate()
         {
-            ExecutionHistoryDataAccessBLL.RegisterExecution(WF_ID_2, WF_NAME_2, TEST_USERNAME);
+            // Aseguramos que no haya un workflow activo previo con este ID
+            CleanupWorkflow(WF_ID_2);
+
+            var execId = ExecutionHistoryDataAccessBLL.RegisterExecution(WF_ID_2, WF_NAME_2, TEST_USERNAME);
             var executions = ExecutionHistoryDataAccessBLL.GetExecutionsByUser(TEST_USERNAME);
             var exec = executions.Find(e => e.WorkflowId == WF_ID_2);
             Assert.IsNotNull(exec);
@@ -112,6 +126,20 @@ namespace AegisTasks.UnitTests.BLL
 
             Assert.IsTrue(updatedExec.Success);
             Assert.IsNotNull(updatedExec.EndDate);
+        }
+
+        private void CleanupWorkflow(string workflowId)
+        {
+            using (SqlConnection conn = _FactorySqlServer.CreateConnection())
+            {
+                conn.Open();
+                string deactivateQuery = $"UPDATE {ExecutionHistoryDataAccess.DB_EXECUTION_HISTORY_TABLE_NAME} SET {ExecutionHistoryDataAccess.DB_EXECUTION_HISTORY_TABLE_FIELD_ACTIVE} = 0 WHERE {ExecutionHistoryDataAccess.DB_EXECUTION_HISTORY_TABLE_FIELD_WORKFLOWID} = @WorkflowId AND {ExecutionHistoryDataAccess.DB_EXECUTION_HISTORY_TABLE_FIELD_ACTIVE} = 1";
+                using (SqlCommand cmd = new SqlCommand(deactivateQuery, conn))
+                {
+                    cmd.Parameters.AddWithValue("@WorkflowId", workflowId);
+                    cmd.ExecuteNonQuery();
+                }
+            }
         }
 
         [TestMethod]
@@ -138,21 +166,6 @@ namespace AegisTasks.UnitTests.BLL
             var allExecutions = ExecutionHistoryDataAccessBLL.GetExecutionsByUser(TEST_USERNAME, true);
             Assert.IsTrue(allExecutions.Exists(e => e.WorkflowId == WF_ID_3));
             Assert.IsTrue(allExecutions.Exists(e => e.WorkflowId == WF_ID_4));
-        }
-
-        [TestCleanup]
-        public void TestCleanup()
-        {
-            using (SqlConnection conn = _FactorySqlServer.CreateConnection())
-            {
-                conn.Open();
-                string deleteQuery = $"DELETE FROM {ExecutionHistoryDataAccess.DB_EXECUTION_HISTORY_TABLE_NAME} WHERE {ExecutionHistoryDataAccess.DB_EXECUTION_HISTORY_TABLE_FIELD_USERNAME} = @Username";
-                using (SqlCommand cmd = new SqlCommand(deleteQuery, conn))
-                {
-                    cmd.Parameters.AddWithValue("@Username", TEST_USERNAME);
-                    cmd.ExecuteNonQuery();
-                }
-            }
         }
 
         [ClassCleanup]

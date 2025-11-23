@@ -1,8 +1,10 @@
 ﻿using AegisTasks.BLL.Aegis;
 using AegisTasks.BLL.Common;
+using AegisTasks.BLL.DataAccess;
 using AegisTasks.Core.Common;
 using AegisTasks.Core.DTO;
 using AegisTasks.Core.Events;
+using AegisTasks.TasksLibrary.Source.TaskAction.IsDirectoryEmpty;
 using AegisTasks.TasksLibrary.TaskAction;
 using AegisTasks.TasksLibrary.TaskPlan;
 using AegisTasks.UI.Common;
@@ -91,6 +93,14 @@ namespace AegisTasks.UI.Presenters {
                     }
                 },
                 {
+                    IsDirectoryEmptyTaskAction.CALL_NAME,
+                    (language) => new TaskActionInfo
+                    {
+                        Name = new IsDirectoryEmptyTaskAction().GetName(language),
+                        Description = new IsDirectoryEmptyTaskAction().GetDescription(language)
+                    }
+                },
+                {
                     ScanDirectoryTaskAction.CALL_NAME,
                     (language) => new TaskActionInfo
                     {
@@ -100,7 +110,30 @@ namespace AegisTasks.UI.Presenters {
                 }
             };
 
+        private static readonly Dictionary<string, Func<SupportedLanguage, TaskActionInfo>> AVAILABLE_TASK_PLANS =
+            new Dictionary<string, Func<SupportedLanguage, TaskActionInfo>>
+            {
+                {
+                    WriteInFilePlan.CALL_NAME,
+                    (language) => new TaskActionInfo
+                    {
+                        Name = new WriteInFilePlan().GetName(language),
+                        Description = new WriteInFilePlan().GetDescription(language)
+                    }
+                },
+                {
+                    CopyDirectoryPlan.CALL_NAME,
+                    (language) => new TaskActionInfo
+                    {
+                        Name = new CopyDirectoryPlan().GetName(language),
+                        Description = new CopyDirectoryPlan().GetDescription(language)
+                    }
+                }
+            };
 
+
+        private int? _CurrentExecutionId = null;
+        private string _CurrentWorkflowId = String.Empty;
 
         public TaskPlanOrTemplateExecutionViewerPresenter(TaskPlanOrTemplateExecutionViewer form, WriteInFilePlanInputParams writeInFileParams) : base(form)
         {
@@ -125,6 +158,19 @@ namespace AegisTasks.UI.Presenters {
             TaskPlanOrTemplateExecutionViewer view = this._View;
 
             view.Text = Texts.ExecutionStatus;
+
+            view.FormClosed += (e, sender) =>
+            {
+                if(!string.IsNullOrWhiteSpace(_CurrentWorkflowId))
+                {
+                    if(_CurrentExecutionId.HasValue)
+                    {
+                        ExecutionHistoryDataAccessBLL.UpdateExecution(_CurrentExecutionId.Value, false);
+                    }
+
+                    AegisManagerBLL.StopWorkflow(_CurrentWorkflowId);
+                }
+            };
 
             execute();
         }
@@ -168,9 +214,9 @@ namespace AegisTasks.UI.Presenters {
         {
             try
             {
-                string name = new WriteInFilePlan().GetName(SessionManager.CurrentLanguage);
+                Type taskPlanType = new WriteInFilePlan().GetType();
 
-                AegisManagerBLL.ExecuteWriteInPlan(inputParams, this.taskPlanStartedHandler(name), this.taskPlanCompletedHandler(name), this.taskPlanTerminatedHandler(name), this.taskActionStartedHandler(), this.taskActionEndedHandler());
+                AegisManagerBLL.ExecuteWriteInPlan(inputParams, this.taskPlanStartedHandler(), this.taskPlanCompletedHandler(), this.taskPlanTerminatedHandler(), this.taskActionStartedHandler(), this.taskActionEndedHandler());
             }
             catch (Exception ex)
             {
@@ -180,9 +226,10 @@ namespace AegisTasks.UI.Presenters {
 
         private void executeCopyDirectory(CopyDirectoryPlanInputParams inputParams)
         {
-            string name = new WriteInFilePlan().GetName(SessionManager.CurrentLanguage);
+            Type taskPlanType = new CopyDirectoryPlan().GetType();
 
-            AegisManagerBLL.ExecuteCopyDirectoryPlan(inputParams, this.taskPlanStartedHandler(name), this.taskPlanCompletedHandler(name), this.taskPlanTerminatedHandler(name), this.taskActionStartedHandler(), this.taskActionEndedHandler());
+
+            AegisManagerBLL.ExecuteCopyDirectoryPlan(inputParams, this.taskPlanStartedHandler(), this.taskPlanCompletedHandler(), this.taskPlanTerminatedHandler(), this.taskActionStartedHandler(), this.taskActionEndedHandler());
         }
 
         protected override bool isLoadAllowed()
@@ -190,38 +237,86 @@ namespace AegisTasks.UI.Presenters {
             return this.isLogged();
         }
 
-        // Maneja cuando se inicia un workflow
-        private TaskPlanEventHandler taskPlanStartedHandler(string taskPlanName)
+        private TaskPlanEventHandler taskPlanStartedHandler()
         {
             return (sender, e) =>
             {
+                TaskActionInfo info = null;
+
+                // Intentamos recuperar la info del plan según WorkflowDefinitionId
+                if (AVAILABLE_TASK_PLANS.TryGetValue(e.WorkflowInstance.WorkflowDefinitionId, out var infoFactory))
+                {
+                    info = infoFactory(SessionManager.CurrentLanguage);
+                }
+
+                string currentTaskPlanName = info != null ? info.Name : Texts.UnknownTaskPlan;
+
+                this._CurrentWorkflowId = e.WorkflowInstanceId;
+
+                _CurrentExecutionId = ExecutionHistoryDataAccessBLL.RegisterExecution(
+                    e.WorkflowInstanceId,
+                    currentTaskPlanName,
+                    SessionManager.CurrentUser.Username
+                );
+
                 this._CurrentStep++;
-                string message = $"▶️ [{taskPlanName}] {Texts.Started.ToUpperInvariant()}";
+                string message = $"▶️ [{currentTaskPlanName}] {Texts.Started.ToUpperInvariant()}";
                 this.addHistoryMessage(this._CurrentStep, message);
             };
         }
 
         // Maneja cuando un workflow se completa
-        private TaskPlanEventHandler taskPlanCompletedHandler(string taskPlanName)
+        private TaskPlanEventHandler taskPlanCompletedHandler()
         {
             return (sender, e) =>
             {
+                TaskActionInfo info = null;
+
+                if (AVAILABLE_TASK_PLANS.TryGetValue(e.WorkflowInstance.WorkflowDefinitionId, out var infoFactory))
+                {
+                    info = infoFactory(SessionManager.CurrentLanguage);
+                }
+
+                string currentTaskPlanName = info != null ? info.Name : Texts.UnknownTaskPlan;
+
+                this._CurrentWorkflowId = String.Empty;
+
+                if (_CurrentExecutionId.HasValue)
+                {
+                    ExecutionHistoryDataAccessBLL.UpdateExecution(_CurrentExecutionId.Value, true);
+                }
+
                 this._CurrentStep++;
-                string message = $"✅ [{taskPlanName}] {Texts.Completed.ToUpperInvariant()}";
+                string message = $"✅ [{currentTaskPlanName}] {Texts.Completed.ToUpperInvariant()}";
                 this.addHistoryMessage(this._CurrentStep, message);
             };
         }
 
         // Maneja cuando un workflow es terminado
-        private TaskPlanEventHandler taskPlanTerminatedHandler(string taskPlanName)
+        private TaskPlanEventHandler taskPlanTerminatedHandler()
         {
             return (sender, e) =>
             {
+                TaskActionInfo info = null;
+
+                if (AVAILABLE_TASK_PLANS.TryGetValue(e.WorkflowInstance.WorkflowDefinitionId, out var infoFactory))
+                {
+                    info = infoFactory(SessionManager.CurrentLanguage);
+                }
+
+                string currentTaskPlanName = info != null ? info.Name : Texts.UnknownTaskPlan;
+
+                if (_CurrentExecutionId.HasValue)
+                {
+                    ExecutionHistoryDataAccessBLL.UpdateExecution(_CurrentExecutionId.Value, false);
+                }
+
                 this._CurrentStep++;
-                string message = $"❌ [{taskPlanName}] {Texts.Terminated.ToUpperInvariant()}";
+                string message = $"❌ [{currentTaskPlanName}] {Texts.Terminated.ToUpperInvariant()}";
                 this.addHistoryMessage(this._CurrentStep, message);
             };
         }
+
 
         // Maneja cuando una acción de task se inicia
         private TaskActionEventHandler taskActionStartedHandler()
@@ -312,6 +407,7 @@ namespace AegisTasks.UI.Presenters {
                 this._View.ExecutionHistoryTextBox.AppendText(finalMessage);
             }
         }
+
     }
 
     class TaskActionInfo

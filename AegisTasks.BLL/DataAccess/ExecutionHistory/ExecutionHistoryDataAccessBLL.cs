@@ -12,7 +12,7 @@ namespace AegisTasks.BLL.DataAccess
 
         static ExecutionHistoryDataAccessBLL() { }
 
-        public static void RegisterExecution(string workflowId, string workflowName, string username)
+        public static int RegisterExecution(string workflowId, string workflowName, string username)
         {
             if (string.IsNullOrWhiteSpace(workflowId))
                 throw new ArgumentNullException(nameof(workflowId));
@@ -26,9 +26,11 @@ namespace AegisTasks.BLL.DataAccess
             using (SqlConnection conn = DataAccessBLL.CreateConnection())
             {
                 conn.Open();
-                _DataAccess.RegisterExecution(conn, workflowId, workflowName, username);
+                return _DataAccess.RegisterExecution(conn, workflowId, workflowName, username);
             }
         }
+
+
 
         public static void UpdateExecution(int executionId, bool success)
         {

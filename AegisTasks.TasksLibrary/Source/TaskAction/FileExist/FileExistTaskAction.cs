@@ -32,7 +32,7 @@ namespace AegisTasks.TasksLibrary.TaskAction
 
         // Descripciones en distintos idiomas
         private const string DESCRIPTION_ES = "Comprueba si un archivo existe en la ruta especificada";
-        private const string DESCRIPTION_GL = "Comprueba se un arquivo existe na ruta especificada";
+        private const string DESCRIPTION_GL = "Comproba se un arquivo existe na ruta especificada";
         private const string DESCRIPTION_EN = "Checks if a file exists at the specified path";
 
         #endregion PRIVATE CONSTANTS
